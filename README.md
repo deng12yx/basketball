@@ -1,1 +1,2 @@
 # basketball
+本项目是基于springboot+thymeleaf的川大篮球队官方网站项目
