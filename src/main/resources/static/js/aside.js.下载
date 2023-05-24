@@ -1,0 +1,10 @@
+define(function (require, exports) {
+    // 导航菜单
+    require('ui/header')();
+
+    // QQ第三方登录
+    require('ui/qqlogin')();
+
+    // 侧栏-东西部球队排行榜
+    require('ui/ranklist')();
+});

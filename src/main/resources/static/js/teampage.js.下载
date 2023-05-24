@@ -1,0 +1,37 @@
+define(function (require, exports) {
+    var utils = require('utils/utils');
+    var teamName = utils.getTeamNameFromUrl();
+
+    // 导航菜单
+    require('ui/header')();
+    // banner轮播
+    require('ui/index/banner').init('index-scrollImg', 5000);
+    // 新闻列表日期时间
+    require('ui/newsTime')();
+    // 新闻列表评论数
+    // require('ui/comments')();
+    // 二维码
+    require('ui/app-qrcode').init();
+    // 图集数
+    // require('ui/atlas')();
+    // 新闻列表鼠标划过效果
+    require('ui/newshover')();
+    // 球队页页首
+    require('ui/teamheader')(teamName);
+    // 赛程
+    require('ui/teamschedule')(teamName);
+    // 技术统计 赛季类型2014_1表示2014季前赛，2014_2常规赛，2014_4季后赛
+    require('ui/teamtechnicalstatistics')(teamName, '2016', '2');
+    // 数据王
+    require('ui/teamdataking')(teamName);
+    // 侧栏-东西部球队排行榜
+    require('ui/ranklist')(teamName);
+    // 侧栏-商店
+    require('ui/store')();
+    // 新闻列表加载
+    // require('ui/loadnews')();
+    // 返回顶部
+    require('ui/backtotop').init(1000, 150, 50);
+    //商城链接
+    require('ui/teammall')(teamName);
+});

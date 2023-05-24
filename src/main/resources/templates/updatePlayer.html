@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>添加球员信息</title>
+  <style>
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    body {
+      background: #34495e;
+    }
+
+    .box {
+      width: 600px;
+      padding: 40px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #191919;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      color: whitesmoke;
+    }
+
+    .form-label {
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+  <div class="box">
+
+    <form>
+
+      <div class="form-group">
+        <h2>添加球员信息</h2>
+        <label for="playerName" class="form-label">球员名字</label>
+        <input type="text" id="playerName" th:value="${player.playerName}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="playerPhoto" class="form-label">球员照片</label>
+        <input type="file" id="playerPhoto" th:value="${player.playerSelfieImage}" accept="image/*">
+      </div>
+
+      <div class="form-group">
+        <label for="playerPosition" class="form-label">球员位置</label>
+        <select id="playerPosition" class="form-control">
+          <option value="0" th:selected="${player.playerPosition==0}">后卫</option>
+          <option value="1" th:selected="${player.playerPosition==1}">前锋</option>
+          <option value="2" th:selected="${player.playerPosition==2}">中锋</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="playerGrade" class="form-label">球员年级</label>
+        <input type="text" id="playerGrade" th:selected="${player.playerClass}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="playerInfo" class="form-label">球员个人信息</label>
+        <textarea id="playerInfo" th:text="${player.playerInfo}" class="form-control" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="playerScore" class="form-label">球员综合得分</label>
+        <input type="number" th:value="${player.playerScore}" id="playerScore" class="form-control" required>
+      </div>
+
+      <button onclick="addPlayer();" class="btn btn-primary">添加</button>
+    </form>
+  </div>
+</div>
+<script>
+  function addPlayer() {
+    $.ajax({
+      url: "/updatePlayerIn", /*数据提交到/loginIn处*/
+      type: "POST",  /*采用POST方法提交*/
+      data: {
+        "playerId":[[${player.playerId}]],
+        "playerName":$("#playerName").val(),
+        "playerSelfieImage":$("#playerPhoto").val(),
+        "playerPosition":$("#playerPosition").val(),
+        "playerClass":$("#playerGrade").val(),
+        "playerInfo":$("#playerInfo").val(),
+        "playerScore":$("#playerScore").val(),
+      },  /*提交的数据（json格式），从输入框中获取*/
+      dataType: 'JSON',
+      cache: false,
+      success: function (result) {
+        if (result.code == 1) {
+          // alert(result.msg);
+          // 执行重定向
+          alert("ni");
+          window.location.href = "/player";
+        } else {
+          alert("nin");
+          // alert(result.msg);
+        }
+      }
+
+
+    });
+  }
+</script>
+</body>
+</html>

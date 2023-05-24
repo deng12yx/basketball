@@ -1,0 +1,973 @@
+define(function(require, exports, module) {
+    var dialog = require('utils/dialog');
+    require('cookie');
+    var global = require('global');
+    var localData = require('utils/localData');
+
+    const HOST = (seajs.data.defineConf.env === 'dev' ?
+        //DEV
+        {
+            merkle: {
+                host: "https://loyalty-cn-stage.merklechina.com",
+                secret: "eead67c5276ab0b690e771b0d5a37960",
+                uuid: "48cb7ee23dcd6f",
+            },
+            qq: {
+                redirect_uri: "https://www.nba.cn/redirection",
+                client_id: 101980964
+            },
+            weixin: {
+                redirect_url: (parm) => {
+                    var url = "https://www.nba.cn/";
+                    if (url.indexOf("?") === -1) {
+                        return url + "?provider=" + parm.provider;
+                    } else {
+                        return url + "&provider=" + parm.provider
+                    }
+                },
+                appid: "wx707e0268b55d789d",
+            }
+        } :
+        // PRO
+        {
+            merkle: {
+                host: "https://loyalty-cn.merklechina.com",
+                secret: "769b8e0406613246f0fafdd04bfb1769",
+                uuid: "9f14e8545096b6",
+            },
+            qq: {
+                redirect_uri: "https://www.nba.cn/redirection",
+                client_id: 101980964
+            },
+            weixin: {
+                redirect_url: (parm) => {
+                    var url = "https://www.nba.cn/";
+                    if (url.indexOf("?") === -1) {
+                        return url + "?provider=" + parm.provider;
+                    } else {
+                        return url + "&provider=" + parm.provider;
+                    }
+                },
+                appid: "wx707e0268b55d789d",
+            }
+        }
+    );
+
+    /**
+     * 存储KEY
+     */
+    const STORE_KEY = {
+        USER_INFO: "userInfo",
+        USER_TOKEN: 'token',
+        USER_CID: 'cid'
+    };
+
+    // MERKLE URL
+    const merkelAPI_URI = {
+        TEXT_CONFIRMATION: "/api/text_confirmation",
+        AUTHENTICATE: "/2018-12-01/api/enroll_or_activate.json"
+    };
+
+    /**预制内嵌脚本 */
+    const WEIXIN_SCRIPT_JS = "https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js";
+    /** 微信请求CODE*/
+    const WEIXIN_GETCODE_URL = "https://open.weixin.qq.com/connect/qrconnect?appid=wx0043a788297d1323&redirect_uri=http://127.0.0.1/#/weixinlogin&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect";
+
+
+    //-------------------------------------------------------------------------
+    // define
+    //-------------------------------------------------------------------------
+
+    const MESSAGE_MAX_SEC = 60; //短信发送等待时间 秒
+
+    const PROVIDER_QQ = 3;
+    const PROVIDER_WX = 2;
+
+    //---------------------------------
+
+    const PANEL_LOGIN = 1;
+    const PANEL_BIND = 2;
+
+    //---------------------------------
+
+    const RESPONSE_STATUS = {
+        SUCCESSED: 0,
+        /** 验证码错误 无效*/
+        MESSAGE_ERROR: 51007,
+        /** 获取微信用户信息错误*/
+        WX_USERINFO_ERROR: 51005,
+        /** 获取QQ用户信息失败*/
+        QQ_USERINFO_FAIL: 51006,
+        /** 第三方登录provider无效 */
+        PROVIDER_ERROR: 51009,
+        /** 内部服务错误（读取数据库等代码错误） */
+        SERVER_ERROR: 59999,
+        /** 参数错误 */
+        PARM_ERROR: 40000,
+        /** token不存在 */
+        TOKEN_INVAILD: 40004,
+        /** 手机号绑定merkle失败 */
+        BIND_FAILD: 51010,
+        /** 用户未登录 */
+        ERROR_USER_INVAILD: 51019,
+    };
+
+    /**
+     * 登录逻辑
+     */
+    var qqlogin = {
+        isLogin: false,
+        lock: true,
+        nbasig: "",
+        init: function() {
+            this.bind();
+            this.checkLogin();
+            // this.checkRedirect();
+        },
+        bind: function() {
+            var _this = this;
+
+            D.window.on('hashchange', function() {
+                // debugger
+                _this.hashChange();
+            });
+
+            D.sideUser.on({
+                mouseover: function() {
+                    D.userMenu.show();
+                },
+                mouseout: function() {
+                    D.userMenu.hide();
+                }
+            });
+
+            D.loginBtn.on('click', function() {
+                if (!_this.lock) {
+                    return;
+                }
+                if (!_this.isLogin) {
+                    sensorsTrack('browseLoginPopupWindow',{touch_scene: "点击登录",popup_window_title:"web登录页"})
+                    _this.login();
+                } else {
+                    _this.checkLogin('loginOut');
+                }
+            });
+
+            //----------------------------------------------------
+            // refactor  by yanligang
+            //----------------------------------------------------
+            D.loginDialogCloseBtn.click(e => {
+                _this.closeDialog();
+                sensorsTrack('login',{touch_scene: "点击登录",login_way:"login_auth",is_success:false,failure_reason:"取消登录"})
+            });
+            // D.tabQQ.click(e => {
+            //     _this.setTabShow(PROVIDER_QQ);
+            // });
+            // D.tabWx.click(e => {
+            //     _this.setTabShow(PROVIDER_WX);
+            // });
+
+
+            D.loginPhone.change(() => {
+                D.phoneTip.hide();
+            });
+
+            D.loginMessageCode.focus(() => {
+                D.messageTip.hide();
+                D.messageTipMsg.html("");
+            });
+
+            D.phoneClearBtn.click(e => {
+                D.loginPhone.prop('disabled', false);
+                D.phoneTip.hide();
+                D.loginPhone.val("");
+            });
+
+            D.vcodeClearBtn.click(e => {
+                D.messageTip.hide();
+                D.loginMessageCode.val("");
+            });
+
+            D.loginGetMessageBtn.click(e => {
+
+                var phone = D.loginPhone.val();
+
+                //有效性校验
+                if (!_this.checkPhone(phone)) {
+                    return;
+                }
+                D.loginMessageCode.val('');
+                _this.countTime();
+                _this.sendMessage(phone);
+            });
+            D.loginSubmitBtn.click(e => {
+
+                var phone = D.loginPhone.val();
+                if (!_this.checkPhone(phone)) {
+                    return;
+                }
+                // var phone = D.loginPhone.val();
+                var code = D.loginMessageCode.val();
+
+
+                if (!code || code === "") {
+                    _this.setMessageErrorInfo("验证码不能为空");
+                    return;
+                }
+                _this.bindPhone(phone, code);
+
+            });
+            D.phoneReactivite.click(e => {
+                D.phoneDialogMsg.html('取消注销账户');
+                D.loginPhone.prop('disabled', true);
+                D.loginGetMessageBtn.prop('disabled', false);
+                D.phoneClearBtn.hide();
+                D.loginMessageCode.val('');
+                D.phoneReactivite.hide();
+                D.phoneTip.hide();
+            });
+        },
+        hashChange: function() {
+            // 当URL的hash值符合from标识
+            // 且qqLoginSuccessFlag值为qqlogin
+            // 此时为登录后跳转回来，需要强制刷新页面
+            if (/(\?|&)from\=(qqlogin|merkle)/.test(location.hash) && $.cookie('qqLoginSuccessFlag') === 'qqlogin') {
+                location.reload();
+            }
+        },
+        // 首次登录拉起关注球队浮层
+        // if (/(\?|&)from\=merkle/.test(location.href)) {
+        //     _this.popFollowTeamLayer();
+        // }
+        popFollowTeamLayer: function() {
+            D.followTeamBtn.trigger('click');
+        },
+        login: function() {
+            // 记录登录标识
+            // $.cookie('qqLoginSuccessFlag', 'qqlogin');
+            // 打开第三方登录页
+            D.loginDialog.toggle();
+            // this.setPanel(PANEL_LOGIN);
+            // this.setTabShow(PROVIDER_WX)
+            //手机登录
+            D.phoneReactivite.hide();
+            this.setPanel(PANEL_BIND);
+        },
+        /***
+         * 刷新token
+         */
+         checkLogin: function(flag){
+             var _this = this;
+            var token = localData.get(STORE_KEY.USER_TOKEN);
+            if(!token) return;
+            getSignInstance(APILIST.REFRESH_TOKEN).then(function(url) {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+ token
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.code === RESPONSE_STATUS.SUCCESSED) {
+                            localData.set(STORE_KEY.USER_TOKEN, data.data.token);
+                            if(flag == 'loginOut'){
+                                _this._logout();
+                            }else{
+                                _this.getUserInfo(data.data.token);
+                            }
+                        }
+                    },
+                    error: function(e) {
+                        var result = e.responseJSON;
+                        if (result.msg) {
+                            _this.clearStore();
+                        }
+                    },
+                });
+            })
+         },
+         /***
+         * 刷新获取用户信息
+         */
+        getUserInfo(token){
+            var _this = this;
+            getSignInstance(APILIST.GET_USERINFO).then(function(url) {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+ token
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.code === RESPONSE_STATUS.SUCCESSED) {
+                            data.data.token = token;
+                            _this.isLogin = true;
+                            _this.setLoginInfo(data.data);
+                        }
+                    },
+                    error: function(e) {
+                        console.error(e);
+                        if (e.code === RESPONSE_STATUS.TOKEN_INVAILD) {
+                            //TODO
+                            _this.clearStore();
+                        }
+                    }
+                });
+            })
+        },
+        //----------------------------------------------------
+        // refactor  by yanligang
+        //----------------------------------------------------
+
+        /**
+         * 检查是否为第三方回调
+         * @returns true 参数存在 ,否则不存在
+         * 
+         */
+        // checkRedirect: function() {
+        //     var provider = parseInt((global.getQueryVariable("provider")));
+        //     var code = (global.getQueryVariable("code"));
+        //     var state = global.getQueryVariable("state");
+        //     // debugger
+        //     //qq登录回跳页面
+        //     if (code && state && state === 'QQweb') {
+        //         this.getUserInfo(code)
+        //         return
+        //     }
+        //     if (!provider && !code || (!state && !code)) {
+        //         this.checkAccessToken();
+        //         return;
+        //     }
+        //     //回调参数
+        //     this.callBackRequest({
+        //         data: {
+        //             code: code,
+        //             provider: provider
+        //         }
+        //     });
+        //     return true;
+        // },
+        // QQ登录回跳获取cid判断是否绑定手机号，首次获取token,后台更新登录session
+        // getUserInfo: function(code) {
+        //     var _this = this;
+        //     getSignInstance(APILIST.GET_USER + '?code=' + code).then(function(url) {
+        //         $.ajax({
+        //             type: 'get',
+        //             url: url,
+        //             success: function(data) {
+        //                 // debugger
+        //                 if (data.code === 0) {
+        //                     data.data.provider = 3;
+        //                     localData.set(STORE_KEY.USER_INFO, JSON.stringify(data.data));
+        //                     if (data.data.cid === 0) {
+        //                         //绑定手机号
+        //                         D.loginDialog.show();
+        //                         _this.setPanel(PANEL_BIND)
+        //                     } else {
+        //                         //获取登录token,更新session有效期
+        //                         _this.getToken();
+        //                         allIsLogin(true);//埋点是否登录
+        //                         sensorsTrack('login',{touch_scene: "点击登录",login_way:"login_auth",is_success:true});
+        //                     }
+        //                 }
+        //             },
+        //             error: function(e) {
+        //                 _this.isLogin = false;
+        //                 _this.setLoginInfo();
+        //                 sensorsTrack('login',{touch_scene: "点击登录",login_way:"login_auth",is_success:false,failure_reason:"QQ登录失败"});
+        //             }
+        //         })
+        //     })
+        // },
+        /**
+         * UI设置 登录面板下 设置TAB,
+         * @param {*} state 
+         * STATE_QQ QQ,
+         * STATE_WX  WEIXIN
+         */
+        // setTabShow: function(state) {
+        //     var _this = this;
+        //     switch (state) {
+        //         case PROVIDER_QQ:
+
+        //             //初始化QQ登录
+        //             _this.initQQ();
+
+        //             D.tabQQcontent.show();
+        //             D.tabWxcontent.hide();
+        //             D.tabWx.removeClass('active');
+        //             D.tabQQ.addClass('active');
+
+        //             break;
+        //         case PROVIDER_WX:
+
+        //             //初始化微信登录
+        //             _this.initWexin();
+
+        //             D.tabWxcontent.show();
+        //             D.tabQQcontent.hide();
+        //             D.tabQQ.removeClass('active');
+        //             D.tabWx.addClass('active');
+
+        //             break;
+        //     }
+        // },
+        /**
+         * UI设置 显示面板
+         * @param {*} panel   
+         * PANEL_LOGIN 设置登录面板
+         * PANEL_BIND 设置绑定面板
+         */
+        setPanel: function(panel) {
+            switch (panel) {
+                case PANEL_LOGIN:
+                    D.loginDialogPanel.show();
+                    D.bindDialogPanel.hide();
+                    break;
+                case PANEL_BIND:
+                    D.loginDialogPanel.hide();
+                    D.bindDialogPanel.show();
+                    break;
+            }
+        },
+        /**
+         * UI设置 ，绑定面板，电话错误信息提示
+         * @param {*} msg string 直接被展示出来
+         */
+        setPhoneErrorInfo: function(msg) {
+            D.phoneTip.show();
+            D.phoneTipMsg.html(msg);
+        },
+        /**
+         * UI设置, 绑定面板，短信错误提示
+         * @param {*} msg String 直接被显示出来
+         */
+        setMessageErrorInfo: function(msg) {
+            D.messageTipMsg.html(msg);
+            D.messageTip.show();
+        },
+        /**
+         * UI设置，初始化微信登录二维码面板
+         */
+        // initWexin: function() {
+        //     // debugger
+        //     //
+        //     const encode_url = encodeURIComponent(HOST.weixin.redirect_url({ provider: PROVIDER_WX }));
+        //     // console.log("weixin-redirect:", encode_url);
+
+        //     $.ajax({
+        //         url: "https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js",
+        //         dataType: "script",
+        //         success: function() {
+        //             var obj = new WxLogin({
+        //                 self_redirect: false,
+        //                 id: "weixin-login",
+        //                 appid: HOST.weixin.appid,
+        //                 scope: "snsapi_login",
+        //                 redirect_uri: encode_url,
+        //                 state: (new Date().getTime())
+        //             });
+        //         }
+        //     })
+
+        //     // var obj = new WxLogin({
+        //     //     self_redirect: false,
+        //     //     id: "weixin-login",
+        //     //     appid: HOST.weixin.appid,
+        //     //     scope: "snsapi_login",
+        //     //     redirect_uri: encode_url,
+        //     //     state: (new Date().getTime())
+        //     // });
+        // },
+        /**
+         * UI设置，初始化QQ登录面板
+         */
+        // initQQ: function() {
+        //     var url = "https://graph.qq.com/oauth2.0/authorize";
+        //     var params = "?";
+        //     params += "response_type=code&"; // 获取回access_token
+        //     params += "client_id=" + HOST.qq.client_id + "&"; // 应用的appid
+        //     params += "redirect_uri=" + encodeURIComponent(HOST.qq.redirect_uri) + "&";
+        //     params += "state=QQweb"
+        //     window.location.href = url + params;
+        //     // var $iframe = $("#qqlogin-panel");
+        //     // if ($iframe.prop('src') !== (url + params)) {
+        //     //     $iframe.prop("src", url + params);
+        //     // }
+        // },
+
+        /**
+         * UI-业务处理：SUBMIT 检查有效性
+         * @returns true 可以提交，否则不能提交
+         */
+        checkData: function() {
+            var _this = this;
+            var phone = D.loginPhone.val();
+
+            if (!_this.checkPhone(phone)) {
+                return false;
+            }
+
+            var msgCode = D.loginMessageCode.val();
+
+            if (!msgCode) {
+                _this.setMessageErrorInfo("验证码不能为空");
+                return false;
+            }
+            // 
+            return true;
+        },
+        /**
+         * UI-业务处理：手机号码有效性检查,并提示
+         * @param {*} phone 电话号码
+         * @returns 
+         */
+        checkPhone: function(phone) {
+            var _this = this;
+            var reg_tel = /^1[3456789]\d{9}$/;
+
+            if (!phone) {
+                _this.setPhoneErrorInfo("手机号码不能为空");
+                return false;
+            } else if (!reg_tel.test(phone)) {
+                _this.setPhoneErrorInfo("手机号码不正确");
+                return false;
+            }
+
+            return true;
+        },
+        /**
+         * UI-业务：发送短信验证码后，倒计时
+         *
+         */
+        countTime: function() {
+            var _this = this;
+            var count = MESSAGE_MAX_SEC;
+
+            D.loginGetMessageBtn.prop('disabled', true);
+            _this.tcount = setInterval(e => {
+                count--;
+
+                D.loginGetMessageBtn.val("(" + count + "S)重新发送");
+                if (count <= 0) {
+                    clearInterval(_this.tcount);
+                    D.loginGetMessageBtn.prop('disabled', false);
+                    D.loginGetMessageBtn.val("获取验证码");
+                }
+
+            }, 1000);
+        },
+        /**
+         * UI-设置 头像ICON
+         * @returns 
+         */
+        setLoginInfo(data) {
+            if (!this.isLogin) {
+                D.userInfo.html('您好~请您登录');
+                D.userHead.attr('src', "//res.nba.cn/resource/mat1/chinanba/web/statics/icon_30_user_f91522.png");
+                D.loginBtn.html('登录');
+                return;
+            }
+            
+            D.userInfo.html('您好，' + data.nickname);
+            D.userHead.attr('src', data.avatar);
+            D.loginBtn.html('退出');
+        },
+        /**
+        * 业务处理：微信登录回调，请求第三方登录业务
+        * @param {*} parm   {
+                code: 0,    请求状态
+                data: {     用户信息
+                    cid: 0,
+                    mobile_phone: 1234567,
+                    union_id: "25f9e794323b453885f5181f1b624d0b",
+                    avatar: "https://c-ssl.duitang.com/uploads/blog/202110/15/20211015114017_02da2.thumb.1000_0.jpeg",
+                    nickname: "abc",
+                    open_id: "25f9e794323b453885f5181f1b624d0b",
+                },
+                msg: ""
+            };
+        */
+        // callBackRequest: function(parm) {
+        //     var _this = this;
+        //     // console.log(parm);
+
+        //     var userinfo = {};
+        //     userinfo.provider = parm.data.provider;
+        //     localData.set(STORE_KEY.USER_INFO, JSON.stringify(userinfo));
+
+        //     getSignInstance(APILIST.AUTH_CALLBACK).then(function(url) {
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: url,
+        //             dataType: "json",
+        //             data: parm.data,
+        //             success: function(data) {
+        //                 console.log(data);
+        //                 _this.wxLoginSuccessed(data);
+        //                 if (data.code === RESPONSE_STATUS.SUCCESSED && data.data.cid === 0) {
+        //                     D.loginDialogCloseBtn.hide();
+        //                     D.loginDialog.show();
+        //                     _this.setPanel(PANEL_BIND);
+        //                 } else {
+        //                     _this.getToken(data.data.cid);
+        //                 }
+        //             },
+        //             error: function(e) {
+        //                 console.log(e);
+        //             }
+        //         });
+        //     })
+        // },
+        /** 
+         * 业务处理：微信登录成功，后输出处理
+         */
+        // wxLoginSuccessed(data) {
+        //     // 已登录
+        //     if (data.code === 0) {
+        //         this.isLogin = true;
+
+        //         var userinfo = JSON.parse(localData.get(STORE_KEY.USER_INFO));
+
+        //         userinfo.open_id = data.data.open_id;
+        //         userinfo.avatar = data.data.avatar;
+        //         userinfo.cid = data.data.cid;
+        //         userinfo.mobile_phone = data.data.mobile_phone;
+        //         userinfo.union_id = data.data.union_id;
+        //         userinfo.nickname = data.data.nickname;
+
+        //         localData.set(STORE_KEY.USER_INFO, JSON.stringify(userinfo));
+        //         this.setLoginInfo();
+        //         // dialog.alert('登录成功！');
+        //     } else {
+        //         console.log("登录失败" + data.code);
+        //     }
+
+        //     // var userinfo = JSON.parse(localData.get(STORE_KEY.USER_INFO));
+        //     // console.log(userinfo);
+
+        // },
+        /**
+         * 业务处理：请求获得用户token
+         * 
+         */
+        // getToken(cid) {
+        //     var _this = this;
+        //     var userInfo = JSON.parse(localData.get(STORE_KEY.USER_INFO));
+
+        //     getSignInstance(APILIST.GET_TOKEN).then(function(url) {
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: url,
+        //             data: JSON.stringify({
+        //                 "cid": userInfo.cid,
+        //                 "mobile_phone": userInfo.mobile_phone,
+        //                 "provider": userInfo.provider,
+        //                 "open_id": userInfo.open_id,
+        //                 "vid": userInfo.union_id,
+        //                 "nickname": userInfo.nickname,
+        //                 "avatar": userInfo.avatar
+        //             }),
+
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             dataType: "json",
+        //             success: function(data, status, request) {
+        //                 // debugger;
+        //                 console.log(data);
+
+        //                 if (data.code === RESPONSE_STATUS.SUCCESSED) {
+        //                     _this.isLogin = true;
+        //                     _this.setLoginInfo();
+        //                     userInfo.token = data.data.token;
+        //                     userInfo.user_type = data.data.user_type;
+        //                     userInfo.share_key = data.data.share_key;
+
+        //                     localData.set(STORE_KEY.USER_INFO, JSON.stringify(userInfo));
+
+        //                     //关闭面板
+        //                     D.loginDialog.hide();
+        //                     //改变登录为退出
+        //                     //url 重新定向 为 去掉登录的URL
+        //                     var state = global.getQueryVariable("state");
+        //                     if (state && state !== 'QQweb') {
+        //                         var currenurl = global.removeUrlParam("code");
+        //                         window.location.href = global.removeUrlParam("state", currenurl);
+        //                     }
+        //                 }
+        //             },
+        //             error: function(e) {
+        //                 console.log(e);
+        //             }
+
+        //         });
+        //     });
+        // },
+        /**
+         * 业务处理：merkel获取验证码
+         * scenario:0 激活，登录用这个，可以直接不传，默认就是0  1 修改密码 2 注销 3 重新激活
+         * @param {*} phone 
+         */
+        sendMessage: (phone) => {
+            var _this = this;
+            var scenario = 0;
+            //---------------------------------------
+            getSignInstance(APILIST.MESSAGE_SEND + '?phone=' + phone + '&scenario='+ scenario).then(function(url) {
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data.data)
+                    }
+                });
+            })
+        },
+        /**
+         * 业务处理：绑定手机号
+         * @param phone 电话
+         * @param message 验证码
+         * 用户状态user_status 1正常，2冷静期内，3注销
+         * 用户类型user_type 1表示迁移用户，2表示新用户，3表示老用户
+         */
+        let :userStatus = '',
+        bindPhone: function(phone, message) {
+            var _this = this;
+            D.loginSubmitBtn.prop('disabled', true);
+            let API = '';
+            if(userStatus === 2){
+                API = APILIST.GET_REACTIVATE;
+            }else{
+                API = APILIST.GET_LOGIN;
+            }
+            getSignInstance(API).then(function(url) {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: "json",
+                    data: JSON.stringify( {    
+                        "mobile_phone": phone,
+                        "sms_code": message  
+                    }),
+                    success: function(data) {
+                        if (data.code === RESPONSE_STATUS.SUCCESSED) {
+                            var userinfo = data.data;
+                            userinfo.mobile_phone = phone;
+                            userStatus = userinfo.user_status;
+                            if(userinfo.user_status == 2){
+                                _this.setPhoneErrorInfo('该账户处于注销冷静期')
+                                sensorsTrack('login',{touch_scene: "点击登录",login_way:"login_auth",is_success:false,failure_reason:'账户 '+phone+' 处于注销冷静期'})
+                                D.phoneReactivite.show();
+                            }else{
+                                localData.set(STORE_KEY.USER_TOKEN, userinfo.token);
+                                localData.set(STORE_KEY.USER_CID, userinfo.cid);
+                                //关闭面板
+                                _this.closeDialog();
+                                //登录成功
+                                _this.isLogin = true;
+                                _this.setLoginInfo(userinfo);
+                                allIsLogin(true);//埋点是否登录
+                                sensorsTrack('login',{touch_scene: "点击登录",login_way:"login_auth",is_success:true});
+                                sensors.setOnceProfile({memberID:userinfo.cid});
+                                sensors.login(userinfo.cid);
+                            }
+                        }
+                    },
+                    error: function(e) {
+                        var result = e.responseJSON;
+                        if (result.msg) {
+                            _this.setMessageErrorInfo(result.msg);
+                            sensorsTrack('login',{touch_scene: "点击登录",login_way:"login_auth",is_success:false,failure_reason:result.msg})
+                        }
+                    },
+                    complete: function(e){
+                        D.loginSubmitBtn.prop('disabled', false);
+                    }
+                });
+            })
+        },
+        /**
+         * 关闭登录窗口重置
+         * @returns 
+         */
+        closeDialog: function(){
+            var _this = this;
+            D.loginPhone.val('');
+            D.loginMessageCode.val('');
+            D.phoneTip.hide('');
+            D.messageTip.hide('');
+            D.phoneDialogMsg.html('手机号登录');
+            D.phoneReactivite.hide();
+            clearInterval(_this.tcount);
+            D.loginGetMessageBtn.val("获取验证码");
+            D.loginGetMessageBtn.prop('disabled', false);
+            D.loginPhone.prop('disabled', false);
+            D.loginSubmitBtn.prop('disabled', false);
+            D.loginDialog.hide();
+        },
+        /**
+         * 业务处理：检查登录状态
+         * @returns 
+         */
+        // checkAccessToken: function() {
+        //     var _this = this;
+        //     var userinfo = JSON.parse(localData.get(STORE_KEY.USER_INFO));
+        //     // debugger
+        //     if (userinfo === null || !userinfo.cid) {
+        //         // console.log("未登录");
+        //         //设置未登录UI状态
+        //         _this.setPanel(PANEL_LOGIN);
+        //         _this.setTabShow(PROVIDER_WX);
+
+        //         return;
+        //     }
+        //     //检查token有效性
+        //     getSignInstance(APILIST.GET_PICK_USER + '?uid=' + userinfo.cid).then(function(url) {
+        //         $.ajax({
+        //             type: 'GET',
+        //             url: url,
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'Authorization': 'Bearer '+ userinfo.token
+        //             },
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 if (data.code === RESPONSE_STATUS.SUCCESSED) {
+        //                     if (data.data.cid === 0) {
+        //                         //重新登录
+        //                         //设置未登录UI状态
+        //                         _this.clearStore();
+        //                         return;
+        //                     }
+        //                 }
+        //                 //---------------------------------------------
+        //                 _this.isLogin = true;
+        //                 _this.setLoginInfo();
+        //                 // if (data.code === RESPONSE_STATUS.SUCCESSED && data.data) {
+        //                 //     //已经通过验证
+        //                 //     _this.isLogin = true;
+        //                 //     _this.setLoginInfo();
+        //                 //     return;
+        //                 // }
+        //                 // //clear store
+        //                 // _this.clearStore();
+        //             },
+        //             error: function(e) {
+        //                 console.error(e);
+        //                 if (e.code === RESPONSE_STATUS.TOKEN_INVAILD) {
+        //                     //TODO
+        //                     _this.clearStore();
+        //                 }
+        //             }
+        //         });
+        //     })
+
+        // },
+        /**
+         * 业务处理：清除USER DATA
+         */
+        clearStore() {
+            localData.remove(STORE_KEY.USER_TOKEN);
+            localData.remove(STORE_KEY.USER_CID);
+            this.setPanel(PANEL_LOGIN);
+            // this.setTabShow(PROVIDER_WX);
+        },
+
+        /**
+         * 业务处理：注销用户
+         */
+        _logout() {
+            var _this = this;
+            var token = localData.get(STORE_KEY.USER_TOKEN);
+            getSignInstance(APILIST.LOGOUT).then(function(url) {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+ token
+                    },
+                    dataType: "json",
+                    data: JSON.stringify({
+                        "user_id": Number(localData.get(STORE_KEY.USER_CID))
+                    }),
+                    success: function(data) {
+                        if (data.code === 0 && data.data) {
+                            //退出成功
+                            _this.isLogin = false;
+                            _this.setLoginInfo();
+                            localData.remove(STORE_KEY.USER_TOKEN);
+                            localData.remove(STORE_KEY.USER_CID);
+                            sensorsTrack('login',{touch_scene: "退出登录",login_way:"login_auth",is_success:true})
+                            allIsLogin(false);//埋点是否登录
+                        }
+                    },
+                    error: function(e) {
+                        console.error(e);
+                        sensorsTrack('login',{touch_scene: "退出登录",login_way:"login_auth",is_success:false,failure_reason:e.msg})
+                    }
+                });
+            })
+
+        }
+    };
+
+    /**
+     * DOM
+     */
+    var D = {
+        window: $(window),
+        sideUser: $('.side-user'),
+        userHead: $('.side-user .user-head img'),
+        userMenu: $('.side-user .user-menu'),
+        userInfo: $('.side-user .user-info'),
+        loginBtn: $('.side-user .user-login span'),
+        followTeamBtn: $('.follow-team-btn'),
+
+        //----------------------------------------------------
+        // refactor  by yanligang
+        //----------------------------------------------------
+        loginDialog: $('#login-dialog'),
+        loginDialogPanel: $("#login-dialog .login-conitaner"),
+        bindDialogPanel: $("#login-dialog .bind-conitaner"),
+
+        loginDialogCloseBtn: $("#login-dialog .login-close"),
+
+        tabQQ: $("#login-dialog .tab-qq"),
+        tabWx: $("#login-dialog .tab-wx"),
+        tabQQcontent: $("#login-dialog .qqcontent"),
+        tabWxcontent: $("#login-dialog .wxcontent"),
+
+        phoneDialogMsg: $('.input-welcome'),
+        phoneReactivite: $('#go-activite'),
+        phoneTip: $("#login-dialog .phone-tip"),
+        phoneTipMsg: $("#login-dialog .phone-tip.tip"),
+        messageTip: $("#login-dialog .vcode-tip"),
+        messageTipMsg: $("#login-dialog .vcode-tip.tip"),
+
+        phoneClearBtn: $(".phone-tip.clearbtn1"),
+        vcodeClearBtn: $('.vcode-tip.clearbtn1'),
+
+        loginGetMessageBtn: $("#get-message"),
+        loginPhone: $("#login-phone"),
+        loginSubmitBtn: $("#login-submit"),
+        loginMessageCode: $("#message-code")
+    };
+
+
+
+    return function() {
+        qqlogin.init();
+    }
+});

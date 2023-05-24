@@ -1,0 +1,89 @@
+#NBA-store {
+    width:300px;
+    height:350px;
+}
+
+.NBA-module-title {
+    height: 39px;
+    background: #1e518c;
+    border-bottom: 1px solid #be9d53;
+}
+
+.NBA-module-title h2 {
+    font-weight: normal;
+    padding-left: 10px;
+    line-height: 39px;
+    height: 39px;
+}
+
+.NBA-module-title h2 a,.NBA-module-title h2 a:hover {
+    color: #ffffff;
+    font-size: 18px;
+    text-shadow: 0 2px 0 #093d79;
+    -webkit-text-shadow: 0 2px 0 #093d79;
+    -moz-text-shadow: 0 2px 0 #093d79;
+    -ms-text-shadow: 0 2px 0 #093d79;
+}
+
+.store-content {
+    height: 310px;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    background: #ffffff;
+    box-shadow: 0 4px 4px #ebebeb;
+    -webkit-box-shadow: 0 4px 4px #ebebeb;
+    -moz-box-shadow: 0 4px 4px #ebebeb;
+    -ms-box-shadow: 0 4px 4px #ebebeb;
+}
+
+.store-content ul {
+    overflow: hidden;
+    padding-top:8px;
+}
+
+.store-content ul li {
+    float: left;
+    display: inline;
+    width: 135px;
+    margin:10px 0 0 10px;
+}
+
+.store-content ul li img {
+    border: 1px solid #e5e5e5;
+    width: 133px;
+    height:158px;
+}
+
+.store-content ul li span {
+    font-size: 18px;
+    color: #ff2a2a;
+}
+
+.store-content ul li p {
+    font-size: 14px;
+    color: #454545;
+    text-align: justify;
+}
+
+.store-content .store-group {
+    display: none;
+}
+
+.store-content .store-cur{
+    display: block;
+}
+.store-content p.store-group-btn {
+    text-align: right;
+    font-size: 16px;
+    margin-right:10px;
+    padding:6px 0;
+}
+
+.store-content p.store-group-btn a {
+    color: #7a7a7a;
+}
+
+.store-content p.store-group-btn a:hover {
+    color: #2A6CB6;
+}
+

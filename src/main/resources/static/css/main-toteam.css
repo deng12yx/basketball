@@ -1,0 +1,112 @@
+/* main-content */
+.main-content {
+    width: 100%;
+    min-width: 1000px;
+    padding: 1px 0;
+    /*跳过 background-position 是 right/center/bottom 的图片*/
+    background: url(./images/bg.jpg) center 5px no-repeat;
+}
+
+.main-content a.nocursor {
+    cursor: default;
+}
+
+.site-banner {
+    margin-top: 20px;
+    width: 1000px;
+    height: 150px;
+}
+
+.site-banner img {
+    width: 1000px;
+    height: 150px;
+    float: left;
+}
+
+.allstar-vote-banner, .mvp-match-mvp, .mvp-match-ringstarmvp, .mvp-match-celebritymvp {
+    margin-top: 20px;
+    width: 1000px;
+    height: 150px;
+    display: none;
+}
+
+.allstar-vote-banner img, .mvp-match-mvp img, .mvp-match-ringstarmvp img, .mvp-match-celebritymvp img {
+    width: 1000px;
+    height: 150px;
+}
+
+.show-banner-allstar .allstar-vote-banner {
+    display: block;
+}
+
+.show-banner-mvp .mvp-match-mvp {
+    display: block;
+}
+
+.show-banner-ringstarmvp .mvp-match-ringstarmvp {
+    display: block;
+}
+
+.show-banner-celebritymvp .mvp-match-celebritymvp {
+    display: block;
+}
+
+.allstar-vote-banner img {
+    width: 1000px;
+    height: 150px;
+    float: left;
+}
+
+.allstar-banner {
+    margin-top: 20px;
+    width: 680px;
+    display: none;
+}
+
+.allstar-banner img {
+    width: 680px;
+}
+
+.allstar-banner.warriors {
+    display: block;
+}
+
+.chief {
+    float: left;
+    display: inline;
+    width: 680px;
+}
+
+.extra {
+    float: right;
+    display: inline;
+    width: 300px;
+}
+
+.box {
+    margin: 20px 0;
+}
+
+.sched {
+    width: 1000px;
+    height: 126px;
+    overflow: hidden;
+    border-top: solid 1px #dadada;
+    border-bottom: solid 1px #cbcbcb;
+    box-shadow: 0px 3px 7px #ADADAD;
+    -moz-box-shadow: 0px 3px 7px #ADADAD;
+    -ms-box-shadow: 0px 3px 7px #ADADAD;
+    -webkit-box-shadow: 0px 3px 7px #ADADAD;
+    font-size: 14px;
+}
+
+#scoreboard-iframe {
+    border: none;
+    margin-top: -30px;
+}
+
+.main-content a.nocursor, .nocursor {
+    cursor: default;
+}
+
+/* main-content End */

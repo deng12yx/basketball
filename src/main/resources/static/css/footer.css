@@ -1,0 +1,338 @@
+/* footer */
+#east-west-side {
+    width: 998px;
+    height: 307px;
+    margin: 0 auto 20px auto;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-sizing: content-box !important;
+    box-shadow: 0 4px 4px #ebebeb;
+    -webkit-box-shadow: 0 4px 4px #ebebeb;
+    -moz-box-shadow: 0 4px 4px #ebebeb;
+    -ms-box-shadow: 0 4px 4px #ebebeb;
+}
+
+#east-west-side * {
+    box-sizing: content-box !important;
+}
+
+#east-west-side .east-box {
+    width: 468px;
+    float: right;
+    margin-right: 15px;
+}
+
+.NBA-module-title h2 a, .NBA-module-title h2 a:hover {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.east-box h2, .west-box h2 {
+    padding-top: 18px;
+    text-align: center;
+    font-weight: normal;
+    color: #454545;
+    font-size: 16px;
+    background: url("images/db_x_03.png") no-repeat 88px 28px;
+}
+
+.east-box ul, .west-box ul {
+    overflow: hidden;
+}
+
+.east-box ul li, .west-box ul li {
+    width: 72px;
+    height: 60px;
+    display: block;
+    float: left;
+    padding: 12px 10px;
+}
+
+#east-west-side .west-box {
+    width: 470px;
+    float: left;
+}
+
+#east-west-side a {
+    display: block;
+    width: 80px;
+    height: 80px;
+    text-indent: -9999em;
+    background: url(./images/teamlogo-big.png) no-repeat;
+}
+
+#east-west-side a.big-s76ers {
+    background-position: 0 -20px;
+}
+
+#east-west-side a.big-celtics {
+    background-position: 0 -100px;
+}
+
+#east-west-side a.big-knicks {
+    background-position: 0 -180px;
+}
+
+#east-west-side a.big-nets {
+    background-position: 0 -260px;
+}
+
+#east-west-side a.big-raptors {
+    background-position: 0 -338px;
+}
+
+#east-west-side a.big-hornets {
+    background-position: 0 -420px;
+}
+
+#east-west-side a.big-hawks {
+    background-position: 0 -500px;
+}
+
+#east-west-side a.big-heat {
+    background-position: 0 -580px;
+}
+
+#east-west-side a.big-magic {
+    background-position: 0 -660px;
+}
+
+#east-west-side a.big-wizards {
+    background-position: 0 -740px;
+}
+
+#east-west-side a.big-bucks {
+    background-position: 0 -820px;
+}
+
+#east-west-side a.big-bulls {
+    background-position: 0 -900px;
+}
+
+#east-west-side a.big-cavaliers {
+    background-position: 0 -980px;
+}
+
+#east-west-side a.big-pacers {
+    background-position: 0 -1060px;
+}
+
+#east-west-side a.big-pistons {
+    background-position: 0 -1140px;
+}
+
+#east-west-side a.big-clippers {
+    background-position: 0 -1220px;
+}
+
+#east-west-side a.big-lakers {
+    background-position: 0 -1300px;
+}
+
+#east-west-side a.big-kings {
+    background-position: 0 -1380px;
+}
+
+#east-west-side a.big-warriors {
+    background-position: 0 -1460px;
+}
+
+#east-west-side a.big-suns {
+    background-position: 0 -1540px;
+}
+
+#east-west-side a.big-grizzlies {
+    background-position: 0 -1620px;
+}
+
+#east-west-side a.big-pelicans {
+    background-position: 0 -1700px;
+}
+
+#east-west-side a.big-mavericks {
+    background-position: 0 -1780px;
+}
+
+#east-west-side a.big-rockets {
+    background-position: 0 -1860px;
+}
+
+#east-west-side a.big-spurs {
+    background-position: 0 -1940px;
+}
+
+#east-west-side a.big-jazz {
+    background-position: 0 -2020px;
+}
+
+#east-west-side a.big-nuggets {
+    background-position: 0 -2100px;
+}
+
+#east-west-side a.big-thunder {
+    background-position: 0 -2180px;
+}
+
+#east-west-side a.big-timber_wolves {
+    background-position: 0 -2260px;
+}
+
+#east-west-side a.big-trail_blazers {
+    background-position: 0 -2340px;
+}
+
+.bottom-links {
+    padding: 30px 0;
+    background-color: #333;
+}
+
+.footer-main {
+}
+
+.footer-main .links {
+    float: left;
+    display: inline;
+    margin-right: 50px;
+}
+
+.footer-main .last {
+    margin-right: 0;
+    text-align: center;
+}
+
+.footer-main .links li {
+    margin: 10px 0;
+}
+
+.app-qr {
+}
+
+.footer-main h3 {
+    margin-bottom: 25px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.footer-main a {
+    color: #7a7a7a;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-main h3 a {
+    color: #f5f5f5;
+    font-size: 16px;
+}
+
+.footer p {
+    text-align: center;
+    color: #303030;
+    font-size: 12px;
+    font-family: 'SimSun', '宋体';
+}
+
+.footer p em {
+    font: 12px "Microsoft Yahei", Arial, sans-serif;
+    font-style: normal;
+}
+
+.copyright {
+    margin: 30px auto;
+}
+
+/* new copyright */
+#copyright-wrap {
+    width: 100%;
+    height: 415px;
+}
+
+#copyright-tab {
+    width: 100%;
+    min-width: 1200px;
+    height: 250px;
+    background: url(./images/footer-bg.png) no-repeat center 0 #012f50;
+}
+
+.copyright-tab {
+    margin: 0 auto;
+    width: 1200px;
+    height: 250px;
+}
+
+.copyright-tab .tab-list {
+    width: 210px;
+}
+
+.copyright-tab .tab-sports-app, .copyright-tab .tab-nba-app {
+    width: 180px;
+}
+
+.copyright-tab div {
+    height: 250px;
+    float: left;
+}
+
+.copyright-tab span {
+    height: 65px;
+    line-height: 65px;
+    color: #fff;
+    font-size: 18px;
+    display: block;
+}
+
+.copyright-tab a {
+    margin-bottom: 7px;
+    color: #fff;
+    font-size: 14px;
+    display: block;
+}
+
+.copyright-tab a:hover {
+    text-decoration: underline;
+}
+
+.copyright-tab img {
+    width: 110px;
+    height: 110px;
+}
+
+.copyright-tab .tab-sports-app span {
+    padding-left: 20px;
+}
+
+.copyright-tab .tab-nba-app span, .copyright-tab .tab-nba-app img {
+    padding-left: 15px;
+}
+
+#copyright-content {
+    width: 100%;
+    min-width: 1200px;
+    height: 165px;
+    background: #1f2428;
+}
+
+.copyright-content {
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 1200px;
+    height: 145px;
+}
+
+.copyright-content p {
+    line-height: 25px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    font-family: "Microsoft YaHei";
+}
+
+.copyright-content a {
+    color: #356da0;
+    border: none;
+}
+
+.copyright-content a:hover {
+    text-decoration: underline;
+}
+
+/* footer End */

@@ -1,0 +1,42 @@
+define(function (require, exports, module) {
+    var global = require('global');
+    var utils = require('utils/utils');
+    var jsonselect = require('jsonselect');
+
+    var seasonTypeMap = ['', '季前赛', '常规赛', '', '季后赛'];
+
+    function compare(a, b) {
+        return a - b;
+    };
+    return function (teamName) {
+        $.ajax({
+            url: utils.strFormat(global.API.teamHeader, teamName),
+            type: 'GET'
+        }).done(function (data) {
+            var playload = jsonselect.match('.payload .team', data)[0];
+            var coach = jsonselect.match('.headCoach', playload)[0];
+            var division = jsonselect.match('.division', playload)[0];
+            var confRank = jsonselect.match('.confRank', playload)[0];
+            var wins = jsonselect.match('.wins', playload)[0];
+            var losses = jsonselect.match('.losses', playload)[0];
+            var displayConference = jsonselect.match('.displayConference', playload)[0];
+            var seasonType = jsonselect.match('.payload .season .statsSeasonType', data)[0];
+            var code = jsonselect.match('.profile .code', playload)[0];
+            var stadium = $('body').data('stadium');
+            var teamHeaderData = {
+                coach: coach, // 教练
+                division: division, // 分赛区
+                displayConference: displayConference, // 分区
+                seasonType: seasonTypeMap[seasonType],
+                wins: wins, // 胜场
+                losses: losses, // 负场
+                confRank: confRank, // 排名
+                code: code, // 英文名
+                stadium: stadium //球馆
+            };
+            $('.team-inf').html(require('template/teamheader/index').render(teamHeaderData));
+        });
+    };
+
+});
+

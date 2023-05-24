@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改文章</title>
+    <style>
+        /* 外部容器样式 */
+        .container {
+            max-width: 6000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+
+        }
+
+        body {
+            background: #34495e;
+        }
+
+        /* 标题样式 */
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* 输入框样式 */
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* 文本区域样式 */
+        .textarea-field {
+            width: 100%;
+
+            padding: 10px;
+            height: 400px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        /* 按钮样式 */
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* 按钮悬停样式 */
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 图标样式 */
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        /* 自定义的白色框样式 */
+        .box {
+            width: 600px;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #191919;
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <h2 class="title" style="color: whitesmoke">修改文章</h2>
+
+        <label for="title" style="color: whitesmoke">
+            <!--            <img src="title-icon.png" alt="标题图标" class="icon">-->
+            标题
+        </label>
+        <input type="text" id="title" class="input-field" required th:value="${article?.articleTitle}" value="原来的文章标题">
+
+        <label for="author" style="color: whitesmoke">
+            <!--            <img src="author-icon.png"  alt="作者图标" class="icon">-->
+            作者
+        </label>
+        <input type="text" id="author" class="input-field" required th:value="${article?.articleAuthor}" value="原来的作者">
+
+        <label for="originalImage" style="color: whitesmoke">
+            原图片
+        </label>
+        <img src="/static/image/first.jpg" id="originalImage" alt="原图片" style="max-width: 200px; margin-bottom: 15px;">
+
+        <label for="changeImage" style="color: whitesmoke">
+            是否修改图片
+        </label>
+        <input type="checkbox" id="changeImage" class="checkbox-field" onclick="toggleNewImage();">
+
+        <div id="newImageSection" style="display: none;">
+            <label for="newImage" style="color: whitesmoke">
+                上传新图片
+            </label>
+            <input type="file" id="newImage" class="input-field">
+        </div>
+
+        <label for="content" style="color: whitesmoke">
+            <!--            <img src="content-icon.png"  alt="内容图标" class="icon">-->
+            内容
+        </label>
+        <textarea id="content" class="textarea-field" th:if="${article != null}" required th:text="${article?.articleInfo}">原来的文章内容</textarea>
+
+        <button onclick="submit();" class="button">保存</button>
+    </div>
+</div>
+</body>
+<script>
+    function toggleNewImage() {
+        var changeImage = $("#changeImage").is(":checked");
+        if (changeImage) {
+            $("#newImageSection").show();
+        } else {
+            $("#newImageSection").hide();
+        }
+    }
+
+    function submit() {
+        var title = $("#title").val();
+        var author = $("#author").val();
+        var content = $("#content").val();
+        var articleId =[[${article.articleId}]] ; // 使用Thymeleaf语法获取文章ID
+
+        // 获取是否要修改图片的选择
+        var changeImage = $("#changeImage").is(":checked");
+
+        // 如果需要修改图片，获取新图片文件
+        var newImage = null;
+        if (changeImage) {
+            newImage = $("#newImage")[0].files[0];
+        }
+
+        // 创建FormData对象，用于传递数据
+        var formData = new FormData();
+        formData.append("articleIdS", articleId);
+        formData.append("articleTitle", title);
+        formData.append("articleAuthor", author);
+        formData.append("articleInfo", content);
+        formData.append("newImage", newImage);
+
+        // 发送POST请求
+        $.ajax({
+            url: "/updateArticleIn",  // 提交到的URL地址
+            type: "POST",
+            data: formData,  // 提交的数据
+            dataType: 'JSON',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                // 处理返回的结果
+                if (result.code == 1) {
+                    alert(result.msg);
+                    window.location.href = "/article";
+                } else {
+                    alert(result.msg);
+                }
+            },
+            error: function () {
+                alert("请求出错，请稍后重试。");
+            }
+        });
+    }
+</script>
+</html>

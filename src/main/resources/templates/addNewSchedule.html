@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加赛程</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        body {
+            background: #34495e;
+        }
+
+        .box {
+            width: 600px;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #191919;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            color: whitesmoke;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .datepicker-inline {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+
+        <form>
+
+            <div class="form-group">
+                <h2>添加赛程</h2>
+                <label for="matchDate" class="form-label">赛程时间</label>
+                <div class="input-group date datepicker-inline" data-provide="datepicker">
+                    <input type="date" id="matchDate">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="opponent" class="form-label">对战对手</label>
+                <input type="text" id="opponent" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="matchStatus" class="form-label">比赛状态</label>
+                <select id="matchStatus" class="form-control" onchange="toggleResultFields()">
+                    <option value="upcoming">未进行</option>
+                    <option value="completed">已完成</option>
+                </select>
+            </div>
+            <div id="resultFields" style="display: none;">
+                <div class="form-group">
+                    <label for="matchResult" class="form-label">比赛结果</label>
+                    <select id="matchResult" class="form-control">
+                        <option value="1">胜利</option>
+                        <option value="0">失败</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="matchScore" class="form-label">比分</label>
+                    <input type="text" id="matchScore" class="form-control">
+                </div>
+            </div>
+            <button onclick="addSchedule();" class="btn btn-primary">添加</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleResultFields() {
+        var matchStatus = document.getElementById("matchStatus");
+        var resultFields = document.getElementById("resultFields");
+
+        if (matchStatus.value === "completed") {
+            resultFields.style.display = "block";
+        } else {
+            resultFields.style.display = "none";
+        }
+    }
+
+</script>
+<script>
+    function addSchedule(){
+        $.ajax({
+            url: "/updateNewScheduleIn",
+            type: "POST",  /*采用POST方法提交*/
+            data: { "scheduleTime": $("#matchDate").val(),"scheduleRival":$("#opponent").val(),"scheduleState":$("#matchStatus").val(),"scheduleResult":$("#matchResult").val(),"scheduleScore": $("#matchScore").val()},  /*提交的数据（json格式），从输入框中获取*/
+            dataType:'JSON',
+            cache:false,
+            success: function (result) {
+                if (result.code == 1) {
+                    // alert(result.msg);
+                    // 执行重定向
+                    alert("ni");
+                    window.location.href = "/schedule";
+                } else {
+                    alert("nin");
+                    // alert(result.msg);
+                }
+            },
+            error:function (){
+                alert("error");
+            }
+
+
+        });
+    }
+</script>
+</body>
+</html>

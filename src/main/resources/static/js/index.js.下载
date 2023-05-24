@@ -1,0 +1,36 @@
+/**
+ * 模板文件业务代码
+ */
+define(function (require, exports, module) {
+    var $ = require('jquery');  //工具类
+    //right计算
+    function rightCalculation() {
+        var winW = document.documentElement.clientWidth || document.body.clientWidth;
+        var distance = (winW - 1220) / 2 - 162;
+        $('.code-content').css('right', distance > 0 ? distance : 0);
+    }
+
+    module.exports = {
+        init: function () {
+            rightCalculation();
+            $('.close').on('click', function () {
+                $('.code-content').hide();
+            });
+
+            //窗口变动
+            $(window).on('resize', function () {
+                rightCalculation();
+            });
+        },
+        render: function (data) {
+            return '' + 
+            '<link rel="stylesheet" href="//res.nba.cn/static/template/app-qrcode/m.css">' +
+            '<div class="code-content">' +
+                '<img src="//res.nba.cn/static/template/app-qrcode/close.png" class="close">' +
+                '<img src="//res.nba.cn/static/app/android/apk_qr.png" class="code-img">' +
+                '<span>下载NBA APP</span>' +
+                '<span>NBA官方资讯一手掌握</span>' +
+            '</div>';
+        }
+    }
+});

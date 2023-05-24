@@ -1,0 +1,114 @@
+.data-layout {
+    width: 300px;
+    height: auto;
+    background: #fff;
+    font-size: 14px;
+}
+
+.data-layout h2 {
+    height: 39px;
+    line-height: 39px;
+    background: #1e518c;
+    border-bottom: 1px solid #be9d53;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 0 12px;
+}
+
+.data-layout h2 a, .data-layout h2 a:hover {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 2px 0 #093d79;
+    -webkit-text-shadow: 0 2px 0 #093d79;
+    -moz-text-shadow: 0 2px 0 #093d79;
+    -ms-text-shadow: 0 2px 0 #093d79;
+}
+
+.team-data {
+    padding-top: 10px;
+    border-right: 1px solid #e8e8e8;
+}
+
+.team-data li h3 {
+    text-align: center;
+    color: #2a6cb6;
+    font-size: 16px;
+    font-weight: normal;
+    height: 38px;
+    line-height: 38px;
+}
+
+.team-data-con tr{
+    cursor: pointer;
+}
+
+.team-data-con tr td {
+    text-align: center;
+    padding: 10px;
+}
+
+.team-data-con tr td em {
+    font-style: normal;
+}
+
+.team-data-con tr td.score-num {
+    width: 48px;
+    padding-left: 2px;
+}
+
+.team-data-con tr td.score-name {
+    width: 120px;
+}
+
+.team-data-con tr td.score-con {
+    width: 130px;
+    text-align: left;
+}
+
+.team-data-con tr td.score-con strong.red {
+    color: #ff2a2a;
+    font-weight: normal;
+}
+
+.team-data-con tr.cur {
+    background: #f4faff;
+}
+
+.team-data-con tr.cur a {
+    color: #2a6cb6;
+    text-decoration: none;
+}
+
+.team-data-con tr.cur a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.team-data-con tr.cur td.score-num {
+    border-left: 1px solid #2A6CB6;
+}
+
+.team-data-con tr.cur td.score-name .team-data-img {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+}
+
+.team-data-con tr.cur p.team-data-img img {
+    height: 120px;
+    margin-left: -22px;
+}
+
+.team-data-con tr.cur td.score-con{
+    line-height: 24px;
+}
+
+.team-data-con tr p.team-data-img,.team-data-con tr.cur td.score-name p.team-data-name,.team-data-con tr td.score-con p.team-data-name,.team-data-con tr td.score-con p.team-data-position {
+    display: none;
+}
+
+.team-data-con tr.cur td.score-con p.team-data-name,.team-data-con tr.cur td.score-con p.team-data-position{
+    display: block;
+}

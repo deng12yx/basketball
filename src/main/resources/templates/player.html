@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>四川大学网安篮球队</title>
+    <script type="text/javascript">
+        var TEAM_PAGE_NAME = 'CyberSpaceBasketball';
+        var TEAM_PAGE_TYPE = 'index';
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="description" content="四川大学网安篮球队官方网站">
+    </script>
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/css/local.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/team-backtotop.css">
+    <link rel="stylesheet" href="/static/css/team-header.css">
+    <link rel="stylesheet" href="/static/css/team-banner.css">
+    <link rel="stylesheet" href="/static/css/main-toteam.css">
+    <link rel="stylesheet" href="/static/css/sportsteamnews-toteam.css">
+    <link rel="stylesheet" href="/static/css/mod-schedule.css">
+    <link rel="stylesheet" href="/static/css/mod-rankNBA.css">
+    <link rel="stylesheet" href="/static/css/mod-data.css">
+    <link rel="stylesheet" href="/static/css/team-data.css">
+    <link rel="stylesheet" href="/static/css/technical.css">
+    <link rel="stylesheet" href="/static/css/module-store.css">
+    <link rel="stylesheet" href="/static/css/footer-toteam.css">
+    <link rel="stylesheet" href="/static/css/team-specifics.css">
+    <link rel="stylesheet" href="/static/css/m.css">
+    <link rel="shortcut icon" href="https://res.nba.cn/resource/mat1/chinanba/images/favicon.ico">
+    <script src="/static/js/jquery-1.11.3.min.js.下载"></script>
+    <!-- <script charset="utf-8" src="//res.nba.cn/static/scripts/fp.min.js"></script> -->
+    <script charset="utf-8" src="/static/js/wasm_exec.js.下载"></script>
+    <script charset="utf-8" src="/static/js/sign.js.下载"></script>
+    <script async="" src="/static/js/fp.min.js.下载"></script>
+    <script charset="utf-8" src="/static/js/api.js.下载"></script>
+    <script charset="utf-8" src="/static/js/api.js.下载"></script>
+    <script charset="utf-8" src="/static/js/report.js.下载"></script>
+    <script type="text/javascript" src="/static/js/sensorsdata.min.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teampage.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/utils.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/header.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/banner.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/newsTime.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/app-qrcode.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/newshover.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teamheader.js.下载">
+
+    </script>
+    <script charset="utf-8" async="" src="/static/js//teamschedule.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teamtechnicalstatistics.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teamdataking.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/ranklist.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/store.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/backtotop.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teammall.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/changegroup.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/global.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/jsonselect.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(1).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(2).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/tab.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(3).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(4).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(5).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(6).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/jquery.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/tpHelper.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/html.js.下载"></script>
+    <style>
+        .player-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .player-box {
+            /*width: calc(15% - 20px); !* 每个球员容器占据宽度的20% *!*/
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 20px; /* 添加内边距 */
+            box-sizing: border-box; /* 确保内边距不会增加容器的宽度 */
+        }
+    </style>
+
+</head>
+
+<body class="suns" data-teamid="suns" data-stadium="美航中心">
+<div class="header">
+    <div id="teamHome" class="header-layout">
+        <div class="team-home wrap">
+            <ul class="site-nav">
+                <li class="fl nba-logo"><a href="https://ccs.scu.edu.cn/"><img src="/static/image/cyber-icon.png"
+                                                                               align="left" width="70" height="70"></a>
+                </li>
+                <li class="fr nba-login">
+                    <a target="_blank" href="https://weibo.com/u/3624694175" class="fl blog">四川大学官方微博</a>
+                </li>
+            </ul>
+
+            <div class="team-inf">
+
+                <div class="fl team-logo">
+
+                    <p>
+                        <span class="logo">四川大学网安篮球队</span>
+                        <br>
+                        <span class="regular">常规赛&nbsp;&nbsp;45胜 - 37负</span>
+
+                        <span class="rank">四川大学篮球赛十强</span>
+                    </p>
+                </div>
+                <ul class="fr team-match">
+                    <li>
+                        <span>主教练</span>
+                        <em>俞志烨</em>
+                    </li>
+                    <li>
+                        <span>分区</span>
+                        <em>四川大学分区</em></li>
+                    <li><span>球馆</span><em>2/3号运动场</em></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="teamNav" class="team-nav">
+        <ul class="nav-list wrap index">
+            <li class="nav-index"><a href="index">首页</a></li>
+            <li class="nav-news"><a href="article">新闻</a></li>
+            <li class="nav-players"><a href="player" style="background: #F1590F;">球员</a></li>
+            <li class="nav-schedule"><a href="schedule">赛程</a></li>
+            <li class="nav-photos"><a href="photo">图集</a></li>
+            <!-- <li class="nav-mall mall_suns"><a href="javascript:;" class="team-mall" target="_blank">商城</a></li> -->
+        </ul>
+    </div>
+</div>
+<div class="main-content">
+    <div class="wrap clearfix">
+        <div class="chief">
+            <!-- 轮播图 -->
+
+            <!-- 新闻 -->
+            <div id="news" class="news-layout">
+
+                <h2 class="new-title">2020
+                    <a th:if="${manager!=null}" href="/player/addPlayer"><img src="/static/image/加.png"
+                                                                                style="width: 20px;float: right;padding-top: 10px;"></a>
+                </h2>
+                <!--在这里添加内容-->
+                <div class="player-container">
+                    <div th:each="player : ${player2020}" class="player-box">
+                        <a th:href="@{'/player/pr/' + ${player.playerId}}">
+                            <img th:src="@{${player.playerSelfieImage}}" src="/static/image/yjc.png" alt="Player Image">
+                            <h3 th:text="${player.playerName}"></h3>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-list">
+                    <div id="new-wrap">
+                        <div class="new-wrap"></div>
+                    </div>
+                    <!--                    <a id="load-more-btn" class="load-btn" style="">点击加载更多</a>-->
+                    <div class="load icon" style="display: none;"></div>
+                    <script type="text/javascript"></script>
+                </div>
+
+
+                <h2 class="new-title">2021
+                    <a th:if="${manager!=null}" href="/player/addPlayer"><img src="/static/image/加.png"
+                                                                                style="width: 20px;float: right;padding-top: 10px;"></a>
+                </h2>
+                <!--在这里添加内容-->
+                <div class="player-container">
+                    <div th:each="player : ${player2021}" class="player-box">
+                        <a th:href="@{'/player/pr/' + ${player.playerId}}">
+                            <img th:src="@{${player.playerSelfieImage}}" src="/static/image/yjc.png" alt="Player Image">
+                            <h3 th:text="${player.playerName}"></h3>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-list"></div>
+
+                <h2 class="new-title">2022
+                    <a th:if="${manager!=null}" href="/player/addPlayer"><img src="/static/image/加.png"
+                                                                                style="width: 20px;float: right;padding-top: 10px;"></a>
+                </h2>
+                <!--在这里添加内容-->
+                <div class="player-container">
+                    <div th:each="player : ${player2022}" class="player-box">
+                        <a th:href="@{'/player/pr/' + ${player.playerId}}">
+                            <img th:src="@{${player.playerSelfieImage}}" src="/static/image/yjc.png" alt="Player Image">
+                            <h3 th:text="${player.playerName}"></h3>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/static/js/es5-shim.min.js.下载"></script>
+<script charset="utf-8" src="/static/js/sea-debug.js.下载" role="debug"></script>
+<script charset="utf-8" type="text/javascript" role="debug">
+    seajs.use('//res.nba.cn/static/scripts/kConfig/configs.js', function (conf) {
+        seajs.config(conf);
+        seajs.use('teampage');
+    });
+</script>
+

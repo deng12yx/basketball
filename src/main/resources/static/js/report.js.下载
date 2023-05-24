@@ -1,0 +1,200 @@
+
+// (function(w, d, s, q) { 
+//   w[q] = w[q] || [];
+//   var f = d.getElementsByTagName(s)[0],j = d.createElement(s);
+//   j.async = true;
+//   j.id = 'beacon-aplus';
+//   j.src = 'https://d.alicdn.com/alilog/mlog/aplus/203561150.js';
+//   f.parentNode.insertBefore(j, f);
+// })(window, document, 'script', 'aplus_queue');
+var sensors;
+( function(w, d, s, q) {
+  loadJS('//res.nba.cn/static/scripts/lib/sensorsdata.min.js',function(){
+    sensors = window['sensorsDataAnalytic201505'];
+    //广告位曝光判断刷新及跳转,不在首页清空
+    if(window.location.pathname != '/' && window.location.pathname != '/articles/licensee_widget_scoreboard.html' && window.location.pathname != '/vote/vote-new.htm'){
+      localStorage.removeItem("homeAdvert");
+      window.name = '';
+    }
+    if(w[q]){
+      sensorsFunction()
+    };
+  });
+})(window, document, 'script', 'sensorsDataAnalytic201505');
+function loadJS( url, callback ){
+  var script = document.createElement('script'),fn = callback || function(){};
+  script.type = 'text/javascript';
+  //IE
+  if(script.readyState){
+      script.onreadystatechange = function(){if( script.readyState == 'loaded' || script.readyState == 'complete' ){script.onreadystatechange = null;fn();}};
+  }else{
+      script.onload = function(){fn();};
+  }
+  script.src = url;
+  document.getElementsByTagName('head')[0].appendChild(script);
+};
+/*****
+ * 
+ * 神策埋点开始
+ */
+ var isShow = false;
+ function sensorsFunction () {
+    if(!isShow){
+      isShow = true;
+      sensors.init({
+        server_url: 'https://nba-dc-analytic.nbaqmq.com/sa?project=production',
+        // server_url: 'https://nba-dc-analytic.nbaqmq.com/sa?project=default',
+        heatmap:{scroll_notice_map:'not_collect'},
+        use_client_time:true,
+        send_type:'ajax',
+        show_log:false 
+    });
+      sensors.registerPage({
+          all_platform_type: 'nbaweb',
+          all_device_end: 'pc',
+          all_is_login:localStorage.cid?true:false
+      });
+      sensors.quick('autoTrack');
+      sensors.use('PageLeave', { heartbeat_interval_time: 5 });
+    }
+  }
+  //登录
+  function allIsLogin(flag){
+    sensors.registerPage({
+      all_is_login: function(){
+        return flag
+      },
+    });
+  }
+  //首页、视频、新闻轮播图
+  function sensorsTopNewsData(name,id,info){
+    window.topNews.forEach(item=>{
+      if(item.id == id){
+        returnObj(item,info).then((res)=>{
+          sensorsTrack(name,res)
+        })
+      }
+    })
+  }
+  //首页、新闻最新资讯
+  function sensorsNewsData(name,id,info){
+    window.newData.forEach(item=>{
+      if(item.id == id){
+         returnObj(item,info).then((res)=>{
+          sensorsTrack(name,res)
+         })
+      }
+    })
+  }
+  //首页视频\视频页签
+  function sensorsVideoData(name,id,info){
+    if(info.column === "最新"){
+      window.videoNews = window.videoNowNews;
+    }else if(info.column === "比赛"){
+      window.videoNews = window.videoGameNews;
+    }else if(info.column === "最佳"){
+      window.videoNews = window.videoBestNews;
+    }else if(info.column === "花絮" || info.column === "专题"){
+      window.videoNews = window.videoTitbitsTabNews;
+    }
+    window.videoNews.forEach(item=>{
+      if(item.id == id){
+         returnObj(item,info).then((res)=>{
+          sensorsTrack(name,res)
+         })
+      }
+    })
+  }
+  function returnObj(item,info){
+    let obj = {};
+    return new Promise((resolve,reject)=>{
+      obj = {
+        article_title:item.title,
+        articleID: item.news_id,
+        tag: item.ext.tags?item.ext.tags.map((it,index) => {
+            return it.word
+        }).join(",").split(","):[],
+        team_list:[],
+        player_list:[],
+        playerid_list:[],
+        article_source:"",
+        editor:item.editor,
+        editorID:"",
+        content_type:item.atype.toString(),
+        release_time:item.publish_time,
+        special_name:"",
+        column:info.column,
+        exposure_page:info.exposure_page,
+        exposure_module:info.exposure_module
+      }
+      resolve(obj)
+    })
+  }
+  function sensorsTrack(name,obj){
+    sensors.track(name,obj);
+  }
+/***
+ * 神策埋点结束
+ */
+// var aplus_queue = window.aplus_queue
+// aplus_queue.push({
+//   action: 'aplus.setMetaInfo',
+//   arguments: ['appKey', '1ab9tl92x32qe1rmufyple3m']
+// })
+// aplus_queue.push({
+//   action: 'aplus.setMetaInfo',
+//   arguments: ['aplus-rhost-v', 'quickaplus-he-api-cn-shanghai.aliyuncs.com']
+// });
+
+function setReport(code,params={}){
+  // console.log(code,params,aplus_queue)
+  // aplus_queue.push({
+  //   action: 'aplus.record',
+  //   arguments: [code, 'CLK', params]
+  // });
+}
+
+function setReportPv(url){
+  // console.log(pageSource)
+  // aplus_queue.push({
+  //   action: 'aplus.sendPV',
+  //   arguments: [
+  //     {
+  //       is_auto: false
+  //     }, 
+  //     {
+  //       ts: new Date().getTime(),
+  //       url: url || window.location.href,
+  //       page_name: pageSource || ''
+  //     }
+  //   ]
+  // });
+}
+
+function newReportPv(pageName, keys){
+  var params = {
+    ts: new Date().getTime(),
+    url: window.location.href,
+    page_name: pageName || '',
+  }
+  for(var i in keys){
+    params[i] = keys[i]
+  }
+  // aplus_queue.push({
+  //   action: 'aplus.sendPV',
+  //   arguments: [
+  //     {
+  //       is_auto: false
+  //     }, 
+  //     params
+  //   ]
+  // });
+}
+// define(function (require, exports, module) {
+//   var sensorsTrack = function(name,obj){
+//     sensors.track(name,obj);
+//   }
+//   module.exports = {
+//     sensorsTrack:sensorsTrack
+//   };
+// })

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加文章</title>
+    <style>
+        /* 外部容器样式 */
+        .container {
+            max-width: 6000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+
+        }
+
+        body {
+            background: #34495e;
+        }
+
+        /* 标题样式 */
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* 输入框样式 */
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* 文本区域样式 */
+        .textarea-field {
+            width: 100%;
+
+            padding: 10px;
+            height: 200px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        /* 按钮样式 */
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* 按钮悬停样式 */
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 图标样式 */
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        /* 自定义的白色框样式 */
+        .box {
+            width: 600px;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #191919;
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <h2 class="title" style="color: whitesmoke">添加文章</h2>
+
+        <label for="title" style="color: whitesmoke">
+            标题
+        </label>
+        <input type="text" id="title" class="input-field" required>
+
+        <label for="author" style="color: whitesmoke">
+            作者
+        </label>
+        <input type="text" id="author" class="input-field" required>
+
+        <label for="content" style="color: whitesmoke">
+            内容
+        </label>
+        <textarea id="content" class="textarea-field" required></textarea>
+
+        <label for="image" style="color: whitesmoke">
+            图片
+        </label>
+        <input type="file" id="image" class="input-field" accept="image/*" required>
+
+        <button onclick="submit();" class="button">保存</button>
+    </div>
+</div>
+</body>
+<script>
+    function submit() {
+        var title = $("#title").val();
+        var author = $("#author").val();
+        var content = $("#content").val();
+        var image = $("#image")[0].files[0];
+
+        // 创建FormData对象，用于传递数据
+        var formData = new FormData();
+        formData.append("articleTitle", title);
+        formData.append("articleAuthor", author);
+        formData.append("articleInfo", content);
+        formData.append("articleFeaturedImage", image);
+
+        // 发送POST请求
+        $.ajax({
+            url: "/updateNewArticleIn",  // 提交到的URL地址
+            type: "POST",
+            data: formData,  // 提交的数据
+            dataType: 'JSON',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                // 处理返回的结果
+                if (result.code == 1) {
+                    alert(result.msg);
+                    window.location.href = "/article";
+                } else {
+                    alert(result.msg);
+                }
+            },
+            error: function () {
+                alert("请求出错，请稍后重试。");
+            }
+        });
+    }
+</script>
+</html>

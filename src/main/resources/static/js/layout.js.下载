@@ -1,0 +1,123 @@
+define(function (require, exports) {
+  $(function () {
+    // 导航菜单
+    require("ui/header")();
+    // QQ第三方登录
+    require("ui/qqlogin")();
+    // 二维码
+    require("ui/app-qrcode").init();
+  });
+
+  window.pgvRepeatCount = function () {
+    if (typeof pgvMain == "function") {
+      window.pvRepeatCount = 1;
+      pgvMain();
+    }
+  };
+
+  // 二次分享
+  getShareInfo(function (data) {
+    openShare(data);
+  });
+
+  /**
+   * 获取分享内容
+   * **/
+  function getShareInfo(callback) {
+    var news_id = $_GET("articleId");
+    if (!news_id) {
+      console.log("请求参数不全");
+      return false;
+    }
+    $.ajax({
+      url: APILIST.WX_SIGN,
+      type: "get", // jsonp模式只有GET 是合法的
+      cache: false,
+      data: {
+        news_id: news_id,
+        url: window.location.href,
+      },
+      success: function (res) {
+        if (res.code == 0 && res.data) {
+          callback(res.data || {});
+        }
+      },
+    });
+  }
+
+  /**
+   * 二次分享内容
+   * **/
+  function openShare(data) {
+    {
+      // 微信分享
+      wx &&
+        wx.config({
+          debug: false,
+          appId: data.app_id || "wxf0e81c3bee622d60",
+          timestamp: data.timestamp, // 必填，生成签名的时间戳
+          nonceStr: data.noncestr, // 必填，生成签名的随机串
+          signature: data.signature, // 必填，签名
+          jsApiList: [
+            "checkJsApi",
+            "onMenuShareWeibo",
+            "updateTimelineShareData",
+            "updateAppMessageShareData",
+            "onMenuShareAppMessage",
+            "onMenuShareTimeline",
+            "onMenuShareQQ",
+          ],
+        });
+
+      wx &&
+        wx.checkJsApi({
+          jsApiList: [
+            "onMenuShareWeibo",
+            "updateTimelineShareData",
+            "updateAppMessageShareData",
+            "onMenuShareAppMessage",
+            "onMenuShareTimeline",
+            "onMenuShareQQ",
+          ],
+          success: function (res) {
+            console("ok", JSON.stringify(res));
+          },
+          error: function (res) {
+            console("error", res.errMsg);
+          },
+        });
+
+      /*
+      	分享
+       title: 标题
+       link: 点击分享跳转的链接
+       imgUrl: 分享的img img要在服务器上的
+       desc: 内容
+       */
+      wx &&
+        wx.ready(function () {
+          console.log("wx ready");
+          var shareData = {
+            title: data.title, // 资讯标题
+            desc: data.desc || "想了解NBA最新资讯，就用NBA中文官方APP",
+            link: window.location.href,
+            imgUrl: data.cover,
+            success: function () {
+              console.log("share ok");
+            },
+          };
+          wx.updateAppMessageShareData(shareData); // “分享给朋友”及“分享到QQ”
+          wx.updateTimelineShareData(shareData); // “分享到朋友圈”及“分享到QQ空间”
+          wx.onMenuShareWeibo(shareData); // 分享到腾讯微博
+          wx.onMenuShareTimeline(shareData); // 旧版，分享到朋友圈
+          wx.onMenuShareAppMessage(shareData); // 旧版，分享给朋友
+          wx.onMenuShareQQ(shareData); // 旧版，分享给qq
+        });
+
+      wx &&
+        wx.error(function (res) {
+          console("wx error", res.errMsg);
+        });
+    }
+  }
+});

@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>四川大学网安篮球队</title>
+    <script type="text/javascript">
+        var TEAM_PAGE_NAME = 'CyberSpaceBasketball';
+        var TEAM_PAGE_TYPE = 'index';
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="description" content="四川大学网安篮球队官方网站">
+    </script>
+    <!--    <link rel="stylesheet" href="/static/css/header.css" role="debug">-->
+    <link rel="stylesheet" href="/static/css/main.css" role="debug">
+    <link rel="stylesheet" href="/static/css/app-qrcode.css" role="debug">
+    <link rel="stylesheet" href="/static/css/module-team.css" role="debug">
+    <link rel="stylesheet" href="/static/css/todayhot.css" role="debug">
+    <link rel="stylesheet" href="/static/css/footer.css" role="debug">
+    <link rel="stylesheet" href="/static/css/login.css" role="debug">
+    <link rel="stylesheet" href="/static/css/dialog.css" role="debug">
+    <link rel="shortcut icon" href="https://res.nba.cn/resource/mat1/chinanba/images/favicon.ico">
+    <script src="/static/js/ui_v1.0.0.js.下载" charset="utf-8"></script>
+    <script src="/static/js/mi.MiniNav_v1.0.1.js.下载" charset="utf-8"></script>
+    <!-- <script charset="utf-8" src="./res.nba.cn/static/scripts/fp.min.js"></script> -->
+    <script charset="utf-8" src="/static/js/wasm_exec.js.下载"></script>
+    <script charset="utf-8" src="/static/js/sign.js.下载"></script>
+    <script async="" src="/static/js/fp.min.js.下载"></script>
+    <script charset="utf-8" src="/static/js/report.js.下载"></script>
+    <script type="text/javascript" src="/static/js/sensorsdata.min.js.下载"></script>
+
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/css/local.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/team-backtotop.css">
+    <link rel="stylesheet" href="/static/css/team-header.css">
+    <link rel="stylesheet" href="/static/css/team-banner.css">
+    <link rel="stylesheet" href="/static/css/main-toteam.css">
+    <link rel="stylesheet" href="/static/css/sportsteamnews-toteam.css">
+    <link rel="stylesheet" href="/static/css/mod-schedule.css">
+    <link rel="stylesheet" href="/static/css/mod-rankNBA.css">
+    <link rel="stylesheet" href="/static/css/mod-data.css">
+    <link rel="stylesheet" href="/static/css/team-data.css">
+    <link rel="stylesheet" href="/static/css/technical.css">
+    <link rel="stylesheet" href="/static/css/module-store.css">
+    <link rel="stylesheet" href="/static/css/footer-toteam.css">
+    <link rel="stylesheet" href="/static/css/team-specifics.css">
+    <link rel="stylesheet" href="/static/css/m.css">
+    <link rel="shortcut icon" href="https://res.nba.cn/resource/mat1/chinanba/images/favicon.ico">
+    <script src="/static/js/jquery-1.11.3.min.js.下载"></script>
+    <!-- <script charset="utf-8" src="//res.nba.cn/static/scripts/fp.min.js"></script> -->
+    <script charset="utf-8" src="/static/js/wasm_exec.js.下载"></script>
+    <script charset="utf-8" src="/static/js/sign.js.下载"></script>
+    <script async="" src="/static/js/fp.min.js.下载"></script>
+    <script charset="utf-8" src="/static/js/api.js.下载"></script>
+    <script charset="utf-8" src="/static/js/api.js.下载"></script>
+    <script charset="utf-8" src="/static/js/report.js.下载"></script>
+    <script type="text/javascript" src="/static/js/sensorsdata.min.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teampage.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/utils.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/header.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/banner.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/newsTime.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/app-qrcode.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/newshover.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teamheader.js.下载">
+
+    </script>
+    <script charset="utf-8" async="" src="/static/js//teamschedule.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teamtechnicalstatistics.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teamdataking.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/ranklist.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/store.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/backtotop.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/teammall.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/changegroup.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/global.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/jsonselect.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(1).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(2).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/tab.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(3).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(4).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(5).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/index.js(6).下载"></script>
+    <script charset="utf-8" async="" src="/static/js/jquery.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/tpHelper.js.下载"></script>
+    <script charset="utf-8" async="" src="/static/js/html.js.下载"></script>
+    <style>
+
+        /*正文大区部分*/
+
+        #C-Main-Article-QQ .hd {
+            padding-bottom: 1px;
+            border-bottom: 1px dotted #dbdbdb;
+            z-index: 3
+        }
+
+        #C-Main-Article-QQ .bd {
+            outline: none;
+        }
+
+        #Cnt-Main-Article-QQ {
+            padding-top: 35px;
+            padding-bottom: 2px;
+            font-size: 16px;
+            line-height: 28px;
+        }
+
+        #Cnt-Main-Article-QQ img {
+            max-width: 640px
+        }
+
+        #Cnt-Main-Article-QQ .ctx-img {
+            display: table;
+            margin: 0 auto;
+        }
+
+        #Cnt-Main-Article-QQ p {
+            margin-bottom: 29px;
+            font-size: 16px;
+            line-height: 28px;
+            _width: 640px;
+            text-indent: 2em;
+        }
+
+        #Cnt-Main-Article-QQ .hover {
+            z-index: 10;
+        }
+
+        #Cnt-Main-Article-QQ .titdd-Article {
+            margin-top: -20px;
+            padding: 12px 18px 10px;
+            _width: 604px;
+            background: #f3f3f3;
+            font-size: 14px;
+        }
+
+        #C-Main-Article-QQ h1 {
+            padding-bottom: 16px;
+            font-family: '微软雅黑';
+            font-size: 26px;
+        }
+
+        .tit-bar {
+            color: #666666;
+        }
+
+        .tit-bar span {
+            float: left;
+        }
+
+        .titTag a,
+        .titTag a:link,
+        .titTag a:visited,
+        .titTag a:hover {
+            color: #2d96e9;
+        }
+
+        .titTag {
+            font-size: 14px;
+        }
+
+        .article-time {
+            margin-top: 4px;
+            height: 12px;
+            padding-right: 13px;
+            padding-left: 5px;
+            line-height: 12px;
+        }
+
+        .article-time b {
+            padding-left: 3px;
+            font-weight: 100;
+        }
+
+        .pach-line {
+            display: inline-block;
+            width: 1px;
+            height: 13px;
+            overflow: hidden;
+            margin: -3px 8px;
+            background: #e8e8e8;
+        }
+
+        .bor-tit {
+            display: inline;
+            width: 1px;
+            height: 13px;
+            overflow: hidden;
+            margin-left: 0px;
+            margin-right: 9px;
+            margin-top: 4px;
+            background: #E8E8E8;
+        }
+
+        #backqqcom img {
+            vertical-align: text-top;
+        }
+
+        .color-a-0 {
+            padding-right: 7px;
+        }
+
+        .color-a-0 a,
+        .color-a-0 a:link,
+        .color-a-0 a:visited {
+            color: #2D96E9;
+        }
+
+        .color-a-0 a:hover {
+            color: #2D96E9;
+        }
+
+        .color-a-1 a,
+        .color-a-1 a:link,
+        .color-a-1 a:visited {
+            color: #666;
+        }
+
+        .color-a-1 a:hover {
+            color: #cc0001;
+        }
+
+        .shareBtn a:hover {
+            text-decoration: none;
+        }
+
+        .color-a-2 a,
+        .color-a-2 a:link,
+        .color-a-2 a:visited {
+            color: #666;
+        }
+
+        #Cnt-Main-Article-QQ .a-tips-Article-QQ,
+        #Cnt-Main-Article-QQ .a-tips-Article-QQ:visited,
+        #Cnt-Main-Article-QQ .a-tips-Article-QQ:link {
+            border-bottom: 1px dotted #536da6;
+        }
+
+        #Cnt-Main-Article-QQ .a-tips-Article-QQ:hover {
+            color: #536da6;
+            border-bottom: 1px dotted #536da6;
+            text-decoration: none;
+        }
+
+        #Cnt-Main-Article-QQ p a,
+        #Cnt-Main-Article-QQ p a:visited,
+        #Cnt-Main-Article-QQ p a:link {
+            border-bottom: 1px dotted #536da6;
+        }
+
+        #Cnt-Main-Article-QQ p a:hover {
+            color: #536da6;
+            text-decoration: none;
+        }
+
+        #Cnt-Main-Article-QQ p .mbCardUserDetail a {
+            border-bottom: none;
+        }
+
+        #Cnt-Main-Article-QQ .mbSourceCardInfo a {
+            border: none;
+        }
+
+        #Cnt-Main-Article-QQ #backqqcom {
+            border: none;
+        }
+
+        #Cnt-Main-Article-QQ #backqqcom {
+            color: #5170A6;
+        }
+
+        #Cnt-Main-Article-QQ #backqqcom:hover {
+            color: #cc0000;
+        }
+
+        /*责任编辑*/
+        .QQeditor {
+            text-align: right;
+            color: #999999;
+            padding: 5px 20px 44px 0;
+        }
+
+        .crumbs-div img {
+            padding-right: 20px;
+        }
+
+
+        .nav-list a:hover {
+            background: #3a9bea;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav-list .cur {
+            color: #2c95e8;
+            line-height: 22px;
+        }
+
+        .nav-list .cur:hover {
+            color: #fff;
+        }
+
+        .crumbs-div ul {
+            position: absolute;
+            top: -4px;
+            width: 560px;
+            padding-left: 24px;
+        }
+
+        .crumbs-div ul li {
+            display: inline-block;
+            padding: 2px 3px;
+            font-family: '微软雅黑';
+        }
+
+        .crumbs-div ul .curr {
+            background: #389bec;
+        }
+
+        .crumbs-div ul li a,
+        .crumbs-div ul li a:visited,
+        .crumbs-div ul li a:link,
+        .crumbs-div ul li a:hover {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .tit-bar .all-number-comment {
+            float: right;
+            padding-left: 18px;
+        }
+
+        .all-number-comment a {
+            display: inline-block;
+            height: 23px;
+            padding-left: 36px;
+            padding-right: 10px;
+            background-color: #ebf5fd;
+            background-image: url(http://res.nba.cn/resource/mat1/news/dc/images/pl_icon.png);
+            background-repeat: no-repeat;
+            background-position: left 0;
+            font-weight: bold;
+            font-size: 13px;
+            font-family: 'tahoma';
+        }
+
+        .all-number-comment a,
+        .all-number-comment a:visited,
+        .all-number-comment a:link {
+            color: #506fa5;
+        }
+
+        .all-number-comment a:hover {
+            background-position: 0 -77px;
+            background-color: #fcf4ec;
+            color: #cd0000;
+            text-decoration: underline;
+        }
+
+        .search-soso input {
+            float: right;
+            vertical-align: middle;
+        }
+
+        .news-title {
+            text-align: center;
+        }
+
+    </style>
+    <style>
+
+        /*fix dc pages bug, 不需兼容IE6*/
+        #prop {
+            display: none;
+        }
+
+        div#cmenu {
+            height: 0;
+            width: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        #Tool-Article-QQ {
+            z-index: 99;
+            width: 870px;
+        }
+
+        .hd #sctag {
+            top: 55px;
+        }
+
+        .main #C-Main-Article-QQ .hd {
+            z-index: 11;
+        }
+
+        #Wrap #MyMaskWrap {
+            z-index: 3002;
+        }
+
+        #Wrap #MyMaskCon {
+            z-index: 3003;
+        }
+
+        /*****覆盖底层样式*****/
+        #Wrap .body-Article-QQ {
+            width: 1200px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        #Wrap #Main-Article-QQ {
+            border-top: none;
+        }
+
+        #Wrap #C-Main-Article-QQ {
+            width: 870px;
+            padding: 0 10px;
+        }
+
+        #Wrap .main {
+            width: 870px;
+            float: left;
+        }
+
+        #Wrap #Cnt-Main-Article-QQ img {
+            max-width: 870px;
+        }
+
+        #Wrap .rv-root-v2 {
+            width: 640px;
+            margin: 0 auto;
+        }
+
+        /*TODO：标签页有问题，暂时隐藏*/
+        .about-read {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body class="suns" data-teamid="suns" data-stadium="美航中心">
+<div class="header">
+    <div id="teamHome" class="header-layout">
+        <div class="team-home wrap">
+            <ul class="site-nav">
+                <li class="fl nba-logo"><a href="https://ccs.scu.edu.cn/"><img src="/static/image/cyber-icon.png"
+                                                                               align="left" width="70" height="70"></a>
+                </li>
+                <li class="fr nba-login">
+                    <a target="_blank" href="https://weibo.com/u/3624694175" class="fl blog">四川大学官方微博</a>
+                </li>
+            </ul>
+
+            <div class="team-inf">
+
+                <div class="fl team-logo">
+
+                    <p>
+                        <span class="logo">四川大学网安篮球队</span>
+                        <br>
+                        <span class="regular">常规赛&nbsp;&nbsp;45胜 - 37负</span>
+
+                        <span class="rank">四川大学篮球赛十强</span>
+                    </p>
+                </div>
+                <ul class="fr team-match">
+                    <li>
+                        <span>主教练</span>
+                        <em>俞志烨</em>
+                    </li>
+                    <li>
+                        <span>分区</span>
+                        <em>四川大学分区</em></li>
+                    <li><span>球馆</span><em>2/3号运动场</em></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="teamNav" class="team-nav">
+        <ul class="nav-list wrap index">
+            <li class="nav-index"><a href="/index">首页</a></li>
+            <li class="nav-news"><a href="/article">新闻</a></li>
+            <li class="nav-players"><a href="/player" style="background: #F1590F;">球员</a></li>
+            <li class="nav-schedule"><a href="/schedule">赛程</a></li>
+            <li class="nav-photos"><a href="/photo">图集</a></li>
+            <!-- <li class="nav-mall mall_suns"><a href="javascript:;" class="team-mall" target="_blank">商城</a></li> -->
+        </ul>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="wrap clearfix">
+        <div class="chief">
+
+            <!-- 新闻 -->
+            <div id="news" class="news-layout">
+                <div class="hd">
+                    <h1 id="news-title" class="news-title" th:text="${player.playerName}"></h1>
+                    <div class="clearfix tit-bar" bosszone="titleDown">
+                        <div class="ll">
+                            <span class="color-a-1" bosszone="jgname" id="news-source">NBA</span>
+                            <span class="infoMblog" id="mbSourceCard"><span class="color-a-2" bosszone="jgmblog"></span></span>
+                            <span class="article-time" id="news-time" th:text="'职位：'+${player.playerPosition}">2023-05-14 12:45:04</span>
+                            <span class="bor-tit"></span>
+                        </div>
+                        <div class="QQeditor" id="QQeditor" style="padding:0" th:text="'姓名：'+${player.playerName}+'班级：'+${player.playerClass}">
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="bd" accesskey="3" tabindex="-1">
+                    <div id="Cnt-Main-Article-QQ" bosszone="content">
+                        <p><img class="ctx-img" th:src="@{${player.playerSelfieImage}}"></p>
+                        <p style="font-size:16px;text-align:left" th:text="${player.playerInfo}">
+
+                        </p>
+                    </div>
+
+                    <a th:if="${manager!=null}"
+                       th:href="@{'/player/updatePlayer='+${player.playerId}}"
+                       style="float: right">修改</a></div>
+
+                <style>
+                    .wemcn {
+                        position: absolute;
+                        left: 165px;
+                        top: -100px;
+                        z-index: 4;
+                    }
+
+                    .shareBtn24 .s_ewm {
+                        background: url(//res.nba.cn/resource/mat1/news/dc/images/icon_wx_24.png) no-repeat;
+                    }
+
+                    .ewmDiv {
+                        width: 255px;
+                        height: 89px;
+                        border: 2px solid #dcdcdc;
+                        padding: 10px;
+                        background: #fff;
+                        border-radius: 5px;
+                        -moz-border-radius: 5px;
+                        z-index: 7
+                    }
+
+                    #ewmimg, #wxcode {
+                        float: left;
+                        width: 90px;
+                        height: 90px
+                    }
+
+                    .ewmsj {
+                        margin-left: 12px;
+                        margin-top: -2px;
+                        width: 18px;
+                        height: 13px;
+                        position: absolute;
+                        background: url(//res.nba.cn/resource/mat1/news/dc/icon_erwm_sj.png) no-repeat 0 0;
+                    }
+
+                    #ewmkg {
+                        width: 13px;
+                        height: 13px;
+                        display: block;
+                        position: absolute;
+                        right: 12px;
+                        top: 11px;
+                        background: url(//res.nba.cn/resource/mat1/news/dc/icon_wem_k_k.png) no-repeat 0 0;
+                    }
+
+                    #ewmkg:hover {
+                        background: url(//res.nba.cn/resource/mat1/news/dc/icon_wem_k_g.png) no-repeat 0 0;
+                    }
+
+                    .rwmtext {
+                        float: left;
+                        padding-top: 7px;
+                        width: 145px;
+                        text-indent: 8px;
+                    }
+
+                    .rwmtext p {
+                        line-height: 25px;
+                        width: 145px;
+                        text-indent: 12px;
+                        color: #636363;
+                    }
+
+                    .Tool-Article-QQ {
+                        z-index: 2;
+                        position: relative
+                    }
+
+                    /*分享组件 S*/
+                    .Tool-Article-QQ {
+                        width: 638px;
+                        height: auto;
+                        padding: 15px 0 43px 0;
+                    }
+
+                    .shareBtn {
+                        z-index: 12;
+                    }
+
+                    .Tool-Article-QQ .shareBtn {
+                        float: left;
+                        width: 305px;
+                        margin-top: 10px;
+                        font-size: 12px
+                    }
+
+                    .shareBtn-hd {
+                        display: inline-block;
+                        position: relative;
+                        z-index: 3;
+                        width: 64px;
+                        height: 23px;
+                        padding-left: 8px;
+                        border: 1px solid #FFFFFF;
+                        border-bottom: none;
+                        border-left: 1px solid #FFFFFF;
+                        color: #676767;
+                        line-height: 21px;
+                        font-size: 12px;
+                    }
+
+                    .h-shareBtn .shareBtn-hd {
+                        float: left;
+                        width: 55px;
+                        padding-left: 0;
+                        padding-top: 5px;
+                        color: #666;
+                        font-size: 14px;
+                    }
+
+                    .shareBtn-hd i {
+                        position: absolute;
+                        right: 6px;
+                        top: 8px;
+                        width: 0;
+                        height: 0;
+                        font-size: 0;
+                        line-height: 0;
+                        border-width: 4px;
+                        border-style: solid;
+                        border-color: #8b8c8e #fff #fff;
+                        -moz-transition: -moz-transform .2s ease-in;
+                        -webkit-transition: -webkit-transform .2s ease-in;
+                        -o-transition: -o-transform .2s ease-in;
+                        transition: transform .2s ease-in;
+                        -moz-transform: rotate(0);
+                        -webkit-transform: rotate(0);
+                        -o-transform: rotate(0);
+                        transform: rotate(0);
+                    }
+
+                    .hover .shareBtn-hd i {
+                        -moz-transform: rotate(180deg);
+                        -moz-transform-origin: 50% 30%;
+                        -webkit-transform: rotate(180deg);
+                        -webkit-transform-origin: 50% 30%;
+                        -o-transform: rotate(180deg);
+                        -o-transform-origin: 50% 30%;
+                        transform: rotate(180deg);
+                        transform-origin: 50% 30%;
+                        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+                        top: 3px \9
+                    }
+
+                    .hover .shareBtn-hd {
+                        margin-top: -1px;
+                        border: 1px solid #d1d1d1;
+                        border-bottom: none;
+                        background: #fff;
+                    }
+
+                    .v-shareBtn {
+                        display: inline;
+                        width: 64px;
+                        height: 23px;
+                        float: left;
+                        margin-left: -8px;
+                    }
+
+                    .v-shareBtn .shareBtn-bd {
+                        display: none;
+                        position: absolute;
+                        z-index: 2;
+                        left: 0;
+                        top: 22px;
+                        border: 1px solid #d1d1d1;
+                        width: 92px;
+                        padding: 8px 0;
+                        background: #fff;
+                    }
+
+                    .hover .shareBtn-bd {
+                        display: block;
+                    }
+
+                    .shareBtn-bd li {
+                        height: 24px;
+                        padding: 0 0 0 11px;
+                        line-height: 24px;
+                    }
+
+                    .shareBtn-bd li.hover {
+                        background: #f3f3f3;
+                    }
+
+                    .shareBtn-bd a {
+                        display: block;
+                        padding-left: 22px;
+                        color: #5c5c5c;
+                    }
+
+                    .shareBtn-bd li.hover a {
+                        color: #cc0000;
+                    }
+
+                    .h-shareBtn .shareBtn-bd li {
+                        float: left;
+                        width: 24px;
+                        height: 24px;
+                        padding: 0;
+                        overflow: hidden;
+                        margin-right: 5px;
+                    }
+
+                    .h-shareBtn .shareBtn-bd a {
+                        display: block;
+                        width: 0;
+                        height: 24px;
+                        padding-left: 24px;
+                        filter: Alpha(Opacity=80);
+                        opacity: 0.8;
+                        -moz-transition: opacity 0.5s ease;
+                        -webkit-transition: opacity 0.5s ease;
+                        -o-transition: opacity 0.5s ease;
+                        transition: opacity 0.5s ease
+                    }
+
+                    .h-shareBtn .shareBtn-bd a:hover {
+                        filter: Alpha(Opacity=100);
+                        opacity: 1
+                    }
+
+                    .shareBtn-bd a {
+                        display: inline-block;
+                        background: url("http://res.nba.cn/resource/mat1/news/dc/images/s_gallery_2012110702.png") no-repeat 0 0;
+                    }
+
+                    .shareBtn16 .s_weibo {
+                        background-position: -66px -2px;
+                    }
+
+                    .shareBtn16 .s_qzone {
+                        background-position: -66px -25px;
+                    }
+
+                    .shareBtn16 .s_weixin {
+                        background-position: -66px -49px;
+                    }
+
+                    .shareBtn16 .s_pengyou {
+                        background-position: -66px -74px;
+                    }
+
+                    .shareBtn16 .s_sina {
+                        background-position: -66px -98px;
+                    }
+
+                    .shareBtn16 .s_renren {
+                        background-position: -66px -122px;
+                    }
+
+                    .shareBtn16 .s_qmail {
+                        background-position: -66px -146px;
+                    }
+
+                    .shareBtn16 .s_kaixin {
+                        background-position: -66px -170px;
+                    }
+
+                    .shareBtn16 .s_qq {
+                        background: url(http://res.nba.cn/resource/mat1/news/dc/images/qqshare_16_24.png) 0 5px no-repeat;
+                    }
+
+                    .shareBtn24 .s_weibo {
+                        background-position: -62px -200px;
+                    }
+
+                    .shareBtn24 .s_qzone {
+                        background-position: -62px -229px;
+                    }
+
+                    .shareBtn24 .s_weixin {
+                        background-position: -62px -258px;
+                    }
+
+                    .shareBtn24 .s_pengyou {
+                        background-position: -62px -287px;
+                    }
+
+                    .shareBtn24 .s_sina {
+                        background-position: -62px -316px;
+                    }
+
+                    .shareBtn24 .s_renren {
+                        background-position: -62px -345px;
+                    }
+
+                    .shareBtn24 .s_qmail {
+                        background-position: -62px -374px;
+                    }
+
+                    .shareBtn24 .s_kaixin {
+                        background-position: -62px -403px;
+                    }
+
+                    .shareBtn24 .s_qq {
+                        background: url(http://res.nba.cn/resource/mat1/news/dc/images/qqshare_16_24.png) -18px -25px no-repeat;
+                    }
+
+                    /*分享组件 E*/
+                    .Tool-Article-QQ .appIconB a {
+                        display: block;
+                        height: 40px;
+                        background: url(http://res.nba.cn/resource/mat1/joke/temp/appBt1.png) no-repeat 0 center;
+                    }
+
+                    .Tool-Article-QQ .appIconB {
+                        float: right;
+                        width: 246px;
+                        height: 40px;
+                        padding: 0;
+                    }
+
+                    .Tool-Article-QQ .appIconB .appIco {
+                        display: block;
+                        float: left;
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    .Tool-Article-QQ .appIconB b {
+                        display: none;
+                    }
+
+                    .Tool-Article-QQ .appIconB .downArrow {
+                        display: block;
+                        float: right;
+                        width: 26px;
+                        height: 40px;
+                    }
+                </style>
+
+
+                <div class="Tool-Article-QQ clearfix" id="Tool-Article-QQ">
+                    <div class="wemcn" id="wemcn" style="display:none;">
+
+                        <div id="ewm" class="ewmDiv clearfix">
+                            <!-- <img id="ewmimg" class="ewmimg" /> -->
+                            <div id="wxcode">
+                                <canvas width="90" height="90"></canvas>
+                                <img style="display: none;"></div>
+                            <div class="rwmtext">
+                                <p>扫一扫，用手机看新闻！</p>
+                                <p>用微信扫描还可以</p>
+                                <p>分享至好友和朋友圈</p>
+                            </div>
+                        </div>
+                        <a href="javascript:void(0)" id="ewmkg"></a>
+                        <i class="ewmsj"></i><!-- /ewmsj -->
+                    </div><!-- /wemcn -->
+
+                    <div class="shareBtn h-shareBtn clearfix">
+                        <a class="shareBtn-hd" style="cursor: pointer;">分享到:</a>
+                        <div class="shareBtn-bd">
+                            <ul class="shareBtn24">
+                                <!-- <li><a href="javascript:void(0)" class="s_qzone" bossZone="tqzone" onclick="share2qzone.showPopup(this)"
+                                    alt="QQ空间" title="QQ空间">QQ空间</a></li> -->
+                                <li><a href="javascript:void(0)" class="s_qzone" bosszone="tqzone" onclick="" alt="QQ空间"
+                                       title="QQ空间">新QQ空间</a></li>
+                                <!-- <li><a href="javascript:void(0)" class="s_qq" bossZone="tqq" onclick="share2qq.showPopup(this)" alt="QQ好友"
+                                    title="QQ好友">QQ好友</a></li> -->
+                                <li><a href="javascript:void(0)" class="s_qq" bosszone="tqq" onclick="" alt="QQ好友"
+                                       title="QQ好友">新QQ好友</a></li>
+                                <li><a href="javascript:void(0)" class="s_sina" bosszone="tsina" onclick="" alt="新浪微博"
+                                       title="新浪微博">新浪微博</a></li>
+                                <li><a href="javascript:void(0)" class="s_ewm" bosszone="scan" alt="二维码" title="查看本文二维码"
+                                       id="s_ewm" onclick="">二维码</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <script src="./NBA中国官方网站_files/qrcode.min.js.下载"></script>
+                <script type="text/javascript">
+                    (function () {
+                        // document.getElementById("s_ewm").onclick = function () {
+                        //   $.ajax('http://news.open.qq.com/qrcode/gen.php?url=' + ARTICLE_INFO.article_url, { dataType: 'jsonp', jsonpCallback: 'callback' }).done(function (d) {
+                        //     var img = document.getElementById('ewmimg');
+                        //     img.src = d.url;
+                        //   })
+                        //   document.getElementById("wemcn").style.display = "block";
+                        // }
+
+                        var qrcode = new QRCode(document.getElementById("wxcode"), {
+                            width: 90,
+                            height: 90
+                        });
+                        qrcode.makeCode(ARTICLE_INFO.article_url);
+                        document.getElementById("ewmkg").onclick = function () {
+                            qrcode.clear();
+                            document.getElementById("wemcn").style.display = "none";
+                        }
+
+                        document.body.onclick = function (e) {
+                            var e = e || window.event;
+                            var target = e.target || e.srcElement;
+                            if (target.id == 's_ewm') {
+                                qrcode.makeCode(ARTICLE_INFO.article_url);
+                                document.getElementById("wemcn").style.display = "block";
+                            } else {
+                                document.getElementById("wemcn").style.display = "none";
+                            }
+                        }
+                    })()
+                </script>
+
+                <script type="text/javascript">
+                    /* remove t.qq.com link */
+                    $("#Cnt-Main-Article-QQ a").each(function (el) {
+                        var text = $(this).text()
+                        var childCount = $(this).get(0).children.length
+                        if (childCount == 0 && $(this).attr("href").indexOf('t.qq.com') != -1) {
+                            $(this).replaceWith(text)
+                        }
+                    });
+
+                    function shareQzone() {
+                        console.log(ARTICLE_INFO)
+                        var target_url = "//sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + encodeURIComponent(ARTICLE_INFO.article_url)
+                            + "&desc=" + ARTICLE_INFO.abstract
+                            + "&summary=" + ARTICLE_INFO.abstract
+                            + "&title=" + ARTICLE_INFO.title
+                            + "&pics=" + "//res.nba.cn/static/images/nba-logo.png"
+                        window.open(target_url, 'qZone', 'height=520, width=720');
+                        sensorsShare('QQ空间');
+                    }
+
+                    function shareQQ() {
+                        var target_url = "//connect.qq.com/widget/shareqq/index.html?url=" + encodeURIComponent(ARTICLE_INFO.article_url)
+                            + "&desc=" + ARTICLE_INFO.abstract
+                            + "&summary=" + ARTICLE_INFO.abstract
+                            + "&title=" + ARTICLE_INFO.title
+                            + "&pics=" + "//res.nba.cn/static/images/nba-logo.png"
+                        window.open(target_url, 'qq', 'height=520, width=720');
+                        sensorsShare('QQ好友');
+                    }
+
+                    function sensorsShare(way) {
+                        let shareInfo = {
+                            share_way: way,
+                            operation_position: "底部",
+                            current_page: obj.article_title
+                        }
+                        sensorsTrack('content_shareArticle', Object.assign({}, obj, shareInfo));
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div class="extra"></div>
+    </div>
+</div>
+
+<script src="/static/js/es5-shim.min.js.下载"></script>
+<script charset="utf-8" src="/static/js/sea-debug.js.下载" role="debug"></script>
+<script charset="utf-8" type="text/javascript" role="debug">
+    seajs.use('//res.nba.cn/static/scripts/kConfig/configs.js', function (conf) {
+        seajs.config(conf);
+        seajs.use('teampage');
+    });
+</script>
+

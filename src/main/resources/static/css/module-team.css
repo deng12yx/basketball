@@ -1,0 +1,52 @@
+#east-west-side {
+    width: 998px;
+    height: 307px;
+    margin: 0 auto 20px auto;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 4px #ebebeb;
+    -webkit-box-shadow: 0 4px 4px #ebebeb;
+    -moz-box-shadow: 0 4px 4px #ebebeb;
+    -ms-box-shadow: 0 4px 4px #ebebeb;
+}
+
+#east-west-side .east-box {
+    width: 468px;
+    float: right;
+    padding-left: 8px;
+}
+
+.NBA-module-title h2 a,.NBA-module-title h2 a:hover {
+    color: #ffffff;
+    font-size: 18px;
+    text-shadow: 0 2px 0 #093d79;
+    -webkit-text-shadow: 0 2px 0 #093d79;
+    -moz-text-shadow: 0 2px 0 #093d79;
+    -ms-text-shadow: 0 2px 0 #093d79;
+}
+
+.east-box h2, .west-box h2 {
+    padding-top: 18px;
+    text-align: center;
+    font-weight: normal;
+    color: #454545;
+    font-size: 16px;
+    background: url("images/db_x_03.png") no-repeat 88px 28px;
+}
+
+.east-box ul, .west-box ul {
+    overflow: hidden;
+}
+
+.east-box ul li, .west-box ul li {
+    width: 72px;
+    height: 60px;
+    display: block;
+    float: left;
+    padding: 12px 10px;
+}
+
+#east-west-side .west-box {
+    width: 470px;
+    float: left;
+}

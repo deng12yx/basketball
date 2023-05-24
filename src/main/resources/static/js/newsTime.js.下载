@@ -1,0 +1,59 @@
+define(function (require, exports, module) {
+    //var dateTimeParser = require('utils/datetimeInterval');
+    //var FormatRule = dateTimeParser.FormatRule;
+    var dateTimeStringToDate = function (datetimeString) {
+        var matches = datetimeString.match(/(\d{4})\-(\d{2})\-(\d{2})\s+(\d{2}):(\d{2}):(\d{2})/);
+        var year = matches[1];
+        var month = matches[2] - 1;
+        var date = matches[3];
+        var hours = matches[4];
+        var minutes = matches[5];
+        var seconds = matches[6];
+        return new Date(year, month, date, hours, minutes, seconds);
+    };
+
+    // 配置时间间隔展示规则
+    //dateTimeParser.configure([
+    //    // 60分钟以内的时间间隔，以60000毫秒为单位，文本展示为xx分钟前
+    //    new FormatRule(60 * 60 * 1000, 60 * 1000, '%i分钟前'),
+    //    // 24小时以内的时间间隔，以1小时的毫秒数为单位，文本展示为xx小时前
+    //    new FormatRule(24 * 60 * 60 * 1000, 60 * 60 * 1000, '%i小时前'),
+    //    // 2天以内，以1天的毫秒数为单位，文本展示为x天前
+    //    new FormatRule(2 * 24 * 60 * 60 * 1000, 24 * 60 * 60 * 1000, '%i天前')
+    //]);
+
+    return function () {
+        //$.ajax({
+        //    type: 'HEAD',
+        //    url: location.href,
+        //    success: function (data, textStatus, jqXHR) {
+        //        var timestamp = (new Date(jqXHR.getResponseHeader('Date'))).getTime();
+        //        dateTimeParser.setBaseTimestamp(timestamp);
+        //
+        //        $('.fl[data-time]').each(function () {
+        //            var date = dateTimeStringToDate($(this).data('time'));
+        //            var timeInterval = dateTimeParser.getInterval(date.getTime());
+        //            var dateTimeText;
+        //
+        //            if (!timeInterval) {
+        //                dateTimeText = (date.getMonth() + 1) + '月' + date.getDate() + '日';
+        //            }
+        //
+        //            $(this).text(timeInterval || dateTimeText);
+        //        });
+        //    }
+        //});
+
+        $('.fl[data-time]').each(function () {
+            var date = dateTimeStringToDate($(this).data('time'));
+            var datetimeText = date.getFullYear().toString()
+                + '-'
+                + (date.getMonth() + 1).toString()
+                + '-'
+                + date.getDate().toString()
+                + ' '
+                + $(this).data('time').substr(11,5);
+            $(this).text(datetimeText);
+        });
+    };
+});

@@ -1,0 +1,16 @@
+
+#backtotop {
+    position: fixed;
+    _position: absolute;
+    right: 0px;
+    width: 70px;
+    height: 70px;
+    background: url(images/team_backtotop_ico.png) no-repeat 10px 20px;
+    background-color: #FFFFFF;
+    z-index: 99;
+    display: none;
+}
+
+#backtotop:hover {
+    background-color: #E1E1E1;
+}

@@ -1,0 +1,51 @@
+define(function (require, exports, module) {
+    var global = require('global');
+    var jsonselect = require('jsonselect');
+    var tab = require('utils/tab');
+
+    return function (teamName) {
+        var compare = function (a, b) {
+            return jsonselect.match('.confRank', a)[0] - jsonselect.match('.confRank', b)[0];
+        };
+        $('#mod-chart').html(require('template/loading/index').render({
+            width: $('#mod-chart').width(),
+            height: $('#mod-chart').height()
+        }));
+
+        // 东西部排行榜鼠标划过效果
+        tab.init({
+            tabClass: 'tab-trank',
+            viewClass: 'tabview-trank'
+        });
+
+        $.ajax({
+            url: global.API.teamRank,
+            type: 'GET'
+        }).done(function (data) {
+            var western = jsonselect.match('.payload .standingGroups .teams', data)[1];
+            var eastern = jsonselect.match('.payload .standingGroups .teams', data)[0];
+            //东部或西部数据有一个为空时，隐藏NBA排列
+            if (western.length === 0 || eastern.length === 0) {
+                $('#mod-chart').hide();
+            } else {
+                //排序东西部数据
+                western.sort(compare);
+                eastern.sort(compare);
+                var isEast = (function () {
+                    for (var i = 0; i < eastern.length; i++) {
+                        if (teamName === eastern[i].profile.code) {
+                            return 'eastTeam';
+                        }
+                    }
+                    return 'westTeam';
+                })();
+                $('#mod-chart').html(require('template/rankNBA/index').render({
+                    west: western,
+                    east: eastern,
+                    flag: isEast
+                }));
+            }
+
+        });
+    };
+});

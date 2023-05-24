@@ -1,0 +1,69 @@
+/* 先给整个页面设置背景颜色还有字体 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sana-fserif;
+    background: #34495e;
+}
+/* 给整个表单设置宽度高度是根据表单中的内容自行收缩的，
+并设置定位让整个表单居于页面正中间 */
+.box{
+    width: 350px;
+    padding: 40px;
+    position: absolute;   /* 绝对定位，相对于父标签来进行定位 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #191919;
+    text-align: center;  /*表单中内容居中*/
+}
+/* 设置标题样式 */
+.box h5{
+    color: white;    /* 设置字体颜色 */
+    text-transform: uppercase;  /* 将字体全部设置成大写字母  */
+    font-weight: 10;  /*  设置字体粗细   */
+}
+
+
+/* 设置用户名输入框和密码输入框样式 */
+.box input[type="text"],.box input[type="password"]{
+    border-radius: 24px;
+    border: 2px solid #3498db;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;     /* 设置输入框中竖线的颜色 */
+    transition: 0.25s;   /* 设置元素过渡效果 */
+}
+/* 设置文本框获得焦点时的样式 */
+.box input[type="text"]:focus,.box input[type="password"]:focus{
+    width: 280px;
+    border-color: #2ecc71;
+}
+/* 设置提交按钮的样式 */
+.box input[type="submit"]{
+    border-radius: 24px;
+    border: 2px solid #2ecc71;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 14px 40px;
+    outline: none;
+    color: white;     /* 设置输入框中竖线的颜色 */
+    transition: 0.25s;
+    cursor: pointer;    /* 设置光标的样式 */
+}
+
+/* 设置鼠标移人到按钮上的样式 */
+.box input[type="submit"]:hover{
+    background: #2ecc71;
+}
+
+.box div[id="errorMsg"]{
+    color: red;
+}

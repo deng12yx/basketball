@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加球员信息</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        body {
+            background: #34495e;
+        }
+
+        .box {
+            width: 600px;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #191919;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            color: whitesmoke;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="box">
+
+        <form id="playerForm" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <h2>添加球员信息</h2>
+                <label for="playerName" class="form-label">球员名字</label>
+                <input type="text" id="playerName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="playerPhoto" class="form-label">球员照片</label>
+                <input type="file" id="playerPhoto" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="playerPosition" class="form-label">球员位置</label>
+                <select id="playerPosition" class="form-control">
+                    <option value="0">后卫</option>
+                    <option value="1">前锋</option>
+                    <option value="2">中锋</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="playerGrade" class="form-label">球员年级</label>
+                <input type="text" id="playerGrade" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="playerInfo" class="form-label">球员个人信息</label>
+                <textarea id="playerInfo" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="playerScore" class="form-label">球员综合得分</label>
+                <input type="number" id="playerScore" class="form-control" required>
+            </div>
+
+            <button onclick="addPlayer();" class="btn btn-primary">添加</button>
+        </form>
+    </div>
+</div>
+<script>
+    function addPlayer() {
+        var playerName = $("#playerName").val();
+        var playerPhoto = $("#playerPhoto")[0].files[0];
+        var playerPosition = $("#playerPosition").val();
+        var playerClass = $("#playerGrade").val();
+        var playerInfo = $("#playerInfo").val();
+        var playerScore = $("#playerScore").val();
+
+        var formData = new FormData();
+        formData.append("playerName", playerName);
+        formData.append("playerSelfieImage", playerPhoto);
+        formData.append("playerPosition", playerPosition);
+        formData.append("playerClass", playerClass);
+        formData.append("playerInfo", playerInfo);
+        formData.append("playerScore", playerScore);
+
+        $.ajax({
+            url: "/addPlayerIn",
+            type: "POST",
+            data: formData,
+            dataType: 'JSON',
+            cache: false,
+            processData: false,  // 告诉jQuery不要处理发送的数据
+            contentType: false,  // 告诉jQuery不要设置Content-Type请求头
+            success: function (result) {
+                if (result.code == 1) {
+                    alert("添加成功");
+                    window.location.href = "/player";
+                } else {
+                    alert("添加失败");
+                }
+            },
+            error: function () {
+                alert("请求失败");
+            }
+        });
+    }
+</script>
+</body>
+</html>

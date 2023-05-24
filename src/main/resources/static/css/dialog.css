@@ -1,0 +1,75 @@
+/* dialog */
+.dialog-mask {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    background: #000;
+    z-index: 9998;
+    display: none;
+}
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -67px 0 0 -220px;
+    width: 438px;
+    height: 133px;
+    border: 1px solid #dadada;
+    box-sizing: content-box !important;
+    background: #fff;
+    box-shadow: 2px 3px 5px #333;
+    -webkit-box-shadow: 2px 3px 5px #333;
+    -moz-box-shadow: 2px 3px 5px #333;
+    -ms-box-shadow: 2px 3px 5px #333;
+    z-index: 9999;
+    display: none;
+}
+
+.dialog .dialog-title {
+    position: relative;
+    width: 438px;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+    color: #454545;
+    font-size: 18px;
+    border-bottom: 1px solid #dadada;
+    box-sizing: inherit !important;
+}
+
+.dialog .dialog-title a {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    width: 18px;
+    height: 19px;
+    background: url(images/browser_prompt_ico.png) no-repeat 0px -80px;
+    cursor: pointer;
+}
+
+.dialog .dialog-title a:hover {
+    background: url(images/browser_prompt_ico.png) no-repeat -18px -80px;
+}
+
+.dialog .dialog-msg {
+    padding: 25px 0 0 130px;
+    width: 308px;
+    height: 25px;
+    line-height: 25px;
+    color: #454545;
+    font-size: 16px;
+    box-sizing: inherit !important;
+    background: url(images/dialog-msg-ico.png) no-repeat 100px 27px;
+}
+
+.dialog .dialog-prompt {
+    width: 438px;
+    height: 43px;
+    line-height: 43px;
+    color: #aaa;
+    text-align: center;
+}

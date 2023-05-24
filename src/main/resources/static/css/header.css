@@ -1,0 +1,1008 @@
+/* header */
+
+.wrap {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 15px 10px;
+    background: #fff;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.header {
+    height: 120px;
+    width: 100%;
+    background: #006bb7;
+}
+
+.header-bg {
+    /* position: absolute; */
+    /* left: 50%;
+    margin-left: -600px; */
+    /* width: 100%;
+    height: 120px; */
+    /* background: url(images/header-bg.png) no-repeat center top; */
+}
+
+.header-wrap {
+    width: 1200px;
+    padding: 0 10px;
+    margin: 0 auto;
+    background: #006bb7 url(images/header-bg.png) no-repeat center top;
+    height: auto !important;
+}
+
+.header-main {
+    position: relative;
+    height: 80px;
+}
+
+.header-logo {
+    height: 80px;
+    float: left;
+}
+
+.header-logo .link-china {
+    padding-left: 45px;
+    padding-top: 20px;
+    height: 50px;
+    width: 86px;
+    /*line-height: 80px;*/
+    color: #fff;
+    font-size: 38px;
+    font-weight: bold;
+    float: left;
+}
+
+.header-logo .link-china img {
+    width: 100%;
+    height: 100%;
+}
+
+.header-logo .link-nba {
+    margin: 28px 0 0 15px;
+    color: #00aeff;
+    font-size: 28px;
+    float: left;
+}
+
+.header-logo .link-nba-com {
+    height: 25px;
+}
+
+.header-logo .link-nba-com img {
+    height: 100%;
+}
+
+.header-button {
+    padding-top: 10px;
+    height: 70px;
+    float: right;
+}
+
+.header-button span {
+    position: relative;
+    height: 19px;
+    float: left;
+    margin-left: 10px;
+}
+
+.header-button span a {
+    height: 19px;
+    border: 0 !important;
+    float: left;
+}
+
+.header-button span a.button-ballfans {
+    width: 64px;
+    background: url('//res.nba.cn/resource/mat1/chinanba/images/nbalogo/ball-fans-icon-pc.png') no-repeat;
+}
+
+.header-button span a.button-jrnba {
+    width: 36px;
+    background: url('//res.nba.cn/resource/mat1/chinanba/images/nbalogo/jrnba-icon-pc.png') no-repeat;
+}
+
+.header-button span a.button-nbaapp {
+    width: 60px;
+}
+
+.header-button span a.button-ttnba {
+    width: 68px;
+    background: url(images/ttnba-ico.png) no-repeat;
+}
+
+.header-button span a.button-nbaplayzone {
+    width: 68px;
+    background: url(images/logo_nbaplayzone.png) no-repeat;
+}
+
+.header-button span a.button-nbastore {
+    width: 75px;
+    background: url('//res.nba.cn/resource/mat1/chinanba/images/nbalogo/nbastore-icon-pc.png') no-repeat;
+}
+
+.header-button span a.button-nbastore i {
+    margin-top: 7px;
+    width: 9px;
+    height: 6px;
+    background: url(images/triangle_down_new.png) no-repeat;
+    float: right;
+}
+
+.header-button span a.button-nbastore i.show {
+    background: url(images/triangle_up_new.png) no-repeat;
+}
+
+.header-button span .nbastore-menu {
+    position: absolute;
+    top: 23px;
+    left: 0;
+    width: 90px;
+    background: #002f50;
+    box-shadow: 0 0 3px #002651;
+    -webkit-box-shadow: 0 0 3px #002651;
+    -moz-box-shadow: 0 0 3px #002651;
+    -ms-box-shadow: 0 0 3px #002651;
+    z-index: 101;
+    display: none;
+}
+
+.header-button span .nbastore-menu li {
+    height: 40px;
+    /*border-bottom: 1px solid #2560a2;*/
+}
+
+.header-button span .nbastore-menu li a {
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    text-align: left;
+    float: none;
+    display: block;
+}
+
+.header-button span .nbastore-menu li a:hover {
+    background: #2464b5;
+}
+
+
+/* 导航菜单 */
+
+.nav {
+    padding-left: 30px;
+    height: 40px;
+    width: auto;
+    background: none;
+    position: relative;
+}
+
+.nav-logo {
+    display: none;
+}
+
+.nav-wrap {
+    height: 40px;
+    float: left;
+}
+
+.nav-wrap .nav-tab {
+    position: relative;
+    margin-right: 23px;
+    height: 40px;
+    float: left;
+}
+
+.nav-wrap .nav-tab .on {
+    color: #00aeff;
+}
+
+.nav-wrap .nav-tab>a {
+    padding: 5px 15px 0 10px;
+    height: 35px;
+    color: #fff;
+    font-size: 16px;
+    background: url(images/icon_16_arrow_down_gray.png) no-repeat right 17px;
+    float: left;
+}
+
+.nav-wrap .nav-tab>a:hover {
+    color: #00aeff;
+}
+
+.nav-wrap .nav-tab.cur>a {
+    color: #00aeff;
+    background: url(images/icon_16_arrow_down_blue.png) no-repeat right 17px;
+}
+
+.nav-wrap .nav-tab>a.no-arrow {
+    background: none;
+}
+
+.nav-wrap .nav-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 160px;
+    background: #002f50;
+    z-index: 999;
+    display: none;
+}
+
+.nav-wrap .nav-tab.cur .nav-menu,
+.nav-wrap .nav-tab.cur .nav-team {
+    display: block;
+}
+
+.nav-wrap .nav-menu:before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 20px;
+    width: 12px;
+    height: 6px;
+    background: url(images/nav-menu-arrow.png) no-repeat;
+}
+
+.nav-wrap .nav-menu li {
+    height: 40px;
+}
+
+.nav-wrap .nav-menu li a {
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    display: block;
+}
+
+.nav-wrap .nav-menu li a:hover {
+    background: #2464b5;
+}
+
+.nav-wrap .nav-team {
+    position: absolute;
+    top: 40px;
+    left: -360px;
+    width: 1200px;
+    height: 440px;
+    border-bottom: 2px solid #002f50;
+    background: #fff;
+    z-index: 999;
+    display: none;
+}
+
+.nav-wrap .nav-team:before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 380px;
+    width: 12px;
+    height: 6px;
+    background: url(images/nav-menu-arrow.png) no-repeat;
+}
+
+.nav-wrap .east-team {
+    width: 598px;
+    height: 440px;
+    border-left: 2px solid #002f50;
+    float: left;
+}
+
+.nav-wrap .west-team {
+    width: 598px;
+    height: 440px;
+    border-right: 2px solid #002f50;
+    float: left;
+}
+
+.nav-wrap .east-team .team-title {
+    border-right: 1px solid #072840;
+}
+
+.nav-wrap .west-team .team-title {
+    border-left: 1px solid #072840;
+}
+
+.nav-wrap .east-team li {
+    border-right: 1px solid #e5e5e5;
+}
+
+.nav-wrap .west-team li {
+    border-left: 1px solid #e5e5e5;
+}
+
+.nav-wrap li.gray {
+    background: #f5f5f5;
+}
+
+.nav-wrap .team-title {
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    background: #002f50;
+}
+
+.nav-wrap .team-area {
+    height: 40px;
+}
+
+.nav-wrap .team-area span {
+    width: 199px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    float: left;
+}
+
+.nav-wrap .team-list {
+    height: 70px;
+}
+
+.nav-wrap .team-list a:hover {
+    background-color: #E5E5E5;
+}
+
+.nav-wrap .team-list a {
+    padding-left: 111px;
+    width: 88px;
+    height: 70px;
+    line-height: 70px;
+    color: #2866b6;
+    font-size: 14px;
+    background: url(./images/homepageteamlogos.png) no-repeat;
+    float: left;
+}
+
+.nav-wrap .team-list a.label-hornets {
+    background-position: 35px -922px;
+}
+
+.nav-wrap .team-list a.label-cavaliers {
+    background-position: 38px -492px;
+}
+
+.nav-wrap .team-list a.label-raptors {
+    background-position: 36px -330px;
+}
+
+.nav-wrap .team-list a.label-hawks {
+    background-position: 37px -839px;
+}
+
+.nav-wrap .team-list a.label-bulls {
+    background-position: 41px -418px;
+}
+
+.nav-wrap .team-list a.label-knicks {
+    background-position: 37px -167px;
+}
+
+.nav-wrap .team-list a.label-wizards {
+    background-position: 39px -1170px;
+}
+
+.nav-wrap .team-list a.label-pistons {
+    background-position: 37px -572px;
+}
+
+.nav-wrap .team-list a.label-celtics {
+    background-position: 38px -8px;
+}
+
+.nav-wrap .team-list a.label-magic {
+    background-position: 36px -1084px;
+}
+
+.nav-wrap .team-list a.label-pacers {
+    background-position: 37px -651px;
+}
+
+.nav-wrap .team-list a.label-nets {
+    background-position: 38px -93px;
+}
+
+.nav-wrap .team-list a.label-heat {
+    background-position: 37px -1006px;
+}
+
+.nav-wrap .team-list a.label-bucks {
+    background-position: 39px -740px;
+}
+
+.nav-wrap .team-list a.label-sixers {
+    background-position: 39px -248px;
+}
+
+.nav-wrap .team-list a.label-warriors {
+    background-position: 38px -1667px;
+}
+
+.nav-wrap .team-list a.label-jazz {
+    background-position: 38px -1579px;
+}
+
+.nav-wrap .team-list a.label-spurs {
+    background-position: 38px -2461px;
+}
+
+.nav-wrap .team-list a.label-clippers {
+    background-position: 36px -1756px;
+}
+
+.nav-wrap .team-list a.label-thunder {
+    background-position: 38px -1415px;
+}
+
+.nav-wrap .team-list a.label-rockets {
+    background-position: 37px -2213px;
+}
+
+.nav-wrap .team-list a.label-kings {
+    background-position: 39px -2032px;
+}
+
+.nav-wrap .team-list a.label-blazers {
+    background-position: 38px -1499px;
+}
+
+.nav-wrap .team-list a.label-grizzlies {
+    background-position: 38px -2292px;
+}
+
+.nav-wrap .team-list a.label-lakers {
+    background-position: 38px -1847px;
+}
+
+.nav-wrap .team-list a.label-nuggets {
+    background-position: 37px -1251px;
+}
+
+.nav-wrap .team-list a.label-pelicans {
+    background-position: 37px -2373px;
+}
+
+.nav-wrap .team-list a.label-suns {
+    background-position: 39px -1936px;
+}
+
+.nav-wrap .team-list a.label-timberwolves {
+    background-position: 36px -1330px;
+}
+
+.nav-wrap .team-list a.label-mavericks {
+    background-position: 38px -2122px;
+}
+
+.nav-side {
+    padding-top: 3px;
+    height: 37px;
+    float: right;
+}
+
+.side-search {
+    margin-right: 10px;
+    height: 30px;
+    float: left;
+}
+
+.side-search .search-btn {
+    width: 35px;
+    height: 30px;
+    border-radius: 15px 0 0 15px;
+    background: url(images/icon_20_search_white.png) no-repeat center;
+    cursor: pointer;
+    float: left;
+}
+
+.side-search .search-btn.cur {
+    background: url(images/icon_20_search_blue.png) no-repeat center #fff;
+}
+
+.side-search .search-ipt {
+    padding: 0;
+    width: 0;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    border: none;
+    box-sizing: content-box !important;
+    border-radius: 0 15px 15px 0;
+    outline: none;
+    float: left;
+}
+
+.side-search .search-ipt::-ms-clear {
+    display: none;
+}
+
+.side-user {
+    position: relative;
+    width: 30px;
+    height: 37px;
+    float: left;
+}
+
+.side-user .user-head {
+    width: 30px;
+    height: 30px;
+}
+
+.side-user .user-head img {
+    width: 30px;
+    height: 30px;
+    border-radius: 16px;
+    cursor: pointer;
+    float: left;
+}
+
+.side-user .user-menu {
+    z-index: 1;
+    position: absolute;
+    top: 37px;
+    right: -10px;
+    padding: 0 10px;
+    width: 140px;
+    height: 80px;
+    background: #002f50;
+    display: none;
+}
+
+.side-user .user-menu:before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 19px;
+    width: 12px;
+    height: 6px;
+    background: url(images/nav-menu-arrow.png) no-repeat;
+}
+
+.side-user .user-menu .user-info {
+    height: 44px;
+    line-height: 44px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+}
+
+.side-user .user-menu .user-login {
+    height: 36px;
+}
+
+.side-user .user-menu .user-login span {
+    height: 26px;
+    line-height: 26px;
+    color: #fff;
+    text-align: center;
+    border-radius: 15px;
+    background: #0062A7;
+    cursor: pointer;
+    display: block;
+}
+.side-user .user-menu .user-login span:hover{
+    background: #0079cd
+}
+
+
+/* 固定头部 */
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #2464b5;    
+    z-index: 999;
+    display: none;
+}
+
+.fixed-header .nav {
+    margin: 0 auto;
+    padding-left: 0;
+    width: 1200px;
+    height: 50px;
+}
+
+.fixed-header .nav-wrap {
+    height: 50px;
+}
+
+.fixed-header .nav-wrap .nav-tab {
+    height: 50px;
+}
+
+.fixed-header .nav-wrap .nav-tab>a {
+    padding: 12px 15px 0 10px;
+    height: 38px;
+    background: url(images/icon_16_arrow_down_gray.png) no-repeat right 24px;
+}
+
+.fixed-header .nav-wrap .nav-tab>a.cur {
+    background: url(images/icon_16_arrow_down_blue.png) no-repeat right 24px;
+}
+
+.fixed-header .nav-wrap .nav-tab>a.no-arrow {
+    background: none;
+}
+
+.fixed-header .nav-wrap .nav-menu {
+    top: 50px;
+}
+
+.fixed-header .nav-wrap .nav-team {
+    top: 50px;
+    left: -460px;
+}
+
+.fixed-header .nav-wrap .nav-team:before {
+    left: 480px;
+}
+
+.fixed-header .nav-side {
+    padding-top: 10px;
+    height: 40px;
+}
+
+.fixed-header .side-search {
+    display: none;
+}
+
+.fixed-header .side-user {
+    height: 40px;
+}
+
+.fixed-header .side-user .user-menu {
+    top: 40px;
+}
+
+.fixed-header .nav-logo {
+    margin-right: 30px;
+    width: 110px;
+    height: 50px;
+    display: block;
+    float: left;
+}
+
+.fixed-header .nav-logo a {
+    display: block;
+}
+
+.fixed-header .nav-logo a img {
+    width: 110px;
+}
+
+.index .nav-index.nav-tab>a,
+.news .nav-news.nav-tab>a,
+.photos .nav-photos.nav-tab>a,
+.playerindex .nav-players.nav-tab>a,
+.schedule .nav-schedule.nav-tab>a,
+.scores .nav-scores.nav-tab>a,
+.standings .nav-standings.nav-tab>a,
+.statistics .nav-statistics.nav-tab>a,
+.teamindex .nav-teams.nav-tab>a,
+.morethanbasketball.htm .nav-morethan.nav-tab>a,
+.videos .nav-videos.nav-tab>a {
+    color: #00aeff;
+}
+
+.header *,
+.fixed-header * {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+
+/* 
+---------------------------------------------------- 
+
+登录对话框 loginDialog Style
+author: yanligang@starschina.com
+
+---------------------------------------------------- 
+*/
+
+#login-dialog {
+    display: none;
+    z-index: 100000000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* text-align: center; */
+    /* margin-top: -225px; */
+    /* color: beige; */
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.50);
+    /* border: 1px solid rgb(32, 30, 48); */
+}
+
+#login-dialog .login-conitaner,
+#login-dialog .bind-conitaner {
+    position: relative;
+    background-color: white;
+    z-index: 800;
+    top: 100px;
+    left: 50%;
+    display: none;
+}
+
+#login-dialog .login-conitaner {
+    width: 700px;
+    margin-left: -350px;
+    height: 466px;
+}
+
+#login-dialog .bind-conitaner {
+    width: 600px;
+    height: 432px;
+    margin-left: -300px;
+}
+
+#login-dialog .login-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#login-dialog .tab {
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+#login-dialog .tab-qq,
+#login-dialog .tab-wx {
+    text-align: center;
+    float: left;
+    width: 50%;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 0px;
+    transition: 0.3s;
+}
+
+#login-dialog .icon,
+#login-dialog .icon-text {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#login-dialog .icon {
+    width: 30px;
+    height: 30px;
+}
+
+#login-dialog .icon-text {
+    color: #A2A2A2;
+    font-size: 14px;
+}
+
+#weixin-login {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* hover */
+
+#login-dialog .tab-qq:hover {
+    background-color: #31A4F6;
+}
+
+#login-dialog .tab-wx:hover {
+    background-color: #4BB318;
+}
+
+#login-dialog .tab-qq:hover svg path,
+#login-dialog .tab-wx:hover svg path {
+    fill: #FFFFFF
+}
+
+#login-dialog .tab-qq:hover .icon-text,
+#login-dialog .tab-wx:hover .icon-text {
+    color: #FFFFFF;
+}
+
+
+/* active */
+
+#login-dialog .tab-qq.active {
+    background-color: #31A4F6;
+}
+
+#login-dialog .tab-wx.active {
+    background-color: #4BB318;
+}
+
+#login-dialog .tab-wx.active svg path,
+#login-dialog .tab-qq.active svg path {
+    fill: #FFFFFF;
+}
+
+#login-dialog .tab-wx.active .icon-text,
+#login-dialog .tab-qq.active .icon-text {
+    color: #FFFFFF;
+}
+
+#login-dialog .qqcontent,
+#login-dialog .wxcontent {
+    display: none;
+}
+
+#login-dialog .qqcontent {
+    width: 100%;
+}
+
+
+/* bind conitaner */
+
+#login-dialog .screen {
+    float: left;
+    width: 247px;
+}
+
+#login-dialog .input {
+    float: right;
+    width: 302px;
+    margin: 25px;
+}
+
+#login-dialog .input-welcome {
+    font-weight: bolder;
+    font-size: 20px;
+    margin-top: 38px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+#login-dialog .input-text {
+    float: left;
+    line-height: 19px;
+    height: 40px;
+    border: 1px solid #DDDDDD;
+    padding: 0px 10px 0px 10px;
+    margin: 10px 0px;
+}
+#login-dialog input[disabled] {
+    opacity: 0.5;
+}
+#get-message {
+    padding: 0px 10px 0px 10px;
+    margin: 10px 0px 10px 6px;
+    float: right;
+    width: 100px;
+    height: 42px;
+    border: 1px solid #2463B5;
+    background: #ffffff;
+    color: #2463B5;
+}
+
+#message-code {
+    width: 183px;
+}
+
+
+/* ---------------------------------------------- */
+
+
+/* hover */
+
+#message-code:hover,
+#login-phone:hover {
+    border: 1px solid #F54E1E;
+    /* box-shadow: 0 0 10px #719ECE; */
+}
+
+#get-message:hover {
+    border-color: #F1420F;
+    color: #F1420F;
+}
+
+
+/* fouce */
+
+#login-dialog input:focus {
+    border: 1px solid #F54E1E;
+    outline: none;
+}
+
+
+/* disabled */
+
+#get-message:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}
+
+#login-submit:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    background-color: #A2A2A2;
+    box-shadow: none;
+    opacity: .65;
+}
+
+
+/* ----------------------------------------------- */
+
+#login-submit {
+    background-color: aquamarine;
+}
+
+#login-dialog .form-phone {
+    width: 288px;
+}
+
+#login-dialog .form-submit {
+    margin-top: 30px;
+    overflow: visible;
+    width: 100%;
+    *width: 1;
+    background: #2463B5;
+    color: white;
+    font-size: 16px;
+}
+
+#login-dialog .tip {
+    clear: both;
+    color: #F1420F;
+    display: none;
+}
+#login-dialog .active-btn {
+    clear: both;
+    color: #0764F9;
+    cursor: pointer;
+}
+
+#login-dialog .input-conitaner {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+#login-dialog .clearbtn1 {
+    position: absolute;
+    top: 12px;
+    right: 2px;
+    margin: 11px;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    display: none;
+}
+
+
+/* button[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+} */

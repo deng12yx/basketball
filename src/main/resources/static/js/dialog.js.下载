@@ -1,0 +1,62 @@
+define(function (require, exports, module) {
+    /**
+     * Dialog弹层
+     */
+    var Dialog = function () {
+        this.timer = null;
+        this.delay = 3;
+        this.init();
+    }
+    
+    Dialog.prototype = {
+        init: function () {
+            this.bind();
+        },
+        bind: function () {
+            var _this = this;
+            
+            D.dialog.on('click', '.dialog-title a', function () {
+                _this.close();
+            });
+        },
+        alert: function (msg, fn) {
+            var _this = this;
+            var winH = document.documentElement.clientHeight;
+            var promptEl = D.dialog.find('.dialog-prompt span');
+            
+            this.fn = fn;
+            
+            D.mask.css('height', winH + 'px').show();
+            D.dialog.show().find('.dialog-msg').text(msg);
+            
+            promptEl.text(this.delay);
+            this.timer = setInterval(function () {
+                if (_this.delay > 1) {
+                    promptEl.text(--_this.delay);
+                } else {
+                    _this.close();
+                }
+            }, 1000);
+        },
+        close: function () {
+            clearInterval(this.timer);
+            
+            D.mask.hide();
+            D.dialog.hide();
+            
+            if (typeof this.fn === 'function') {
+                this.fn();
+            }
+        }
+    }
+    
+    /**
+     * DOM
+     */
+    var D = {
+        mask: $('.dialog-mask'),
+        dialog: $('.dialog')
+    };
+    
+    return new Dialog();
+});

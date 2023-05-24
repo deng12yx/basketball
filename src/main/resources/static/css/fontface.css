@@ -1,0 +1,41 @@
+/* @font-face imports */
+/* Webfont: Lato-Regular */
+@font-face {
+  font-family: 'Lato';
+  src: url('/media/font/Lato-Regular.eot');
+  src: url('/media/font/Lato-Regular.eot?#iefix') format('embedded-opentype'), url('/media/font/Lato-Regular.woff') format('woff'), url('/media/font/Lato-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  
+  /* IE9 Compat Modes */
+}
+/* Webfont: Lato-Black */
+@font-face {
+  font-family: 'Lato';
+  src: url('/media/font/Lato-Black.eot');
+  src: url('/media/font/Lato-Black.eot?#iefix') format('embedded-opentype'), url('/media/font/Lato-Black.woff') format('woff'), url('/media/font/Lato-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 900;
+  
+  /* IE9 Compat Modes */
+}
+/* Webfont: Open Sans Regular */
+@font-face {
+  font-family: "Open Sans";
+  src: url("/media/font/OpenSans-Regular.eot?");
+  src: url("/media/font/OpenSans-Regular.eot?#iefix") format("eot"), url("/media/font/OpenSans-Regular.woff") format("woff"), url("/media/font/OpenSans-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  
+  /* IE9 Compat Modes */
+}
+/* Webfont: Oswald */
+@font-face {
+  font-family: "Oswald";
+  src: url('/media/font/Oswald.eot');
+  src: url("/media/font/Oswald.eot?#iefix") format("embedded-opentype"), url("/media/font/Oswald.woff") format("woff"), url("/media/font/Oswald.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  
+  /* IE9 Compat Modes */
+}

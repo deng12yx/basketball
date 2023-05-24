@@ -1,0 +1,177 @@
+.hot-layout {
+    width: 300px;
+    height: auto;
+    background: #fff;
+}
+
+.hot-layout {
+    width: 300px;
+    height: auto;
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+.hot-layout h2 {
+    height: 39px;
+    line-height: 39px;
+    background: #2464b5;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 0 12px;
+}
+
+#hot h2 a,
+#hot h2 a:hover {
+    color: #fff;
+}
+
+.hot-layout h2.hot-hd a {
+    display: inline-block;
+    width: 104px;
+    height: 40px;
+    font-size: 16px;
+}
+
+#hot .hot {
+    font-size: 14px;
+}
+
+#hot .hot-con {
+    height: 60px;
+    padding: 10px 10px 10px 11px;
+    border-bottom: 1px solid #e5e5e5;
+    overflow: hidden;
+}
+
+#hot .hot-list li {
+    display: inline;
+}
+
+#hot .hot-list li a.hot-a {
+    display: block;
+    cursor: pointer;
+    border-left: 1px solid #fff;
+}
+
+#hot .hot-list a.hot-a:hover {
+    background: #edf1f4;
+    border-left-color: #1377c3;
+}
+
+#hot .hot-list .nobg {
+    border-bottom: none;
+}
+
+#hot .hot-con dt {
+    width: 80px;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+#hot .hot-con dt img {
+    width: auto;
+    height: 60px;
+}
+
+#hot .hot-con dd {
+    width: 188px;
+    height: 48px;
+    line-height: 24px;
+}
+
+#hot .hot-list span.dot {
+    padding: 0 10px 0 11px;
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+}
+
+#hot .hot-a {
+    display: block;
+}
+
+.hot-layout {
+    width: 300px;
+    height: auto;
+    background: #fff;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.hot-layout h2 {
+    height: 39px;
+    line-height: 39px;
+    background: #2464b5;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 0 12px;
+}
+
+#hot h2 a,
+#hot h2 a:hover {
+    color: #fff;
+}
+
+.hot-layout h2.hot-hd a {
+    display: inline-block;
+    width: 104px;
+    height: 40px;
+    font-size: 16px;
+}
+
+#hot .hot {
+    font-size: 14px;
+}
+
+#hot .hot-con {
+    height: 60px;
+    padding: 10px 10px 10px 11px;
+    border-bottom: 1px solid #e5e5e5;
+    overflow: hidden;
+}
+
+#hot .hot-list li {
+    display: inline;
+}
+
+#hot .hot-list li a.hot-a {
+    display: block;
+    cursor: pointer;
+    border-left: 1px solid #fff;
+}
+
+#hot .hot-list .nobg {
+    border-bottom: none;
+}
+
+/* #hot .hot-con dt {
+    width: 80px;
+    height: 60px;
+    overflow: hidden;
+}
+
+#hot .hot-con dt img {
+    width: 80px;
+    height: 60px;
+} */
+
+#hot .hot-con dd {
+    width: 188px;
+    height: 48px;
+    line-height: 24px;
+}
+
+#hot .hot-list span.dot {
+    padding: 0 10px 0 11px;
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+}
+
+#hot .hot-a {
+    display: block;
+}

@@ -1,0 +1,112 @@
+/* -------- mod ------- */
+#mod-chart {
+    width: 300px;
+    height: 626px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 4px #ebebeb;
+    -webkit-box-shadow: 0 4px 4px #ebebeb;
+    -moz-box-shadow: 0 4px 4px #ebebeb;
+    -ms-box-shadow: 0 4px 4px #ebebeb;
+}
+
+#mod-chart .title {
+    padding-left: 10px;
+    width: 290px;
+    height: 40px;
+    line-height: 40px;
+    color: #FFFFFF;
+    font-size: 18px;
+    background: #1E518C;
+}
+
+#mod-chart .title a {
+    color: #FFFFFF;
+    text-shadow: 0 2px 0 #093d79;
+    -webkit-text-shadow: 0 2px 0 #093d79;
+    -moz-text-shadow: 0 2px 0 #093d79;
+    -ms-text-shadow: 0 2px 0 #093d79;
+}
+
+#mod-chart .tab {
+    width: 298px;
+    height: 38px;
+    border: 1px solid #7A7A7A;
+    border-top: 1px solid #BE9D53;
+    background: #57595B;
+}
+
+#mod-chart .tab li {
+    width: 148px;
+    height: 38px;
+    line-height: 38px;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+    border-right: 1px solid #7A7A7A;
+    cursor: pointer;
+    float: left;
+    text-shadow: 0 2px 0 #3c3c3c;
+    -webkit-text-shadow: 0 2px 0 #3c3c3c;
+    -moz-text-shadow: 0 2px 0 #3c3c3c;
+    -ms-text-shadow: 0 2px 0 #3c3c3c;
+}
+
+#mod-chart .tab li.cur {
+    background: #454545;
+}
+
+#mod-chart .tab li.nb {
+    width: 148px;
+    border-right: 0px;
+}
+
+#mod-chart .wrap {
+    padding: 6px 0px 8px 0px;
+    width: 298px;
+    height: 531px;
+    border: 1px solid #E0E0E0;
+    border-top: 0px;
+}
+
+#mod-chart .wrap .mod {
+    width: 298px;
+    height: 531px;
+}
+
+#mod-chart .wrap .n {
+    display: none;
+}
+
+#mod-chart .wrap .mod table {
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    border: 0px;
+}
+
+#mod-chart .wrap .mod td {
+    line-height: 33px;
+    height: 33px;
+}
+
+#mod-chart .wrap .mod .t {
+    font-size: 14px;
+    line-height: 36px;
+    height: 36px;
+}
+
+#mod-chart .wrap .mod a {
+    color: #2A6CB6;
+    text-decoration: none;
+}
+
+#mod-chart .wrap .mod a:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#mod-chart .wrap .mod span {
+    padding: 2px 8px 3px 8px;
+    color: #FFFFFF;
+    background: #2A6CB6;
+}

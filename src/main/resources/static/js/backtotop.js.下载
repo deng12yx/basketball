@@ -1,0 +1,120 @@
+define(function (require, exports, module) {
+    
+    /**
+     * 返回顶部
+     * @param position  {Number}    定位，页面宽度或直接使用"right"
+     * @param bottom    {Number}    距离底部的距离
+     * @param gap       {Number}    间距
+     */
+    var BackToTop = function(position, bottom, gap){
+        this.position = position;
+        this.bottom = bottom || 150;
+        this.gap = gap || 30;
+        this.limit = 700;
+        this.speed = 600;
+        this.dom = this.getDom();
+        this.init();
+    }
+    
+    BackToTop.prototype = {
+        init: function(){
+            if(!/^[1-9]\d*$/.test(this.position) && this.position !== 'right'){
+                this.position = 'right';
+            }
+            
+            this.dom.backBtn.appendTo(this.dom.body);
+            this.setPos();
+            this.bind();
+        },
+        bind: function(){
+            var _this = this;
+            
+            this.dom.window.on('resize', function(){
+                _this.setPos();
+            });
+            
+            this.dom.window.on('scroll', function(){
+                if(_this.getScrollTop() < _this.limit){
+                    _this.dom.backBtn.fadeOut('fast');
+                    return;
+                }
+                
+                _this.dom.backBtn.fadeIn('fast');
+                
+                if(_this.IE6()){
+                    _this.changePos();
+                }
+            });
+            
+            this.dom.backBtn.on('click', function(){
+                _this.dom.html.animate({
+                    scrollTop: 0
+                }, _this.speed);
+            });
+        },
+        setPos: function(){
+            this.dom.backBtn.css({
+                opacity: 0
+            }).show();
+            
+            var winW = document.documentElement.clientWidth,
+                elW = this.dom.backBtn[0].offsetWidth,
+                pos = { opacity: 1 };
+            
+            // GET RIGHT
+            if(this.position === 'right'){
+                pos.right = this.gap;
+            }else{
+                pos.right = (winW - this.position) / 2 - this.gap - elW;
+                pos.right = pos.right < 0 ? 0 : pos.right;
+            }
+            
+            // GET BOTTOM OR TOP(IE6)
+            if(!this.IE6()){
+                pos.bottom = this.bottom;
+            }else{
+                pos.top = this.IE6Pos();
+            }
+            
+            if(this.getScrollTop() < this.limit){
+                pos.display = 'none';
+            }
+            
+            this.dom.backBtn.css(pos);
+        },
+        getScrollTop: function(){
+            return document.documentElement.scrollTop || document.body.scrollTop;
+        },
+        IE6: function(){
+            if(navigator.appName != 'Microsoft Internet Explorer'){
+                return false;
+            }
+            
+            return navigator.appVersion.split(';')[1].replace(/[ ]/g, '') == 'MSIE6.0' ? true : false;
+        },
+        IE6Pos: function(){
+            return this.getScrollTop() + (document.documentElement.clientHeight - this.bottom - this.dom.backBtn[0].offsetHeight);
+        },
+        changePos: function(){
+            var top = this.IE6Pos();
+            
+            this.dom.backBtn.css({
+                top: top + 'px'
+            });
+        },
+        getDom: function(){
+            return {
+                window  : $(window),
+                html    : $('body, html'),
+                body    : $('body'),
+                backBtn : $('<a href="javascript:void(0)" id="backtotop"></a>')
+            }
+        }
+    }
+    
+    return {
+        init: function(position, bottom, gap){
+            new BackToTop(position, bottom, gap);
+        }
+    }
+});

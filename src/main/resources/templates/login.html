@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Article</title>
+</head>
+<body>
+<link rel="stylesheet" href="/static/css/loginManager.css">
+<form class="box" action="/loginIn" th:action="@{/loginIn}" method="post">
+    <h5>Welcome to the official website of the basketball team of the School of Cyberspace Security at Sichuan University</h5>
+    <h5>欢迎访问四川大学网络空间安全学院篮球队官网</h5>
+    <input type="text" name="id" placeholder="id" required>
+    <input type="password" name="password" placeholder="password" required >
+    <input type="submit" id="loginBtn" name="" value="Login">
+    <div id="errorMsg" th:if="${msg}" th:text="${msg}" class="error-message"></div>
+
+</form>
+
+</body>
+
+</html>

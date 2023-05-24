@@ -1,0 +1,44 @@
+/**
+ * 模板文件业务代码
+ */
+define(function (require, exports, module) {
+    function area (_data) {
+        var html = ''
+        if (_data.length>0) {
+            html += '<li>';
+            html += '<h3>'+_data.typeName+'</h3>';
+            html += '<table class="team-data-con" border="0" cellpadding="0" cellspacing="0" width="100%">';
+            for(var i = 0, len =_data.length; i < len; i++){
+                html += '<tr class="tab-prank-'+_data.type+' '+(i == 0 ? 'cur' : '')+'">';
+                html += '<td class="score-num">'+_data[i].rank+'</td>';
+                html += '<td class="score-name">';
+                html += '<p class="team-data-img"><a href="/players/#!/'+_data[i].code+' " target="_blank"><img src="'+_data[i].playerId+'"></a></p>';
+                html += '<p class="team-data-name"><a href="/players/#!/'+_data[i].code+' " target="_blank">'+_data[i].playerName+'</a></p>';
+                html += '</td>';
+                html += '<td class="score-con">';
+                html += '<p class="team-data-name"><a href="/players/#!/'+_data[i].code+' " target="_blank">'+_data[i].playerName+'</a></p>';
+                html += '<p class="team-data-value">场均<strong class="red">'+_data[i].value+'</strong></p>';
+                html += '<p class="team-data-position">'+_data[i].position+'</p>';
+                html += '</td>';
+                html += '</tr>';
+            }
+            html += '</table>';
+            html += '</li>';
+        }
+        return html;
+    }
+    module.exports = {
+        init: function () {
+
+        },
+        render: function (data) {
+            data.pointLeader.typeName = "得分"
+            data.pointLeader.type = "score"
+            data.reboundLeader.typeName = "篮板";
+            data.reboundLeader.type = "bank";
+            data.assistLeader.typeName = "助攻";
+            data.assistLeader.type = "hold";
+            return area(data.pointLeader) + area(data.reboundLeader) + area(data.assistLeader);
+        }
+    }
+});

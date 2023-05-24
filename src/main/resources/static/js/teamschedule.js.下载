@@ -1,0 +1,108 @@
+define(function (require, exports, module) {
+    var global = require('global');
+    var utils = require('utils/utils');
+    var jsonselect = require('jsonselect');
+
+    function formatDate(num) {
+        return num >= 10 ? num : '0' + num;
+    }
+
+    return function (teamName) {
+        var compare1 = function(a, b){
+            return b.profile.utcMillis - a.profile.utcMillis;
+        }
+        
+        var compare2 = function(a, b){
+            return a.profile.utcMillis - b.profile.utcMillis;
+        }
+        
+        $.ajax({
+            url: utils.strFormat(global.API.teamSchedule, teamName),
+            type: 'GET'
+        }).done(function (data, textStatus, xhr) {
+            // 获取当前时间的前后5场比赛
+            var lastData = [];
+            var tempData = jsonselect.match('.payload .monthGroups .games', data);
+            var curTime = new Date(xhr.getResponseHeader('Date')).getTime();
+            var prevGames = [];
+            var nextGames = [];
+            var prevLen = 5;
+            var nextLen = 5;
+            
+            for(var m = 0; m < tempData.length; m++){
+                for(var n = 0; n < tempData[m].length; n++){
+                    if(tempData[m][n].profile.utcMillis <= curTime){
+                        prevGames.push(tempData[m][n]);
+                    }else{
+                        nextGames.push(tempData[m][n]);
+                    }
+                }
+            }
+            
+            // 根据时间排序比赛
+            prevGames.sort(compare1);
+            nextGames.sort(compare2);
+            
+            // 补全不足的数据
+            if(prevGames.length < prevLen || nextGames.length < nextLen){
+                if(prevGames.length < prevLen){
+                    nextLen = nextLen + (prevLen - prevGames.length);
+                    prevLen = prevGames.length;
+                }else if(nextGames.length < nextLen){
+                    prevLen = prevLen + (nextLen - nextGames.length);
+                    nextLen = nextGames.length;
+                }
+            }
+            
+            // 拼接需要的比赛数据
+            prevGames = prevGames.splice(0, prevLen);
+            nextGames = nextGames.splice(0, nextLen);
+            lastData = prevGames.reverse().concat(nextGames);
+            
+            var winOrLoss = jsonselect.match('.winOrLoss', lastData);
+            var teamScore = jsonselect.match('.teamScore', lastData);
+            var oppTeamScore = jsonselect.match('.oppTeamScore', lastData);
+            var utcMillis = jsonselect.match('.profile .utcMillis', lastData);
+            var isHome = jsonselect.match('.isHome', lastData);
+            var awayTeam = jsonselect.match('.awayTeam .name', lastData);
+            var awayTeamEnName = jsonselect.match('.awayTeam .code', lastData);
+            var homeTeam = jsonselect.match('.homeTeam .name', lastData);
+            var homeTeamEnName = jsonselect.match('.homeTeam .code', lastData);
+            var len = lastData.length;
+            var index = len > 10 ? len - 10 : 0;
+            var scheduleData = {
+                winOrLoss: [],
+                awayTeam: [],
+                awayTeamEnName: [],
+                teamScore: [],
+                oppTeamScore: [],
+                month: [],
+                date: [],
+                hour: [],
+                minute: [],
+                isBegin: []
+            };
+
+            for (; index < len; index++) {
+                var chageWordChinese = winOrLoss[index] === 'Won' ? '胜' : '负';
+                var awayTeamName = isHome[index] === 'true' ? awayTeam[index] : homeTeam[index];
+                var awayTeamNameEn = isHome[index] === 'true' ? awayTeamEnName[index] : homeTeamEnName[index];
+                var date = new Date(+utcMillis[index]);
+                var isBegin = utcMillis[index] > curTime ? false : true;
+
+                scheduleData.teamScore.push(teamScore[index]);
+                scheduleData.oppTeamScore.push(oppTeamScore[index]);
+                scheduleData.winOrLoss.push(chageWordChinese);
+                scheduleData.awayTeam.push(awayTeamName);
+                scheduleData.awayTeamEnName.push(awayTeamNameEn.toLowerCase());
+                scheduleData.month.push(formatDate(date.getMonth() + 1));
+                scheduleData.date.push(formatDate(date.getDate()));
+                scheduleData.hour.push(formatDate(date.getHours()));
+                scheduleData.minute.push(formatDate(date.getMinutes()));
+                scheduleData.isBegin.push(isBegin);
+            }
+
+            $('.schedule-body').html($.trim(require('template/teamSchedule/index').render(scheduleData)));
+        });
+    };
+});

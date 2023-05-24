@@ -1,0 +1,56 @@
+    /**
+ * 模板文件业务代码
+ */
+define(function (require, exports, module) {
+    function rank (_data) {
+        var html = '';
+        html +=  '<table cellpadding="0" cellspacing="0">';
+        html += '<tr>'
+        html += '<td width="15%" class="t">排名</td>'
+        html += '<td width="20%" class="t">球队</td>'
+        html += '<td width="16%" class="t">胜</td>'
+        html += '<td width="16%" class="t">负</td>'
+        html += '<td width="16%" class="t">胜率</td>'
+        html += '<td width="17%" class="t">胜差</td>'
+        html += '</tr>'
+        for(var i=0; i < _data.length; i++){
+            html += '<tr>'
+            if(i<8) {
+                html += '<td><span>'+_data[i].standings.confRank+'</span></td>'
+            } else {
+                html += '<td>'+_data[i].standings.confRank+'</td>'
+            }
+            html += '<td><a target="_blank" href="/'+_data[i].profile.code+'">'+_data[i].profile.name+'</a></td>'
+            html += '<td>'+_data[i].standings.wins+'</td>'
+            html += '<td>'+_data[i].standings.losses+'</td>'
+            html += '<td>'+_data[i].standings.winPct+'%'+'</td>'
+            html += '<td>'+_data[i].standings.confGamesBehind+'</td>'
+            html += '</tr>'
+        }
+        html += '</table>';
+        return html;
+    }
+    module.exports = {
+        init: function () {
+
+        },
+        render: function (data) {
+            var html = '';
+            html += '<link rel="stylesheet" href="//reschina.nba.com/resource/mat1/qqcdn/chinanba/web/static/template/rankNBA/m.css"/>';
+            html += '<div class="title"><a href="/standings" target="_blank">NBA排行榜</a></div>';
+            html += '<div class="tab">';
+            html += '<li class="tab-trank '+(data.flag=='westTeam' ? 'cur' : '')+'">西部</li>'
+            html += '<li class="tab-trank nb '+(data.flag=='eastTeam' ? 'cur' : '')+'">东部</li>'
+            html += '</div>'
+            html += '<div class="wrap">'
+            html += '<div class="tabview-trank mod '+(data.flag=='eastTeam' ? 'n' : '')+'">'
+            html += rank(data.west)
+            html += '</div>'
+            html += '<div class="tabview-trank mod '+(data.flag=='westTeam' ? 'n' : '')+'">'
+            html += rank(data.east)
+            html += '</div>'
+            html += '</div>'
+            return html
+        }
+    }
+});

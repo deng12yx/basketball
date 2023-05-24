@@ -1,0 +1,47 @@
+define(function (require, exports, module) {
+    var global = require('global');
+    var utils = require('utils/utils');
+    var jsonselect = require('jsonselect');
+    var tab = require('utils/tab');
+    var PICTUREREPREFIX = '//res.nba.cn/media/img/players/head/260x190/';
+    var DATAKINGCOUNT = 3;
+
+    var formatData = function (data) {
+        var arr = [];
+        for (var i = 0, len = data.length > DATAKINGCOUNT ? DATAKINGCOUNT : data.length; i < len; i++) {
+            arr.push({
+                playerId: PICTUREREPREFIX + data[i].profile.playerId + '.png',
+                playerName: data[i].profile.displayName,
+                position: data[i].profile.position,
+                code: data[i].profile.code,
+                rank: data[i].rank,
+                value: data[i].value
+            });
+        }
+        return arr;
+    };
+
+    return function (teamName) {
+        $.ajax({
+            url: utils.strFormat(global.API.teamDataKing, teamName),
+            type: 'GET'
+        }).done(function (data) {
+            var playload = jsonselect.match('.payload', data)[0];
+            var pointLeader = jsonselect.match('.pointLeader .players', playload)[0];
+            var reboundLeader = jsonselect.match('.reboundLeader .players', playload)[0];
+            var assistLeader = jsonselect.match('.assistLeader .players', playload)[0];
+
+            $(".team-data").html(require('template/dataKing/index').render({
+                pointLeader: formatData(pointLeader),
+                reboundLeader: formatData(reboundLeader),
+                assistLeader: formatData(assistLeader)
+            }));
+            // 得分
+            tab.init({tabClass: 'tab-prank-score'});
+            // 篮板
+            tab.init({tabClass: 'tab-prank-bank'});
+            // 助攻
+            tab.init({tabClass: 'tab-prank-hold'});
+        });
+    };
+});

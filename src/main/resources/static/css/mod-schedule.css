@@ -1,0 +1,105 @@
+#mod-schedule {
+    width: 300px;
+    height: 440px;
+    background: #FFFFFF;
+}
+#mod-schedule2 {
+    width: 300px;
+    height: 440px;
+    background: #FFFFFF;
+}
+#mod-schedule3 {
+    width: 300px;
+    height: 440px;
+    background: #FFFFFF;
+}
+.mod-schedule-title {
+    padding-left: 10px;
+    width: 290px;
+    height: 39px;
+    line-height: 39px;
+    color: #FFFFFF;
+    font-size: 18px;
+    border-bottom: 1px solid #BE9D53;
+    background: #1E518C;
+}
+
+.mod-schedule-title a, .mod-schedule-title a:hover {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 2px 0 #093d79;
+    -webkit-text-shadow: 0 2px 0 #093d79;
+    -moz-text-shadow: 0 2px 0 #093d79;
+    -ms-text-shadow: 0 2px 0 #093d79;
+}
+
+.mod-schedule-content {
+    width: 300px;
+    height: 399px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.mod-schedule-content table {
+    width: 100%;
+}
+
+.mod-schedule-content table.schedule-head {
+    height: 39px;
+    border-left: 1px solid #9E9E9E;
+    border-right: 1px solid #9E9E9E;
+}
+
+.mod-schedule-content table.schedule-body {
+    height: 320px;
+    border-left: 1px solid #EAEAEA;
+    border-right: 1px solid #EAEAEA;
+}
+
+.mod-schedule-content table th {
+    height: 39px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: normal;
+    background: #9E9E9E;
+}
+
+.mod-schedule-content table td {
+    padding-top: 14px;
+    color: #454545;
+    font-size: 12px;
+    text-align: center;
+}
+
+.mod-schedule-content table td.lf {
+    padding-left: 16px;
+    text-align: left;
+}
+
+.mod-schedule-content table td a {
+    color: #2A6CB6;
+    text-decoration: none;
+}
+
+.mod-schedule-content table td a:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.mod-schedule-content .all {
+    width: 298px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-left: 1px solid #EAEAEA;
+    border-right: 1px solid #EAEAEA;
+}
+
+.mod-schedule-content .all a {
+    color: #7A7A7A;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.mod-schedule-content .all a:hover {
+    color: #2A6CB6;
+}

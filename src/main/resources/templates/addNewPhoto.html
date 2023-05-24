@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加球员信息</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        body {
+            background: #34495e;
+        }
+
+        .box {
+            width: 600px;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #191919;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            color: whitesmoke;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="box">
+
+        <form id="playerForm" enctype="multipart/form-data">
+
+
+            <div class="form-group">
+                <h2>添加图片</h2>
+                <label for="Photo" class="form-label">照片</label>
+                <input type="file" id="Photo" accept="image/*">
+            </div>
+
+            <div class="form-group">
+
+                <label for="matchDate" class="form-label">拍摄时间</label>
+                <div class="input-group date datepicker-inline" data-provide="datepicker">
+                    <input type="date" id="matchDate">
+                </div>
+            </div>
+
+            <button onclick="addPhoto();" class="btn btn-primary">添加</button>
+        </form>
+    </div>
+</div>
+<script>
+    function addPhoto() {
+        var photo = $("#Photo")[0].files[0];
+        var time= $("#matchDate").val()
+
+        var formData = new FormData();
+        formData.append("photoUrl", photo);
+        formData.append("photoTime", time);
+
+        $.ajax({
+            url: "/addPhotoIn",
+            type: "POST",
+            data: formData,
+            dataType: 'JSON',
+            cache: false,
+            processData: false,  // 告诉jQuery不要处理发送的数据
+            contentType: false,  // 告诉jQuery不要设置Content-Type请求头
+            success: function (result) {
+                if (result.code == 1) {
+                    alert("添加成功");
+                    window.location.href = "/player";
+                } else {
+                    alert("添加失败");
+                }
+            },
+            error: function () {
+                alert("请求失败");
+            }
+        });
+    }
+</script>
+</body>
+</html>

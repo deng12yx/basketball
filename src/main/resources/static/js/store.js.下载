@@ -1,0 +1,14 @@
+define(function (require, exports, module) {
+    var changeGroup = require('utils/changegroup');
+
+    return function () {
+        var storeChange = $('#store-change');
+        storeChange.on('click', function () {
+            var all = $('.store-content').find('.store-group');
+            var matchIndex = changeGroup.findCurrentContent($(".store-group"), 'store-cur');
+
+            changeGroup.change(all, matchIndex, 'store-cur');
+
+        });
+    };
+});

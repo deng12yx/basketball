@@ -1,0 +1,59 @@
+#technical {
+    width: 300px;
+    height: 320px;
+}
+
+#technical h2 {
+    height: 39px;
+    background: #1e518c;
+    border-bottom: 1px solid #be9d53;
+    font-size: 18px;
+    color: #ffffff;
+    padding-left: 10px;
+    line-height: 40px;
+    font-weight: normal;
+}
+
+#technical h2 a, #technical h2 a:hover {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 2px 0 #093d79;
+    -webkit-text-shadow: 0 2px 0 #093d79;
+    -moz-text-shadow: 0 2px 0 #093d79;
+    -ms-text-shadow: 0 2px 0 #093d79;
+}
+
+#technical .technical-content {
+    background: #ffffff url("static/image/icon-x.png") no-repeat 20px 20px;
+    padding: 20px;
+    height: 240px;
+    border: 1px solid #eaeaea;
+}
+
+#technical .technical-content ul {
+    overflow: hidden;
+}
+
+#technical .technical-content ul li {
+    float: left;
+    list-style: none;
+    width: 86px;
+    height: 110px;
+    text-align: center;
+    padding-top: 13px;
+}
+
+#technical .technical-content ul li span {
+    color: #454545;
+    font-size: 14px;
+    padding-top: 5px;
+    display: block;
+}
+
+#technical .technical-content ul li strong {
+    font-size: 20px;
+    padding-top: 5px;
+    display: block;
+    color: #454545;
+    font-weight: 400;
+}

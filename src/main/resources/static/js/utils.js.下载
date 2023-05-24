@@ -1,0 +1,355 @@
+/**
+ * @describe: 工具类 函数类工具集
+ */
+define(function (require, exports, module) {
+
+
+    /**
+     * 将字符串中的特殊字符转换为实体
+     * @param {String} arr 待转换字符串
+     * @return
+     */
+    var encodeHtml = function (str) {
+        return (str + '').replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\x60/g, '&#96;')
+            .replace(/\x27/g, '&#39;')
+            .replace(/\x22/g, '&quot;');
+    }
+
+    /**
+     * 将字符串中的实体转换为原字符
+     * @param {String} arr 待转换字符串
+     * @return
+     */
+    var decodeHtml = function (str) {
+        return (str + '').replace(/&quot;/g, '\x22')
+            .replace(/&#0*39;/g, '\x27')
+            .replace(/&#0*96;/g, '\x60')
+            .replace(/&gt;/g, '>')
+            .replace(/&lt;/g, '<')
+            .replace(/&amp;/g, '&');
+    }
+
+    /**
+     * 字符串格式化
+     * @param str
+     * @returns {*}
+     * @example
+     * strFormat('http://localhost/{0}?id={1}', 'get', '111') // 返回http://localhost/get?id=111
+     */
+    var strFormat = function (str) {
+        for (var i = 1, len = arguments.length; i < len; i++) {
+            var reg = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+            str = str.replace(reg, arguments[i] || '');
+        }
+        return str;
+    }
+
+    /**
+     * 从url中取出球队英文名字
+     * @return {String} teamName 球队英文名
+     */
+    var getTeamNameFromUrl = function () {
+        // var reg = /com\/([^\/]*)/;
+        // var reg = /pages\/([^\/]*)/;
+        // var teamName = location.href.match(reg)[1];
+        var reg = /(^(http[s]?:\/\/[^\/]*\/)|(^\/))([^\/]+)\/.*$/ig;
+        var teamName = location.pathname.replace(reg,"$4");
+        return teamName;
+    }
+
+    /**
+     * 从url中取出球队英文名字
+     *  @param {String} str
+     * @return {String} teamName 球队英文名
+     */
+    var toLocaleUpperCaseFirstChart = function (str) {
+        var newStr = str.charAt(0).toLocaleUpperCase();
+        newStr = newStr + str.slice(1);
+        return newStr;
+    }
+
+    /**
+     * 获取字符串长度
+     * @param  {String} str
+     * @return {String}
+     */
+    var getStrLen = function (str) {
+        var arr = (str || '').match(/[^\x00-\x80]/g);
+        return str.length + (arr ? arr.length : 0);
+    }
+
+    var getUkey = function () {
+        var d = +new Date();
+        d = [d, Math.floor(d * Math.random() * Math.random()).toString().slice(-5)].join('');
+
+        if (window.localStorage) {
+            if (localStorage.ukey) {
+                return localStorage.ukey;
+            } else {
+                //localStorage 写操作必须加try catch，可以统一弄个函数处理
+                //不然可能会遇到溢出或safari无痕浏览写入就报错的问题
+                try {
+                    localStorage.ukey = d;
+                } catch (e) {}
+                return d;
+            }
+        } else {
+            if ($.cookie('ukey')) {
+                return $.cookie('ukey');
+            } else {
+                $.cookie('ukey', d, { expires: 365, path: '/' });
+            }
+        }
+    };
+
+    /**
+     * 用户Token
+     * @return {number}
+     */
+    var generateToken = function (key) {
+        var hash = 2013;
+        if (key) {
+            for (var i = 0, len = key.length; i < len; i++) {
+                hash += (hash << 5) + key.charCodeAt(i);
+            }
+        }
+        return hash & 0x7fffffff;
+    };
+
+    /*-----------------------------------------------------------------------
+     跨域POST BEGIN
+     ----------------*/
+
+    /**
+     * 跨域POST数据
+     * @param url   {String} 接口URL
+     * @param formData  {Object} key-value形式的对象，value为字符串（可选）
+     * @param form  {DOM} 表单DOM（可选）
+     * @param success {Function} 加载成功回调，参数formData为iframe返回内容
+     * @param error   {Function} 加载失败回调
+     * @constructor
+     */
+    var PostIframe = function (opts) {
+        this.url = opts.url;
+        this.formData = opts.formData;
+        this.form = opts.form;
+        this.success = opts.success;
+        this.error = opts.error;
+        this.timeout = opts.timeout || PostIframe.config.timeout;   // 暂未实现
+        this.formInner = '';
+        this.iframe;
+    };
+
+    // 默认配置
+    PostIframe.config = {
+        prefix: 'postiframe-',
+        timeout: 10000
+    };
+    // Iframe队列
+    PostIframe.iframeQueue = [];
+    // Iframe包装对象
+    PostIframe.Iframe = function (id, name) {
+        this.el = $('<iframe id="' + id + '" name="' + name + '" style="display: none;"></iframe>');
+        this.busy = false;
+    };
+    // 添加iframe
+    PostIframe.addIframe = function () {
+        var len = this.iframeQueue.length;
+        var id = this.config.prefix + len;
+        var name = id;
+        var iframe = new this.Iframe(id, name);
+        this.iframeQueue[len] = iframe;
+        $('body').append(iframe.el);
+
+        return iframe;
+    };
+    // 获取空闲iframe
+    PostIframe.getIdle = function () {
+        for (var i = 0, len = this.iframeQueue.length; i < len; i++) {
+            var iframe = this.iframeQueue[i];
+            if (!iframe.busy) {
+                return iframe;
+            }
+        }
+
+        return this.addIframe();
+    };
+    // 清理空闲iframe
+    PostIframe.clearIdle = function () {
+        for (var i = 0, len = this.iframeQueue.length; i < len; i++) {
+            var iframe = this.iframeQueue[i];
+            if (!iframe.busy) {
+                iframe.el.off();
+                iframe.el.remove();
+            }
+        }
+    };
+    PostIframe.initForm = function () {
+        if (!this.elForm) {
+            this.elForm = $('<form id="' + PostIframe.config.prefix + 'form" style="display: none"></form>');
+            $('body').append(this.elForm);
+        }
+
+        return this.elForm;
+    }
+
+    PostIframe.prototype = {
+        _getIframe: function () {
+            this.iframe = PostIframe.getIdle();
+            this.iframe.busy = true;
+        },
+        _releaseIframe: function () {
+            this.iframe.busy = false;
+            this.iframe = null;
+            PostIframe.clearIdle();
+        },
+        _setForm: function (elForm) {
+            var value = '';
+            for (var key in this.formData) {
+                value = this.formData[key];
+                if (value !== undefined || value !== null) {
+                    value = encodeHtml(value);
+                    this.formInner += '<input type="text" name="' + key + '" value="' + value + '">';
+                }
+            }
+
+            elForm.html(this.formInner);
+        },
+        /**
+         * 提交表单
+         * @param form {DOM}
+         */
+        submit: function (form) {
+            // 准备一个空闲的iframe
+            this._getIframe();
+
+            if (form === undefined) {
+                form = PostIframe.initForm();
+                this._setForm(form);
+            }
+
+            var self = this;
+            form = $(form);
+            form.attr({
+                method: 'POST',
+                action: self.url,
+                target: self.iframe.el.attr('name')
+            });
+
+            this.iframe.el.off('load');
+            this.iframe.el.off('error');
+            this.iframe.el.on('load', function (e) {
+                // 额，暂时不考虑同域能获取到数据的情况吧
+                self.success();
+                // 释放iframe
+                self._releaseIframe();
+            });
+
+            this.iframe.el.on('error', function (e) {
+                self.error();
+                self._releaseIframe();
+            });
+
+            form.submit();
+        }
+    };
+
+    /*-----------------------------------------------------------------------
+     跨域POST END
+     ----------------*/
+
+    module.exports = {
+        encodeHtml: encodeHtml,
+        decodeHtml: decodeHtml,
+        strFormat: strFormat,
+        getTeamNameFromUrl: getTeamNameFromUrl,
+        toLocaleUpperCaseFirstChart: toLocaleUpperCaseFirstChart,
+        getStrLen: getStrLen,
+        getUkey: getUkey,
+        generateToken: generateToken,
+        PostIframe: PostIframe,
+        timerProxy: (function () {
+            var clearProxy = function (id) {
+                if (!!window['timerProxyTimeout_' + id]) {
+                    window.clearTimeout(window['timerProxyTimeout_' + id]);
+                }
+            };
+            var blockList = {};
+            var groupIndex = 0;
+            var timer = function (func, time, options) {
+                if (typeof options === 'undefined') {
+                    options = {
+                        type: 'delay',
+                        group: '__global'
+                    }
+                }
+                if (typeof options === 'string') {
+                    options = {
+                        type: 'delay',
+                        group: options
+                    }
+                }
+                if (typeof options === 'object') {
+                    options.type = options.type || 'delay';
+                    options.group = options.group || '__global';
+                }
+                if (options.type === 'delay') { //延迟执行
+                    this.timerProxy.clearProxy = timer.clearProxy = clearProxy; // 直接将清除代理的方法挂在函数上，IE对timer.proxy支持的不好，直接挂到目标对象上
+                    clearProxy(options.group);
+                    window['timerProxyTimeout_' + options.group] = window.setTimeout(function () {
+                        if ($.isFunction(func)) {
+                            func();
+                        }
+                    }, time);
+                }
+                if (options.type === 'throttle') { //节流，多次请求，只相应第一次，间隔time后，可再次响应第一次
+                    if ($.isFunction(func) && !blockList['timerProxyTimeout_' + options.group + groupIndex]) {
+                        func();
+                        blockList['timerProxyTimeout_' + options.group + groupIndex] = true;
+                        window.setTimeout(function () {
+                            groupIndex++;
+                        }, time);
+                    }
+                }
+            };
+            timer.clearProxy = function () {
+            };
+            return timer;
+        })(),
+        loadJs: function (url, callback) {
+            var head = document.head || document.getElementsByTagName("head")[0] || document.documentElement,
+                script,
+                options,
+                s;
+            if (typeof url === "object") {
+                options = url;
+                url = undefined;
+            }
+            s = options || {};
+            url = url || s.url;
+            callback = callback || s.success;
+            script = document.createElement("script");
+            script.async = s.async || false;
+            script.type = "text/javascript";
+            if (s.charset) {
+                script.charset = s.charset;
+            }
+            if (s.cache === false) {
+                url = url + ( /\?/.test(url) ? "&" : "?" ) + "_=" + (new Date()).getTime();
+            }
+            script.src = url;
+            head.insertBefore(script, head.firstChild);
+            if (callback) {
+                document.addEventListener ? script.addEventListener("load", callback, false) : script.onreadystatechange = function () {
+                    if (/loaded|complete/.test(script.readyState)) {
+                        script.onreadystatechange = null;
+                        callback()
+                    }
+                }
+            }
+        }
+    };
+});

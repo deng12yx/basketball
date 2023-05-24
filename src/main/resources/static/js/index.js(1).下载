@@ -1,0 +1,15 @@
+/**
+ * 模板文件业务代码
+ */
+define(function (require, exports, module) {
+    module.exports = {
+        init: function () {
+
+        },
+        render: function (data) {
+            return '' + 
+            '<link rel="stylesheet" href="//reschina.nba.com/resource/mat1/qqcdn/chinanba/web/static/template/loading/m.css" role="debug"/>' +
+            '<div class="loading" style="width:'+data.width+'px;height:'+data.height+'px"></div>';
+        }
+    }
+});

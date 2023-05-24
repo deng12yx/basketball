@@ -1,0 +1,49 @@
+/**
+ * 模板文件业务代码
+ */
+define(function (require, exports, module) {
+    var _$ = require('jsonselect');  // 工具类
+    var _g = require('global');  // 工具类
+    var utils = require('utils/utils');
+    var tpHelper = require('tpHelper'); // 用于模版模块生成的工具类，请慎重删除，___template___ 可能会用到
+    module.exports = {
+        init: function () {
+
+        },
+        render: function (data) {
+            return '' +
+            '<ul>' +
+                '<li>' +
+                    '<span>场均得分</span>' +
+                    '<strong>'+data.pointsPg+'</strong>' +
+                    '<span>联盟第'+data.pointsPgRank+'</span>' +
+                '</li>' +
+                '<li>' +
+                    '<span>场均失分</span>' +
+                    '<strong>'+data.opponentPointsPg+'</strong>' +
+                    '<span>联盟第'+data.opponentPointsPgRank+'</span>' +
+                '</li>' +
+                '<li>' +
+                    '<span>场均篮板</span>' +
+                    '<strong>'+data.rebsPg+'</strong>' +
+                    '<span>联盟第'+data.rebsPgRank+'</span>' +
+                '</li>' +
+                '<li>' +
+                    '<span>场均抢断</span>' +
+                    '<strong>'+data.stealsPg+'</strong>' +
+                    '<span>联盟第'+data.stealsPgRank+'</span>' +
+                '</li>' +
+                '<li>' +
+                    '<span>场均助攻</span>' +
+                    '<strong>'+data.assistsPg+'</strong>' +
+                    '<span>联盟第'+data.assistsPgRank+'</span>' +
+                '</li>' +
+                '<li>' +
+                    '<span>场均失误</span>' +
+                    '<strong>'+data.turnoversPg+'</strong>' +
+                    '<span>联盟第'+data.turnoversPgRank+'</span>' +
+                '</li>' +
+            '</ul>';
+        }
+    }
+});

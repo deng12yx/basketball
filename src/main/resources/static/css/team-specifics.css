@@ -1,0 +1,1129 @@
+#mod-chart,
+.store-content,
+#news .news-list,
+#east-west-side {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+}
+
+#news .new-hover {
+    box-shadow: 0 0 14px 0 #c8c8c8;
+    -webkit-box-shadow: 0 0 14px 0 #c8c8c8;
+    -moz-box-shadow: 0 0 14px 0 #c8c8c8;
+    -ms-box-shadow: 0 0 14px 0 #c8c8c8;
+}
+
+/*wizards*/
+.wizards .header-layout {
+    background: #023064;
+}
+
+.wizards #teamNav {
+    background: #003878;
+}
+
+.wizards #teamNav .nav-list li a:hover,
+.wizards .index .nav-index a,
+.wizards .videos .nav-videos a,
+.wizards .news .nav-news a,
+.wizards .players .nav-players a,
+.wizards .schedule .nav-schedule a,
+.wizards .statics .nav-statics a,
+.wizards .photos .nav-photos a {
+    background: #014899;
+}
+
+.wizards .main-content {
+    width: 100%;
+    background: #002c5d url("./image/wizards-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.wizards #teamHome .team-logo {
+    background: url("../image/wanganzhuipingbifen.jpg") left top no-repeat;
+}
+
+.wizards #teamHome .team-logo p span.regular {
+    border-right: 1px solid #001a38;
+}
+
+.wizards #teamHome .team-logo p span.rank {
+    border-left: 1px solid #0354b0;
+}
+
+/* warriors */
+.warriors .header-layout {
+    background: #BD8204;
+}
+
+.warriors #teamNav {
+    background: #D29616;
+}
+
+.warriors #teamNav .nav-list li a:hover,
+.warriors .index .nav-index a,
+.warriors .videos .nav-videos a,
+.warriors .news .nav-news a,
+.warriors .players .nav-players a,
+.warriors .schedule .nav-schedule a,
+.warriors .statics .nav-statics a,
+.warriors .photos .nav-photos a {
+    background: #FDB927;
+}
+
+.warriors .main-content {
+    width: 100%;
+    background: #fdb926 url("./images/teambg/warriors-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.warriors #teamHome .team-logo {
+    padding-left: 100px;
+    background: url("./images/teamlogotit/warriors-logo.png") left top no-repeat;
+}
+
+.warriors #teamHome .team-logo p span.regular {
+    border-right: 1px solid #805905;
+}
+
+.warriors #teamHome .team-logo p span.rank {
+    border-left: 1px solid #FDB927;
+}
+
+/*timberwolves*/
+.timberwolves .header-layout {
+    background: #04202d;
+}
+
+.timberwolves #teamNav {
+    background: #012a3e;
+}
+
+.timberwolves #teamNav .nav-list li a:hover {
+    background: #023a56;
+}
+
+.timberwolves .index .nav-index a,
+.timberwolves .videos .nav-videos a,
+.timberwolves .article .nav-news a,
+.timberwolves .players .nav-players a,
+.timberwolves .schedule .nav-schedule a,
+.timberwolves .statics .nav-statics a,
+.timberwolves .photos .nav-photos a {
+    background: #023a56;
+}
+
+.timberwolves .main-content {
+    width: 100%;
+    background: #061a23 url("./images/teambg/timber-wolves-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.timberwolves #teamHome .team-logo {
+    background: url("./images/teamlogotit/timber-wolves-logo.png") left top no-repeat;
+}
+
+.timberwolves #teamHome .team-logo p span.regular {
+    border-right: 1px solid #000508;
+}
+
+.timberwolves #teamHome .team-logo p span.rank {
+    border-left: 1px solid #00476b;
+}
+
+/*thunder*/
+.thunder .header-layout {
+    background: #00649c;
+}
+
+.thunder #teamNav {
+    background: #0371ae;
+}
+
+.thunder #teamNav .nav-list li a:hover,
+.thunder .index .nav-index a,
+.thunder .videos .nav-videos a,
+.thunder .article .nav-news a,
+.thunder .players .nav-players a,
+.thunder .schedule .nav-schedule a,
+.thunder .statics .nav-statics a,
+.thunder .photos .nav-photos a {
+    background: #0083cc;
+}
+
+.thunder .main-content {
+    width: 100%;
+    background: #007ec3 url("./images/teambg/thunder-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.thunder #teamHome .team-logo {
+    background: url("./images/teamlogotit/thunder-logo.png") left top no-repeat;
+}
+
+.thunder #teamHome .team-logo p span.regular {
+    border-right: 1px solid #00334f;
+}
+
+.thunder #teamHome .team-logo p span.rank {
+    border-left: 1px solid #028dda;
+}
+
+/*suns*/
+.suns .header-layout {
+    background: #B3430D;
+}
+
+.suns #teamNav {
+    background: #CE4E10;
+}
+
+.suns #teamNav .nav-list li a:hover,
+/*.suns .index .nav-index a,*/
+/*.suns .videos .nav-videos a,*/
+/*.suns .article .nav-news a,*/
+/*.suns .players .nav-players a,*/
+/*.suns .schedule .nav-schedule a,*/
+.suns .statics .nav-statics a,
+.suns .photos .nav-photos a {
+    background: #F1590F;
+}
+
+.suns .main-content {
+    width: 100%;
+    background: #e45e1f url("./images/teambg/suns-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.suns #teamHome .team-logo {
+    padding-left: 12px;
+    /*background: url("../image/wanganzhuipingbifen.jpg") left top no-repeat;*/
+}
+
+.suns #teamHome .team-logo p span.regular {
+    border-right: 1px solid #782D09;
+}
+
+.suns #teamHome .team-logo p span.rank {
+    border-left: 1px solid #F1590F;
+}
+
+/*spurs*/
+.spurs .header-layout {
+    background: #031016;
+}
+
+.spurs #teamNav {
+    background: #031924;
+}
+
+.spurs #teamNav .nav-list li a:hover,
+.spurs .index .nav-index a,
+.spurs .videos .nav-videos a,
+.spurs .article .nav-news a,
+.spurs .players .nav-players a,
+.spurs .schedule .nav-schedule a,
+.spurs .statics .nav-statics a,
+.spurs .photos .nav-photos a {
+    background: #052535;
+}
+
+.spurs .main-content {
+    width: 100%;
+    background: #030b0e url("./images/teambg/spurs-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.spurs #teamHome .team-logo {
+    padding-left: 98px;
+    background: url("../image/wanganzhuipingbifen.jpg") left top no-repeat;
+}
+
+.spurs #teamHome .team-logo p span.regular {
+    border-right: 1px solid #01050D;
+}
+
+.spurs #teamHome .team-logo p span.rank {
+    border-left: 1px solid #055277;
+}
+
+/*sixers*/
+.sixers .header-layout {
+    background: #af0932;
+}
+
+.sixers #teamNav {
+    background: #c70b3a;
+}
+
+.sixers .main-content {
+    width: 100%;
+    background: #ee154c url("./images/teambg/76ers-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.sixers #teamHome .team-logo {
+    background: url("./images/teamlogotit/76ers-logo.png") left top no-repeat;
+}
+
+.sixers #teamHome .team-logo p span.regular {
+    border-right: 1px solid #700b24;
+}
+
+.sixers #teamHome .team-logo p span.rank {
+    border-left: 1px solid #ff3266;
+}
+
+.sixers #teamNav .nav-list li a:hover,
+.sixers .index .nav-index a,
+.sixers .videos .nav-videos a,
+.sixers .news .nav-news a,
+.sixers .players .nav-players a,
+.sixers .schedule .nav-schedule a,
+.sixers .statics .nav-statics a,
+.sixers .photos .nav-photos a {
+    background: #ef1c51;
+}
+
+/*rockets*/
+.rockets .header-layout {
+    background: #740b27;
+}
+
+.rockets #teamNav {
+    background: #aa123b;
+}
+
+.rockets .main-content {
+    width: 100%;
+    background: #cf1141 url("./images/teambg/rockets-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.rockets #teamHome .team-logo {
+    background: url("./images/teamlogotit/rockets-logo.png") left top no-repeat;
+    padding: 40px 0 20px 158px;
+}
+
+.rockets #teamHome .team-logo p span.regular {
+    border-right: 1px solid #2c020d;
+}
+
+.rockets #teamHome .team-logo p span.rank {
+    border-left: 1px solid #ab0632;
+}
+
+.rockets #teamNav .nav-list li a:hover,
+.rockets .index .nav-index a,
+.rockets .videos .nav-videos a,
+.rockets .news .nav-news a,
+.rockets .players .nav-players a,
+.rockets .schedule .nav-schedule a,
+.rockets .statics .nav-statics a,
+.rockets .photos .nav-photos a {
+    background: #d31145;
+}
+
+/*raptors*/
+.raptors .header-layout {
+    background: #740b27;
+}
+
+.raptors #teamNav {
+    background: #aa123b;
+}
+
+.raptors .main-content {
+    width: 100%;
+    background: #ce1040 url("./images/teambg/raptors-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.raptors #teamHome .team-logo {
+    background: url("./images/teamlogotit/raptors-logo.png") left top no-repeat;
+}
+
+.raptors #teamHome .team-logo p span.regular {
+    border-right: 1px solid #2c020d;
+}
+
+.raptors #teamHome .team-logo p span.rank {
+    border-left: 1px solid #ab0632;
+}
+
+.raptors #teamNav .nav-list li a:hover,
+.raptors .index .nav-index a,
+.raptors .videos .nav-videos a,
+.raptors .news .nav-news a,
+.raptors .players .nav-players a,
+.raptors .schedule .nav-schedule a,
+.raptors .statics .nav-statics a,
+.raptors .photos .nav-photos a {
+    background: #d31145;
+}
+
+/*pistons*/
+.pistons .header-layout {
+    background: #c10b38;
+}
+
+.pistons #teamNav {
+    background: #e41447;
+}
+
+.pistons .main-content {
+    width: 100%;
+    background: #ec174d url("./images/teambg/pistons-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.pistons #teamHome .team-logo {
+    background: url("./images/teamlogotit/pistons-logo.png") left top no-repeat;
+}
+
+.pistons #teamHome .team-logo p span.regular {
+    border-right: 1px solid #540217;
+}
+
+.pistons #teamHome .team-logo p span.rank {
+    border-left: 1px solid #ff2d61;
+}
+
+.pistons #teamNav .nav-list li a:hover,
+.pistons .index .nav-index a,
+.pistons .videos .nav-videos a,
+.pistons .news .nav-news a,
+.pistons .players .nav-players a,
+.pistons .schedule .nav-schedule a,
+.pistons .statics .nav-statics a,
+.pistons .photos .nav-photos a {
+    background: #f8285b;
+}
+
+/*pelicans*/
+.pelicans .header-layout {
+    background: #002B5B;
+}
+
+.pelicans #teamNav {
+    background: #013671;
+}
+
+.pelicans #teamNav .nav-list li a:hover,
+.pelicans .index .nav-index a,
+.pelicans .videos .nav-videos a,
+.pelicans .news .nav-news a,
+.pelicans .players .nav-players a,
+.pelicans .schedule .nav-schedule a,
+.pelicans .statics .nav-statics a,
+.pelicans .photos .nav-photos a {
+    background: #03438A;
+}
+
+.pelicans .main-content {
+    width: 100%;
+    background: #002c5d url("./images/teambg/pelicans-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.pelicans #teamHome .team-logo {
+    padding-left: 100px;
+    background: url("./images/teamlogotit/pelicans-logo.png") left top no-repeat;
+}
+
+.pelicans #teamHome .team-logo p span.regular {
+    border-right: 1px solid #010E24;
+}
+
+.pelicans #teamHome .team-logo p span.rank {
+    border-left: 1px solid #044995;
+}
+
+/*pacers*/
+.pacers .header-layout {
+    background: #002d62;
+}
+
+.pacers #teamNav {
+    background: #053c7c;
+}
+
+.pacers .main-content {
+    width: 100%;
+    background: #002e62 url("./images/teambg/pacers-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.pacers #teamHome .team-logo {
+    background: url("./images/teamlogotit/pacers-logo.png") left top no-repeat;
+}
+
+.pacers #teamHome .team-logo p span.regular {
+    border-right: 1px solid #011d3d;
+}
+
+.pacers #teamHome .team-logo p span.rank {
+    border-left: 1px solid #084b98;
+}
+
+.pacers #teamNav .nav-list li a:hover,
+.pacers .index .nav-index a,
+.pacers .videos .nav-videos a,
+.pacers .news .nav-news a,
+.pacers .players .nav-players a,
+.pacers .schedule .nav-schedule a,
+.pacers .statics .nav-statics a,
+.pacers .photos .nav-photos a {
+    background: #084b98;
+}
+
+/*nuggets*/
+.nuggets .header-layout {
+    background: #be8407;
+}
+
+.nuggets #teamNav {
+    background: #d89609;
+}
+
+.nuggets #teamNav .nav-list li a:hover,
+.nuggets .index .nav-index a,
+.nuggets .videos .nav-videos a,
+.nuggets .news .nav-news a,
+.nuggets .players .nav-players a,
+.nuggets .schedule .nav-schedule a,
+.nuggets .statics .nav-statics a,
+.nuggets .photos .nav-photos a {
+    background: #f6b220;
+}
+
+.nuggets .main-content {
+    width: 100%;
+    background: #fdb926 url("./images/teambg/nuggets-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.nuggets #teamHome .team-logo {
+    background: url("./images/teamlogotit/nuggets-logo.png") left top no-repeat;
+}
+
+.nuggets #teamHome .team-logo p span.regular {
+    border-right: 1px solid #735106;
+}
+
+.nuggets #teamHome .team-logo p span.rank {
+    border-left: 1px solid #fdb927;
+}
+
+/*nets*/
+.nets .header-layout {
+    background: #0f0f0f;
+}
+
+.nets #teamNav {
+    background: #1e1e1e;
+}
+
+.nets .main-content {
+    width: 100%;
+    background: #000 url("./images/teambg/nets-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.nets #teamHome .team-logo {
+    background: url("./images/teamlogotit/nets-logo.png") left top no-repeat;
+    padding-left: 90px;
+}
+
+.nets #teamHome .team-logo p span.regular {
+    border-right: 1px solid #202020;
+}
+
+.nets #teamHome .team-logo p span.rank {
+    border-left: 1px solid #373737;
+}
+
+.nets #teamNav .nav-list li a:hover,
+.nets .index .nav-index a,
+.nets .videos .nav-videos a,
+.nets .news .nav-news a,
+.nets .players .nav-players a,
+.nets .schedule .nav-schedule a,
+.nets .statics .nav-statics a,
+.nets .photos .nav-photos a {
+    background: #373737;
+}
+
+/*mavericks*/
+.mavericks .header-layout {
+    background: #065F9E;
+}
+
+.mavericks #teamNav {
+    background: #026AB3;
+}
+
+.mavericks #teamNav .nav-list li a:hover,
+.mavericks .index .nav-index a,
+.mavericks .videos .nav-videos a,
+.mavericks .news .nav-news a,
+.mavericks .players .nav-players a,
+.mavericks .schedule .nav-schedule a,
+.mavericks .statics .nav-statics a,
+.mavericks .photos .nav-photos a {
+    background: #0278CB;
+}
+
+.mavericks .main-content {
+    width: 100%;
+    background: #006cb5 url("./images/teambg/mavericks-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.mavericks #teamHome .team-logo {
+    background: url("./images/teamlogotit/mavericks-logo.png") left top no-repeat;
+}
+
+.mavericks #teamHome .team-logo p span.regular {
+    border-right: 1px solid #042943;
+}
+
+.mavericks #teamHome .team-logo p span.rank {
+    border-left: 1px solid #0278CB;
+}
+
+/*magic*/
+.magic .header-layout {
+    background: #0169a6;
+}
+
+.magic #teamNav {
+    background: #0175b8;
+}
+
+.magic #teamNav .nav-list li a:hover,
+.magic .index .nav-index a,
+.magic .videos .nav-videos a,
+.magic .news .nav-news a,
+.magic .players .nav-players a,
+.magic .schedule .nav-schedule a,
+.magic .statics .nav-statics a,
+.magic .photos .nav-photos a {
+    background: #0087d5;
+}
+
+.magic .main-content {
+    width: 100%;
+    background: #007ec5 url("./images/teambg/magic-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.magic #teamHome .team-logo {
+    background: url("./images/teamlogotit/magic-logo.png") left top no-repeat;
+}
+
+.magic #teamHome .team-logo p span.regular {
+    border-right: 1px solid #035281;
+}
+
+.magic #teamHome .team-logo p span.rank {
+    border-left: 1px solid #008fe1;
+}
+
+/*lakers*/
+.lakers .header-layout {
+    background: #441471;
+}
+
+.lakers #teamNav {
+    background: #552582;
+}
+
+.lakers #teamNav .nav-list li a:hover,
+.lakers .index .nav-index a,
+.lakers .videos .nav-videos a,
+.lakers .news .nav-news a,
+.lakers .players .nav-players a,
+.lakers .schedule .nav-schedule a,
+.lakers .statics .nav-statics a,
+.lakers .photos .nav-photos a {
+    background: #652A9C;
+}
+
+.lakers .main-content {
+    width: 100%;
+    background: #562581 url("./images/teambg/lakers-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.lakers #teamHome .team-logo {
+    background: url("./images/teamlogotit/lakers-logo.png") left top no-repeat;
+}
+
+.lakers #teamHome .team-logo p span.regular {
+    border-right: 1px solid #1A0132;
+}
+
+.lakers #teamHome .team-logo p span.rank {
+    border-left: 1px solid #7D35C1;
+}
+
+/*knicks*/
+.knicks .header-layout {
+    background: #df7318;
+}
+
+.knicks #teamNav {
+    background: #f2862c;
+}
+
+.knicks .main-content {
+    width: 100%;
+    background: #f58426 url("./images/teambg/knicks-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.knicks #teamHome .team-logo {
+    background: url("./images/teamlogotit/knicks-logo.png") left top no-repeat;
+}
+
+.knicks #teamHome .team-logo p span.regular {
+    border-right: 1px solid #9e5110;
+}
+
+.knicks #teamHome .team-logo p span.rank {
+    border-left: 1px solid #fe9136;
+}
+
+.knicks #teamNav .nav-list li a:hover,
+.knicks .index .nav-index a,
+.knicks .videos .nav-videos a,
+.knicks .news .nav-news a,
+.knicks .players .nav-players a,
+.knicks .schedule .nav-schedule a,
+.knicks .statics .nav-statics a,
+.knicks .photos .nav-photos a {
+    background: #ff9c49;
+}
+
+/*kings*/
+.kings .header-layout {
+    background: #65369C;
+}
+
+.kings #teamNav {
+    background: #7241AC;
+}
+
+.kings #teamNav .nav-list li a:hover,
+.kings .index .nav-index a,
+.kings .videos .nav-videos a,
+.kings .news .nav-news a,
+.kings .players .nav-players a,
+.kings .schedule .nav-schedule a,
+.kings .statics .nav-statics a,
+.kings .photos .nav-photos a {
+    background: #885AC0;
+}
+
+.kings .main-content {
+    width: 100%;
+    background: #724c9f url("./images/teambg/kings-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.kings #teamHome .team-logo {
+    padding-left: 98px;
+    background: url("./images/teamlogotit/kings-logo.png") left top no-repeat;
+}
+
+.kings #teamHome .team-logo p span.regular {
+    border-right: 1px solid #1A0132;
+}
+
+.kings #teamHome .team-logo p span.rank {
+    border-left: 1px solid #7D35C1;
+}
+
+/*jazz*/
+.jazz .header-layout {
+    background: #002B5C;
+}
+
+.jazz #teamNav {
+    background: #003775;
+}
+
+.jazz #teamNav .nav-list li a:hover,
+.jazz .index .nav-index a,
+.jazz .videos .nav-videos a,
+.jazz .news .nav-news a,
+.jazz .players .nav-players a,
+.jazz .schedule .nav-schedule a,
+.jazz .statics .nav-statics a,
+.jazz .photos .nav-photos a {
+    background: #004490;
+}
+
+.jazz .main-content {
+    width: 100%;
+    background: #002c5d url("./images/teambg/jazz-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.jazz #teamHome .team-logo {
+    background: url("./images/teamlogotit/jazz-logo.png") left top no-repeat;
+}
+
+.jazz #teamHome .team-logo p span.regular {
+    border-right: 1px solid #001731;
+}
+
+.jazz #teamHome .team-logo p span.rank {
+    border-left: 1px solid #0159BB;
+}
+
+/*hornets*/
+.hornets .header-layout {
+    background: #017c95;
+}
+
+.hornets #teamNav {
+    background: #008ca8;
+}
+
+.hornets #teamNav .nav-list li a:hover,
+.hornets .index .nav-index a,
+.hornets .videos .nav-videos a,
+.hornets .news .nav-news a,
+.hornets .players .nav-players a,
+.hornets .schedule .nav-schedule a,
+.hornets .statics .nav-statics a,
+.hornets .photos .nav-photos a {
+    background: #02a1c1;
+}
+
+.hornets .main-content {
+    width: 100%;
+    background: #008ca8 url("./images/teambg/hornets-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.hornets #teamHome .team-logo {
+    background: url("./images/teamlogotit/hornets-logo.png") left top no-repeat;
+}
+
+.hornets #teamHome .team-logo p span.regular {
+    border-right: 1px solid #035b6d;
+}
+
+.hornets #teamHome .team-logo p span.rank {
+    border-left: 1px solid #02a1c1;
+}
+
+/*heat*/
+.heat .header-layout {
+    background: #8e002b;
+}
+
+.heat #teamNav {
+    background: #a40333;
+}
+
+.heat #teamNav .nav-list li a:hover,
+.heat .index .nav-index a,
+.heat .videos .nav-videos a,
+.heat .news .nav-news a,
+.heat .players .nav-players a,
+.heat .schedule .nav-schedule a,
+.heat .statics .nav-statics a,
+.heat .photos .nav-photos a {
+    background: #c1063e;
+}
+
+.heat .main-content {
+    width: 100%;
+    background: #98002e url("./images/teambg/heat-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.heat #teamHome .team-logo {
+    background: url("./images/teamlogotit/heat-logo.png") left top no-repeat;
+    padding-left: 92px;
+}
+
+.heat #teamHome .team-logo p span.regular {
+    border-right: 1px solid #53011a;
+}
+
+.heat #teamHome .team-logo p span.rank {
+    border-left: 1px solid #c90540;
+}
+
+/*hawks*/
+.hawks .header-layout {
+    background: #cc2428;
+}
+
+.hawks #teamNav {
+    background: #df262b;
+}
+
+.hawks #teamNav .nav-list li a:hover,
+.hawks .index .nav-index a,
+.hawks .videos .nav-videos a,
+.hawks .news .nav-news a,
+.hawks .players .nav-players a,
+.hawks .schedule .nav-schedule a,
+.hawks .statics .nav-statics a,
+.hawks .photos .nav-photos a {
+    background: #ff353a;
+}
+
+.hawks .main-content {
+    width: 100%;
+    background: #e13a3e url("./images/teambg/hawks-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.hawks #teamHome .team-logo {
+    background: url("./images/teamlogotit/hawks-logo.png") left top no-repeat;
+}
+
+.hawks #teamHome .team-logo p span.regular {
+    border-right: 1px solid #920c0f;
+}
+
+.hawks #teamHome .team-logo p span.rank {
+    border-left: 1px solid #ff474b;
+}
+
+/*grizzlies*/
+.grizzlies .header-layout {
+    background: #00235F;
+}
+
+.grizzlies #teamNav {
+    background: #053382;
+}
+
+.grizzlies #teamNav .nav-list li a:hover,
+.grizzlies .index .nav-index a,
+.grizzlies .videos .nav-videos a,
+.grizzlies .news .nav-news a,
+.grizzlies .players .nav-players a,
+.grizzlies .schedule .nav-schedule a,
+.grizzlies .statics .nav-statics a,
+.grizzlies .photos .nav-photos a {
+    background: #0540A4;
+}
+
+.grizzlies .main-content {
+    width: 100%;
+    background: #00225f url("./images/teambg/grizzlies-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.grizzlies #teamHome .team-logo {
+    padding-left: 93px;
+    background: url("./images/teamlogotit/grizzlies-logo.png") left top no-repeat;
+}
+
+.grizzlies #teamHome .team-logo p span.regular {
+    border-right: 1px solid #010E24;
+}
+
+.grizzlies #teamHome .team-logo p span.rank {
+    border-left: 1px solid #0249C0;
+}
+
+/*clippers*/
+.clippers .header-layout {
+    background: #025996;
+}
+
+.clippers #teamNav {
+    background: #006BB6;
+}
+
+.clippers #teamNav .nav-list li a:hover,
+.clippers .index .nav-index a,
+.clippers .videos .nav-videos a,
+.clippers .news .nav-news a,
+.clippers .players .nav-players a,
+.clippers .schedule .nav-schedule a,
+.clippers .statics .nav-statics a,
+.clippers .photos .nav-photos a {
+    background: #037FD6;
+}
+
+.clippers .main-content {
+    width: 100%;
+    background: #006cb5 url("./images/teambg/clippers-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.clippers #teamHome .team-logo {
+    background: url("./images/teamlogotit/clippers-logo.png") left top no-repeat;
+}
+
+.clippers #teamHome .team-logo p span.regular {
+    border-right: 1px solid #013B64;
+}
+
+.clippers #teamHome .team-logo p span.rank {
+    border-left: 1px solid #0085E3;
+}
+
+/*celtics*/
+.celtics .header-layout {
+    background: #06683c;
+}
+
+.celtics #teamNav {
+    background: #008348;
+}
+
+.celtics .main-content {
+    width: 100%;
+    background: #008348 url("./images/teambg/celtics-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.celtics #teamHome .team-logo {
+    background: url("./images/teamlogotit/celtics-logo.png") left top no-repeat;
+    padding: 40px 0 20px 100px;
+}
+
+.celtics #teamHome .team-logo p span.regular {
+    border-right: 1px solid #0b4129;
+}
+
+.celtics #teamHome .team-logo p span.rank {
+    border-left: 1px solid #0e7f4c;
+}
+
+/*cavaliers*/
+.cavaliers .header-layout {
+    background: #720130;
+}
+
+.cavaliers #teamNav {
+    background: #860038;
+}
+
+.cavaliers .main-content {
+    width: 100%;
+    background: #850039 url("./images/teambg/cavaliers-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.cavaliers #teamHome .team-logo {
+    background: url("./images/teamlogotit/cavaliers-logo.png") left top no-repeat;
+}
+
+.cavaliers #teamHome .team-logo p span.regular {
+    border-right: 1px solid #5a0226;
+}
+
+.cavaliers #teamHome .team-logo p span.rank {
+    border-left: 1px solid #980341;
+}
+
+.cavaliers #teamNav .nav-list li a:hover,
+.cavaliers .index .nav-index a,
+.cavaliers .videos .nav-videos a,
+.cavaliers .news .nav-news a,
+.cavaliers .players .nav-players a,
+.cavaliers .schedule .nav-schedule a,
+.cavaliers .statics .nav-statics a,
+.cavaliers .photos .nav-photos a {
+    background: #a50347;
+}
+
+/*bulls*/
+.bulls .header-layout {
+    background: #740b27;
+}
+
+.bulls #teamNav {
+    background: #aa123b;
+}
+
+.bulls .main-content {
+    width: 100%;
+    background: #cd1141 url("./images/teambg/bulls-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.bulls #teamHome .team-logo {
+    background: url("./images/teamlogotit/bulls-logo.png") left top no-repeat;
+}
+
+.bulls #teamHome .team-logo p span.regular {
+    border-right: 1px solid #2c020d;
+}
+
+.bulls #teamHome .team-logo p span.rank {
+    border-left: 1px solid #ab0632;
+}
+
+.bulls #teamNav .nav-list li a:hover,
+.bulls .index .nav-index a,
+.bulls .videos .nav-videos a,
+.bulls .news .nav-news a,
+.bulls .players .nav-players a,
+.bulls .schedule .nav-schedule a,
+.bulls .statics .nav-statics a,
+.bulls .photos .nav-photos a {
+    background: #d31145;
+}
+
+/*bucks*/
+.bucks .header-layout {
+    background: #013c18;
+}
+
+.bucks #teamNav {
+    background: #00471b;
+}
+
+.bucks #teamNav .nav-list li a:hover,
+.bucks .index .nav-index a,
+.bucks .videos .nav-videos a,
+.bucks .news .nav-news a,
+.bucks .players .nav-players a,
+.bucks .schedule .nav-schedule a,
+.bucks .statics .nav-statics a,
+.bucks .photos .nav-photos a {
+    background: #076e2e;
+}
+
+.bucks .main-content {
+    width: 100%;
+    background: #02471b url("./images/teambg/bucks-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.bucks #teamHome .team-logo {
+    background: url("./images/teamlogotit/bucks-logo.png") left top no-repeat;
+    padding-left: 100px;
+}
+
+.bucks #teamHome .team-logo p span.regular {
+    border-right: 1px solid #01260f;
+}
+
+.bucks #teamHome .team-logo p span.rank {
+    border-left: 1px solid #06642a;
+}
+
+/*blazers*/
+.blazers .header-layout {
+    background: #9d1b1f;
+}
+
+.blazers #teamNav {
+    background: #ba262a;
+}
+
+.blazers #teamNav .nav-list li a:hover,
+.blazers .index .nav-index a,
+.blazers .videos .nav-videos a,
+.blazers .news .nav-news a,
+.blazers .players .nav-players a,
+.blazers .schedule .nav-schedule a,
+.blazers .statics .nav-statics a,
+.blazers .photos .nav-photos a {
+    background: #e1383d;
+}
+
+.blazers .main-content {
+    width: 100%;
+    background: #e03a3e url("./images/teambg/trail-blazers-bg.jpg") center 0 / 100% auto no-repeat;
+}
+
+.blazers #teamHome .team-logo {
+    background: url("./images/teamlogotit/trail-blazers-logo.png") left top no-repeat;
+}
+
+.blazers #teamHome .team-logo p span.regular {
+    border-right: 1px solid #650b0e;
+}
+
+.blazers #teamHome .team-logo p span.rank {
+    border-left: 1px solid #e1383d;
+}

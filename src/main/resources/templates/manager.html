@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>经理信息列表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>经理信息列表</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>经理图片</th>
+            <th>经理名字</th>
+            <th>经理电话号码</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="manager,stac:${managers}">
+            <td th:text="${manager.managerId}">1</td>
+            <td ><img th:src="@{${manager.managerImage}}"></td>
+            <td th:text="${manager.managerName}">经理1</td>
+            <td th:text="${manager.managerTel}">123456789</td>
+            <td>
+            <div shiro:hasPermission="1">
+                <a th:if="${managerAll!=null&&managerAll.managerPower==1}"
+                   th:href="@{'/manager/updateManager='+${manager.managerId}}"
+                   style="float: right">修改该经理信息</a>
+            </div>
+            </td>
+        </tr>
+        <div shiro:hasPermission="1">
+            <a th:if="${managerAll!=null&&managerAll.managerPower==1}"
+               href="/manager/addManager"
+               style="float: right">增加经理信息</a>
+        </div>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+define(function (require, exports, module) {
+    var global = require('global');
+    var utils = require('utils/utils');
+    var jsonselect = require('jsonselect');
+    function compare(a, b) {
+        return b - a;
+    };
+    return function (teamName, year, type) {
+
+        $.ajax({
+            url: utils.strFormat(global.API.teamTechnicalStatistics, year, type),
+            type: 'GET'
+        }).done(function (data) {
+            //celtics
+            // console.log(data)
+            // return;
+            var teams = jsonselect.match('.payload .seasonStats',data)[0];
+
+            var rebsPgs = jsonselect.match('.team .rebsPg', teams);
+            var pointsPgs = jsonselect.match('.team .pointsPg', teams);
+            var opponentPointsPgs = jsonselect.match('.opponent .pointsPg', teams);
+            var stealsPgs = jsonselect.match('.team .stealsPg', teams);
+            var assistsPgs = jsonselect.match('.team .assistsPg', teams);
+            var turnoversPgs = jsonselect.match('.team .turnoversPg', teams);
+
+            var index = $.inArray(teamName, jsonselect.match('.code', teams));
+            var team = teams[index];
+
+            var rebsPg = jsonselect.match('.team .rebsPg', team)[0];
+            var pointsPg = jsonselect.match('.team .pointsPg', team)[0];
+            var opponentPointsPg = jsonselect.match('.opponent .pointsPg', team)[0];
+            var stealsPg = jsonselect.match('.team .stealsPg', team)[0];
+            var assistsPg = jsonselect.match('.team .assistsPg', team)[0];
+            var turnoversPg = jsonselect.match('.team .turnoversPg', team)[0];
+
+            rebsPgs.sort(compare);
+            pointsPgs.sort(compare);
+            opponentPointsPgs.sort(compare);
+            assistsPgs.sort(compare);
+            stealsPgs.sort(compare);
+            turnoversPgs.sort(compare);
+
+            var pointsPgRank = $.inArray(pointsPg, pointsPgs) + 1;
+            var opponentPointsPgRank = 31 - ($.inArray(opponentPointsPg, opponentPointsPgs) + 1);
+            var rebsPgRank = $.inArray(rebsPg, rebsPgs) + 1
+            var stealsPgRank = $.inArray(stealsPg, stealsPgs) + 1;
+            var assistsPgRank = $.inArray(assistsPg, assistsPgs) + 1;
+            var turnoversPgRank = $.inArray(turnoversPg, turnoversPgs) + 1;
+
+            var statisticsData = {
+                pointsPg: pointsPg, // 场均得分
+                pointsPgRank: pointsPgRank, // 联盟排名
+                opponentPointsPg: opponentPointsPg, // 场均失分
+                opponentPointsPgRank: opponentPointsPgRank, // 联盟排名
+                rebsPg: rebsPg, // 场均篮板
+                rebsPgRank: rebsPgRank, // 联盟排名
+                stealsPg: stealsPg, // 场均抢断
+                stealsPgRank: stealsPgRank, // 联盟排名
+                assistsPg: assistsPg, // 场均助攻
+                assistsPgRank: assistsPgRank, // 联盟排名
+                turnoversPg: turnoversPg, // 场均失误
+                turnoversPgRank: turnoversPgRank // 场均排名
+            };
+
+            $('.technical-content').html(require('template/teamTechnicalStatistics/index').render(statisticsData));
+
+            // console.log(statisticsData)
+
+            // console.log($.inArray(42.9, rebsPg) + 1);
+            // console.log(rebsPg,stealsPg,assistsPg,turnoversPg,pointsPg);
+        });
+    };
+});

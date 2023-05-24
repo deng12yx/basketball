@@ -1,0 +1,136 @@
+define(function (require, exports, module) {
+    return function () {
+        // NBA商店图标
+        var nbaStoreLogo = $('.button-nbastore').parent();
+        // NBA商店下拉列表
+        var nbaStoreList = nbaStoreLogo.find('ul');
+        // NBA商店下拉项
+        var nbaStoreItem = nbaStoreList.find('li');
+        // NBA商店下拉小箭头
+        var dropArrow = nbaStoreLogo.find('i');
+        // 搜索按钮
+        var searchBtn = $('.search-btn');
+        // 搜索框
+        var searchIpt = $('.search-ipt');
+        // 导航
+        var navTab = $('.nav-tab');
+        // 完整头部
+        var headerWrap = $('.header');
+        // 固定头部
+        var fixedHeader = $('.fixed-header');
+
+        var utils = require('utils/utils');
+
+        // 点击NBA商店图标，NBA商店下拉列表显示/隐藏
+        nbaStoreLogo.on('mouseover mouseout', function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬浮
+                nbaStoreList.stop(true).slideDown(200);
+                dropArrow.addClass('show');
+            } else if (event.type == "mouseout") {
+                //鼠标离开
+                nbaStoreList.stop(true).slideUp(200);
+                dropArrow.removeClass('show');
+            }
+        });
+
+        //点击nbaStoreItem时，NBA商店下拉列表和下拉箭头隐藏
+        nbaStoreItem.on('click', function () {
+            nbaStoreList.hide();
+            dropArrow.removeClass('show');
+        });
+
+        // 搜索模块
+        var searchEngine = 'http://www.sogou.com/web?query='; // 默认使用搜狗搜索引擎
+        var searchSite = 'site=nba.cn'; // 在指定的域名下搜索
+        var searchUrlCode = 'ie=utf8'; // 防止出现乱码
+        var searchState = false;
+        var searchIsFocus = false;
+
+        // 搜索模块事件绑定
+        var searchBind = function () {
+            searchIpt.on('focus', function () {
+                searchIsFocus = true;
+            });
+
+            searchIpt.on('blur', function () {
+                searchIsFocus = false;
+            });
+
+            searchBtn.on('click', function () {
+                if (!searchState) {
+                    searchBtn.addClass('cur');
+                    searchIpt.animate({
+                        width: '100px'
+                    }, 'fast').focus();
+                    searchState = true;
+                    return;
+                }
+
+                _search();
+            });
+
+            $(window).on('keyup', function (event) {
+                if (event.keyCode == 13 && searchIsFocus) {
+                    _search();
+                }
+            });
+        }
+
+        // 搜索
+        var _search = function () {
+            var kw = $.trim(searchIpt.val());
+
+            if (kw == '') {
+                searchIpt.focus();
+                return;
+            } else if (kw.length > 80) {
+                kw = kw.substr(0, 80);
+            }
+
+            var url = searchEngine + encodeURIComponent(kw) + '&' + searchSite + '&' + searchUrlCode;
+
+            window.open(url);
+        }
+
+        searchBind();
+
+        // 导航菜单
+        navTab.on('mouseover mouseout', function (e) {
+            var self = this;
+            var menu = $(self).find('.nav-team, .nav-menu');
+            if (!menu.length) {
+                return;
+            }
+            if (e.type === 'mouseover') {
+                utils.timerProxy(function () {
+                    navTab.removeClass('cur');
+                    $(self).addClass('cur');
+                }, 100);
+            } else if (e.type === 'mouseout') {
+                utils.timerProxy(function () {
+                    $(self).removeClass('cur');
+                }, 100);
+            }
+
+
+        });
+
+        // 固定头部
+        var isShowFixedHeader = function () {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+            if (scrollTop > 70) {
+                fixedHeader.show();
+            } else {
+                fixedHeader.hide();
+            }
+        }
+
+        isShowFixedHeader();
+
+        $(window).on('scroll', function () {
+            isShowFixedHeader();
+        });
+    };
+});

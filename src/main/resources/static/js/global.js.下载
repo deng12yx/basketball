@@ -1,0 +1,111 @@
+/**
+ * @describe: 全局使用的方法，业务逻辑等
+ */
+define(function (require, exports, module) {
+    /*-----------------------------------------------------------------------
+     所有HTTP API登记
+     ----------------*/
+    var API = {
+        // 获取NBA排行榜的比赛数据
+        teamRank: '/stats2/season/conferencestanding.json?locale=zh_CN',
+        // teamRank: '/src/template/rankNBA/m.json',
+        // 今日得分排行
+        todayRankPoint: '/stats2/league/dailyplayerleader.json?locale=zh_CN&statType=points',
+        // 赛季得分排行
+        seasonRankPoint: '/stats2/league/playerstats.json?locale=zh_CN&pageSize=5&statType=points&total=perGame',
+        // 今日篮板排行
+        todayRankRebound: '/stats2/league/dailyplayerleader.json?locale=zh_CN&statType=rebounds',
+        // 赛季篮板排行
+        // /stats2/league/playerstats.json?conference=All&country=All&individual=All&locale=zh_CN&pageIndex=0&position=All&qualified=false&season=2020&seasonType=4&split=All+Team&statType=rebounds&team=All&total=perGame
+        seasonRankRebound: '/stats2/league/playerstats.json?&statType=rebounds&locale=zh_CN&pageSize=5&total=perGame',
+        // 今日助攻排行
+        todayRankAssist: '/stats2/league/dailyplayerleader.json?locale=zh_CN&statType=assists',
+        // 赛季助攻排行
+        seasonRankAssist: '/stats2/league/playerstats.json?&statType=assists&locale=zh_CN&pageSize=5&total=perGame',
+        // 今日盖帽排行
+        todayRankBlock: '/stats2/league/dailyplayerleader.json?locale=zh_CN&statType=blocks',
+        // 赛季盖帽排行
+        seasonRankBlock: '/stats2/league/playerstats.json?&statType=blocks&locale=zh_CN&pageSize=5&total=perGame',
+        // 今日抢断排行
+        todayRankSteal: '/stats2/league/dailyplayerleader.json?locale=zh_CN&statType=steals',
+        // 赛季抢断排行
+        seasonRankSteal: '/stats2/league/playerstats.json?&statType=steals&locale=zh_CN&pageSize=5&total=perGame',
+        // 获取投票题目 & 结果
+        getVote: 'https://panshi.qq.com/v2/vote2019/{0}',
+        // 提交投票
+        postVote: 'https://panshi.qq.com/v2/vote2019/{0}/submit',
+        // 获取投票结果
+        getVoteResult: 'https://panshi.qq.com/v2/vote2019/{0}/result',
+        // 迷你赛程表
+        miniScoreBoard: '/scores/miniscoreboard.json',
+        // NBA微博
+        teamweibo: '/nbaweibo/teamsWeibo.json',
+        // 球队赛程
+        teamSchedule: '/stats2/team/schedule.json?countryCode=CN&locale=zh_CN&teamCode={0}',
+        // 球队技术统计 这个接口要区分赛季年份和赛季类型2014_1表示2014季前赛，2014_2常规赛，2014_4季后赛
+        teamTechnicalStatistics: '/stats2/league/advancedteamstats.json?category=offensive&conference=All&dataType=total&locale=zh_CN&season={0}&seasonType={1}',
+        // 球队数据王
+        teamDataKing: '/stats2/team/leader.json?locale=zh_CN&teamCode={0}',
+        // 球队页 页首
+        teamHeader: '/stats2/team/standing.json?locale=zh_CN&teamCode={0}',
+
+    };
+
+    exports.API = API;
+    exports.getParams = function (rawQueryString) {
+        var queryString = rawQueryString || window.location.search.split('?')[1];
+        var result = {};
+        if (queryString) {
+            var queryList = queryString.split('&');
+            for (var i = 0; i < queryList.length; i++) {
+                var keyValue = queryList[i].split('=');
+                result[keyValue[0]] = keyValue[1];
+            }
+        }
+        return result;
+    }
+    exports.getQueryVariable = function(variable) {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i = 0; i < vars.length; i++) {
+            let pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+
+
+
+    /**
+     * 删除url中参数
+     * @param name 为参数名
+     * @returns {String}
+     */
+    exports.removeUrlParam = function(param, url = window.location.href) {
+
+        if (url.startsWith('//')) {
+            url = location.protocol + url;
+        }
+        let obj = new window.URL(url);
+
+
+        obj.searchParams.delete(param);
+        return obj.href;
+    }
+
+    /**
+     * 增加url中的参数
+     * @param key
+     * @param value
+     * @param url
+     * @returns {String}
+     */
+    exports.addUrlParam = function(key, value, url = window.location.href) {
+        if (url.startsWith('//')) {
+            url = location.protocol + url;
+        }
+        let obj = new window.URL(url);
+        obj.searchParams.set(key, value);
+        return obj.href;
+    }
+});

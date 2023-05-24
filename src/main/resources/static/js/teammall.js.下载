@@ -1,0 +1,40 @@
+/**
+ * Created by v_gfli on 2015/7/6.
+ */
+define(function (require, exports, module) {
+    return function (teamName) {
+        var teamMallUrl = {
+            blazers: 'http://www.nbastore.cn/ShopByTeam-Western-PortlandTrailBlazers/category.htm',
+            bucks: 'http://nbastore.tmall.com/category-1066480501.htm?spm=a1z10.1-b.w5003-11274591277.6.FPg93h&scene=taobao_shop',
+            bulls: 'http://www.nbastore.cn/ShopByTeam-Eastern-ChicagoBulls/category.htm',
+            cavaliers: 'http://www.nbastore.cn/ShopByTeam-Eastern-ClevelandCavaliers/category.htm',
+            celtics: 'http://www.nbastore.cn/ShopByTeam-Eastern-BostonCeltics/category.htm',
+            clippers: 'http://www.nbastore.cn/ShopByTeam-Western-LosAngelesClippers/category.htm',
+            grizzlies: 'http://nbastore.tmall.com/category-1067143246.htm?spm=a1z10.1-b.w5003-11274591277.28.FPg93h&scene=taobao_shop',
+            hawks: 'http://nbastore.tmall.com/category-1066273517-1030984444.htm?spm=a1z10.1-b.w5003-11274591277.16.FPg93h&scene=taobao_shop',
+            heat: 'http://www.nbastore.cn/ShopByTeam-Eastern-MiamiHeat/category.htm',
+            hornets: 'http://www.nbastore.cn/ShopByTeam-Eastern-CharlotteHornets/category.htm',
+            jazz: 'http://nbastore.tmall.com/?spm=a1z10.1-b.w5003-11274591277.3.FPg93h&q=%BE%F4%CA%BF&type=p&search=y&newHeader_b=s_from&searcy_type=item&from=.shop.pc_2_searchbutton&scene=taobao_shop',
+            kings: 'http://www.nbastore.cn/ShopByTeam-Western-SacramentoKings/category.htm',
+            knicks: 'http://www.nbastore.cn/ShopByTeam-Eastern-NewYorkKnicks/category.htm',
+            lakers: 'http://www.nbastore.cn/ShopByTeam-Western-LosAngelesLakers/category.htm',
+            magic: 'http://www.nbastore.cn/ShopByTeam-Eastern-OrlandoMagic/category.htm',
+            mavericks: 'http://www.nbastore.cn/ShopByTeam-Western-DallasMavericks/category.htm',
+            nets: 'http://www.nbastore.cn/ShopByTeam-Eastern-BrooklynNets/category.htm',
+            nuggets: 'http://nbastore.tmall.com/?spm=a1z10.1-b.w5003-11274591277.18.FPg93h&q=%BE%F2%BD%F0&type=p&search=y&newHeader_b=s_from&searcy_type=item&from=.shop.pc_2_searchbutton&scene=taobao_shop',
+            pacers: 'http://www.nbastore.cn/ShopByTeam-Eastern-IndianaPacers/category.htm',
+            pelicans: 'http://www.nbastore.cn/ShopByTeam-Western-NewOrleansPelicans/category.htm',
+            pistons: '',
+            raptors: 'http://www.nbastore.cn/ShopByTeam-Eastern-TorontoRaptors/category.htm',
+            rockets: 'http://www.nbastore.cn/ShopByTeam-Western-HoustonRockets/category.htm',
+            sixers: 'http://www.nbastore.cn/ShopByTeam-Eastern-Philadelphia76ers/category.htm',
+            spurs: 'http://www.nbastore.cn/ShopByTeam-Western-SanAntonioSpurs/category.htm',
+            suns: 'http://www.nbastore.cn/ShopByTeam-Western-PhoenixSuns/category.htm',
+            thunder: 'http://www.nbastore.cn/ShopByTeam-Western-OklahomaCityThunder/category.htm',
+            timberwolves: 'http://www.nbastore.cn/ShopByTeam-Western-MinnesotaTimberwolves/category.htm',
+            warriors: 'http://www.nbastore.cn/ShopByTeam-Western-GoldenStateWarriors/category.htm',
+            wizards: 'http://www.nbastore.cn/ShopByTeam-Eastern-WashingtonWizards/category.htm'
+        };
+        $('.team-mall').attr('href', teamMallUrl[teamName]);
+    };
+});

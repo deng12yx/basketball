@@ -1,0 +1,29 @@
+define(function (require, exports, module) {
+
+    function change(obj, index, className) {
+
+        if (index === obj.length - 1) {
+            $(obj[index]).removeClass(className);
+            index = 0;
+            $(obj[index]).addClass(className);
+        }
+        else {
+            $(obj[index]).removeClass(className);
+            $(obj[++index]).addClass(className);
+        }
+    }
+
+    function findCurrentContent(arr, curClass) {
+        var currentContent = 0;
+
+        $.each(arr, function (i, item) {
+            currentContent = $(item).hasClass(curClass) ? i : currentContent;
+        });
+        return currentContent;
+    }
+
+    return {
+        change: change,
+        findCurrentContent: findCurrentContent
+    };
+});

@@ -1,0 +1,35 @@
+.code-content {
+  position: fixed;
+  top: 242px;
+  width: 160px;
+  height: 170px;
+  background: #ffffff;
+  border: 1px solid #dedede;
+  z-index: 99;
+}
+
+.close {
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin-top: 10px;
+  margin-left: 135px;
+  cursor: pointer;
+}
+
+.code-img {
+  display: block;
+  width: 90px;
+  height: 90px;
+  margin-left: 35px;
+}
+
+.code-content span {
+  display: block;
+  height: 14px;
+  line-height: 14px;
+  font-size: 14px;
+  color: #111111;
+  text-align: center;
+  margin-top: 10px;
+}

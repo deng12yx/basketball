@@ -1,0 +1,426 @@
+/* 1.9 */
+
+.player {
+    width: 100%;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+}
+
+video::-webkit-media-controls,
+video::-moz-media-controls,
+video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-panel-container {
+    display: none !important;
+}
+
+
+/* video::-webkit-media-controls-panel,
+video::-webkit-media-controls-panel-container,
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+} */
+
+.hcenter {
+    overflow: hidden;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    /* display: inline-block;
+    vertical-align: middle; */
+    position: relative;
+    line-height: normal !important;
+    overflow: hidden;	
+}
+
+.info_readstate {
+    align-content: flex-end;
+}
+
+
+/* --------------------------------------------------------- */
+
+.infoPanel {
+    width: 100%;
+    color: rgb(4, 228, 22);
+    position: absolute;
+    top: 0;
+    z-index: 800;
+    font-size: xx-small;
+    line-height: normal !important
+}
+
+.ctrlPanel {
+    /* background: blue; */
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    /* z-index: 2147483647; */
+}
+
+.conitner {
+    width: 100%;
+    position: relative;
+    line-height: normal !important;
+    font-size: 0 !important;
+}
+
+.loadConitner {
+    text-align: center;
+    z-index: 800;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    margin-left: -20px;
+    height: 40px;
+    margin-top: -20px;
+    /*set to a negative number 1/2 of your height*/
+    /*set to a negative number 1/2 of your width*/
+    color: beige;
+    position: absolute;
+    /* border: 1px solid #ccc; */
+}
+
+
+/* progress--------------------------------------------------- */
+
+.progresConitaner {
+    padding: 0 20px;
+}
+
+.progress {
+    width: 100%;
+    position: relative;
+    background-color: rgba(149, 149, 149, 0.30);
+    height: .3rem;
+    border-radius: 2px;
+}
+
+.mouseConitaner {
+    width: 100%;
+    height: .3rem;
+    position: absolute;
+    left: 0;
+}
+
+.played {
+    /* float: left; */
+    height: inherit;
+    background-color: #0764F9;
+    /* border: 1px solid rgb(4, 228, 22); */
+    position: absolute;
+    left: 0;
+    border-radius: 2px;
+}
+
+.load {
+    /* float: left; */
+    height: inherit;
+    background-color: #D8D8D8;
+    /* border: 1px solid rgb(128, 13, 13); */
+    position: absolute;
+    left: 0;
+    border-radius: 2px;
+}
+
+.buttonContainer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.buttonContainer li {
+    float: left;
+    display: inline;
+    /* */
+}
+
+
+/* progress.bubble--------------------------------------------------- */
+
+.ract {
+    text-align: center;
+    font-size: 12px;
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    background-color: #0094ff;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+}
+
+.TrBubble:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    border: 5px solid transparent;
+    border-top-color: #0094ff;
+    border-bottom: 0;
+    margin: 0 0 -5px -5px;
+}
+
+
+/* ctrlPanel.button */
+
+.buttonContainer {
+    width: 100%;
+}
+
+.buttonRight,
+.buttonLeft {
+    padding: 10px 10px 10px 10px;
+    color: cornsilk;
+}
+
+.buttonLeft {
+    float: left;
+}
+
+.buttonLeft li {
+    padding: 0 20px 0 0px;
+}
+
+.buttonRight {
+    float: right;
+}
+
+.buttonRight ul li {
+    padding-left: 0px 0px 0px 20px!important;
+}
+
+.buttonRight li {
+    padding: 0px 0px 0px 20px;
+}
+
+.ctrlButton {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+/* play */
+
+.playbuttonConitaner {}
+
+
+/* mute */
+
+.muteButtonConitaner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+}
+
+
+/* time */
+
+.timeshow {
+    font-family: 'PingFangSC';
+    padding: 12px 10px 12px 0px;
+    font-size: 12px;
+}
+
+
+/* volume panel */
+
+.volume-panel {
+    position: absolute;
+    top: -120px;
+    width: 40px;
+    height: 134px;
+    opacity: 0.8;
+    background: #000000;
+    border-radius: 7px;
+}
+
+.volume-panel .progress-conitaner {
+    position: relative;
+    height: 116px;
+    margin: 9px 18px;
+    border-radius: 2px;
+}
+
+.volume-panel .progress {
+    position: absolute;
+    bottom: 0px;
+    width: 4px;
+    border-radius: 2px;
+}
+
+.volume-panel .rule {
+    height: 50%;
+    background-color: #0764F9;
+}
+
+.volume-panel .bg {
+    height: 100%;
+    background-color: rgba(149, 149, 149, 0.30);
+}
+
+.volume-panel .mask {
+    width: 100%;
+    height: 116px;
+    margin: 9px 0px;
+}
+
+
+/* ------------------------------------ */
+
+.test-border {
+    border: 1px solid red;
+}
+
+.test-border1 {
+    border: 1px solid rgb(42, 240, 52);
+}
+
+.test-border2 {
+    border: 1px solid rgb(96, 17, 243);
+}
+
+
+/* ------------------------------------- */
+
+
+/* .ctrlButton svg :hover {
+    fill: #0764F9;
+} */
+
+
+/* .ctrlButton:hover {
+    background-color: #0764F9;
+    border-radius: 5px;
+} */
+
+.ctrlButton:hover svg g {
+    fill: #0764F9;
+}
+
+.ctrlButton:hover svg path {
+    fill: #0764F9;
+}
+
+
+/* ----------------------------------- */
+
+.debugwindow {
+    width: 100% auto;
+    height: 100% auto;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: aquamarine;
+    bottom: 100px;
+    right: 100px;
+    top: 47px;
+    left: 0;
+    overflow: auto;
+    font-size: xx-small;
+    line-height: normal !important
+}
+
+.debugwindow::-webkit-scrollbar,
+.debugwindow::-webkit-scrollbar-thumb,
+.debugwindow::-webkit-scrollbar-track,
+.debugwindow::-webkit-scrollbar-track-piece,
+.debugwindow::-webkit-scrollbar-corner {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/*---------------------------------*/
+
+.pip-container {
+    position: absolute;
+    right: 20px;
+    top: 24px;
+    z-index: 801;
+    cursor: pointer;
+    width: 88px;
+    height: 35px;
+    border-radius: 4px;
+    /* --------------------- */
+    border: 1.5px solid #FFFFFF;
+}
+
+.pip-container:hover {
+    background: #0764F9;
+    border: 1.5px solid #0764F9;
+}
+
+.pip-container.active {
+    background: #0764F9;
+}
+
+.pip-icon {
+    padding: 8px;
+    width: 18px;
+    height: 18px;
+    float: left;
+}
+
+.pip-text {
+    padding: 8px 8px 8px 0;
+    color: #FFFFFF;
+    float: right;
+    font-size: 14px;
+}
+
+.pip-window {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    /* width: 300px; */
+    /* height: 100%; */
+    background-color: black;
+    z-index: 10000;
+}
+
+
+/* bitRate component */
+
+.bitRate {
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px !important;
+    position: relative;
+}
+
+.bitRate:hover {
+    color: #0764F9;
+}
+
+.bitRate-menu {
+    position: absolute;
+    width: 20px;
+    height: 50px;
+    left: -21px;
+    border-radius: 4px;
+}
+
+.bitRate-menu li {
+    background-color: rgba(0, 0, 0, 0.59) !important;
+    color: rgb(255, 255, 255);
+    padding: 0px 15px 0px 15px;
+    z-index: 10001;
+    height: 35px;
+    width: 56px;
+    line-height: 35px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.bitRate-menu li:hover {
+    /* background-color: indianred !important; */
+    color: #0764F9;
+}
